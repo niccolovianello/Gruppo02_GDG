@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 3f;
     private bool isSprinting;
     public float sprintModifier;
+    
    
     private float movementCounter;
     private float idleCounter;
@@ -23,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
 
     private float baseFOV;
-    private float sprintFOVModifier = 1.25f;
+    private float sprintFOVModifier = 1.5f;
 
     private Vector3 targetArmBobPosition;
     private Vector3 armParentOrigin;
@@ -35,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        
         baseFOV = normalCam.fieldOfView;
         isSprinting = false;
         armParentOrigin = armParent.localPosition;
@@ -54,7 +56,8 @@ public class PlayerMovement : MonoBehaviour
         float z = Input.GetAxis("Vertical");
 
         bool sprint = Input.GetKey(KeyCode.LeftShift);
-        bool isSprinting = sprint && z>0;
+        
+        bool isSprinting = sprint && z>0 && isGrounded;
 
 
         float t_adjustedSpeed = speed;

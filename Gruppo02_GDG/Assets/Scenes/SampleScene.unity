@@ -1139,6 +1139,7 @@ GameObject:
   - component: {fileID: 1271937588}
   - component: {fileID: 1271937587}
   - component: {fileID: 1271937589}
+  - component: {fileID: 1271937590}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1196,8 +1197,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 1271937587}
   speed: 12
-  gravity: -19.62
-  jumpHeight: 2.3
+  gravity: -30
+  jumpHeight: 3
   sprintModifier: 1.8
   normalCam: {fileID: 963194227}
   armParent: {fileID: 447847312}
@@ -1206,6 +1207,18 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 512
+--- !u!114 &1271937590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271937586}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0cfd66bffb876f4b80d179afe8abebf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1273194834
 GameObject:
   m_ObjectHideFlags: 0
