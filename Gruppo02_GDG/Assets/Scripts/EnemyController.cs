@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
 {
     public Transform player;
     public float playerDistance;
-    public float awareAI = 10f;
+    public float awareAI = 12f;
     public float AIMoveSpeed;
     public float damping = 6.0f;
 
@@ -31,13 +31,15 @@ public class EnemyController : MonoBehaviour
     {
         playerDistance = Vector3.Distance(player.position, transform.position);
 
-        if (playerDistance < awareAI)
+        Vector3 targetDir = player.position - transform.position;
+        float angleToPlayer = (Vector3.Angle(targetDir, transform.forward));
+
+        if (playerDistance < awareAI && angleToPlayer >= -60 && angleToPlayer <= 60)
         {
             LookAtPlayer();
-            Debug.Log("SeenPlayer");
         }
 
-        if (playerDistance < awareAI)
+        if (playerDistance < awareAI && angleToPlayer >= -60 && angleToPlayer <= 60)
         {
             if (playerDistance > 2f)
             {
@@ -71,7 +73,5 @@ public class EnemyController : MonoBehaviour
             return;
         agent.destination = navPoint[destPoint].position;
         destPoint = (destPoint + 1) % navPoint.Length;
-
-        Debug.Log("Going to" + destPoint);
     }
 }
