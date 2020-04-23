@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e009c13f54662f343b22adc7762235d9, type: 3}
-  m_Name: Pile
+  m_Name: FlashLight
   m_EditorClassIdentifier: 
-  name: Pile
+  name: FlashLight
   prefab: {fileID: 3632657454728796842, guid: 44b446cc1dc50f2429f35d1cbf4c2737, type: 3}
   aimSpeed: 8
   brightness: 10

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e009c13f54662f343b22adc7762235d9, type: 3}
-  m_Name: Trocia
+  m_Name: Torch
   m_EditorClassIdentifier: 
-  name: Torcia
+  name: Torch
   prefab: {fileID: 5988819314597172145, guid: 02c28b70f2a069b46a9bed2a0839ebc0, type: 3}
   aimSpeed: 10
   brightness: 10
