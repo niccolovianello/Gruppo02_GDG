@@ -43,7 +43,8 @@ public class EnemyController : MonoBehaviour
         {
             if (playerDistance > 2f)
             {
-                Chase();
+                //Chase();
+                StartCoroutine(ExecuteAfterTime(2f));
             }
             else { 
             if (!agent.pathPending && agent.remainingDistance < 0.5f)
@@ -58,10 +59,7 @@ public class EnemyController : MonoBehaviour
             transform.LookAt(player);
         }
 
-        void Chase()
-        {
-            transform.Translate(Vector3.forward * AIMoveSpeed * Time.deltaTime);
-        }
+       
 
         if (!agent.pathPending && agent.remainingDistance < 0.5f)
             MoveToNextPoint();
@@ -73,5 +71,17 @@ public class EnemyController : MonoBehaviour
             return;
         agent.destination = navPoint[destPoint].position;
         destPoint = (destPoint + 1) % navPoint.Length;
+    }
+
+    IEnumerator ExecuteAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        Chase();
+    }
+
+    void Chase()
+    {
+        transform.Translate(Vector3.forward * AIMoveSpeed * Time.deltaTime);
     }
 }
