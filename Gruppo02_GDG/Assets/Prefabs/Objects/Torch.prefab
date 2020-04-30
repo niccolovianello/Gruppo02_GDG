@@ -141,6 +141,7 @@ MonoBehaviour:
   isOn: 1
   fire: {fileID: 5988819315564237970}
   fireLight: {fileID: 5988819315687608043}
+  torch: {fileID: 11400000, guid: b2fad2e46c393eb48a9a95e67d0ff235, type: 2}
 --- !u!65 &2747087995256248669
 BoxCollider:
   m_ObjectHideFlags: 0

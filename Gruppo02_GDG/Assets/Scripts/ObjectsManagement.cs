@@ -9,9 +9,11 @@ namespace Com.Kawaiisun.SimpleHostile
         public Equipment[] loadout;
         public Equipment[] pickLoadout;
         public Transform objectParent;
-        private int currentIndex = 0;
         private GameObject currentObject;
+        public PlayerCombatScript weaponProperties;
 
+        private int currentIndex = 0;
+        
 
         private void Start()
         {
@@ -59,15 +61,26 @@ namespace Com.Kawaiisun.SimpleHostile
 
         {
 
-            if (currentObject != null) Destroy(currentObject);
+            if (currentObject != null)
+            {
+                Destroy(currentObject);
+                pickLoadout[currentIndex].isSelected = false;
+            } 
 
             GameObject t_newEquipment = Instantiate(pickLoadout[eq_index].prefab, objectParent.position, objectParent.rotation, objectParent) as GameObject;
             
             t_newEquipment.transform.localPosition = Vector3.zero;
             t_newEquipment.transform.localEulerAngles = Vector3.zero;
-            
+
+            weaponProperties.attackRange = pickLoadout[eq_index].attackRange;
+            weaponProperties.attackRate = pickLoadout[eq_index].attackRate;
+            weaponProperties.attackDamage = pickLoadout[eq_index].damage;
+           
+
             currentObject = t_newEquipment;
             currentIndex = eq_index;
+            pickLoadout[eq_index].isSelected = true;
+
         }
 
         void Aim(bool isAiming)

@@ -11,6 +11,10 @@ namespace Com.Kawaiisun.SimpleHostile
         public GameObject prefab;
         public float aimSpeed;
         public float brightness;
+        public float attackRange;
+        public int damage;
+        public float attackRate = 1f;
+        public bool isSelected = false;
 
     }
 }

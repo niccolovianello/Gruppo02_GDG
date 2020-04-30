@@ -16,3 +16,7 @@ MonoBehaviour:
   prefab: {fileID: 3632657454728796842, guid: 44b446cc1dc50f2429f35d1cbf4c2737, type: 3}
   aimSpeed: 8
   brightness: 10
+  attackRange: 20
+  damage: 30
+  attackRate: 0.1
+  isSelected: 1

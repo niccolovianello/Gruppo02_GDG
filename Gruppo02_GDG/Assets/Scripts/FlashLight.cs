@@ -1,26 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class FlashLight : MonoBehaviour
+namespace Com.Kawaiisun.SimpleHostile
 {
-
-    private Light flashlight;
-    private bool isOn;
-
-    private void Start()
+    public class FlashLight : MonoBehaviour
     {
-        flashlight = this.GetComponent<Light>();
-    }
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Q))
+
+        private Light flashlight;
+        private bool isOn = false;
+        public Equipment selectionFlashlight;
+
+        private void Start()
         {
-            isOn = !isOn; 
+            flashlight = this.GetComponent<Light>();
         }
-        if (isOn)
-            flashlight.enabled = true;
-        else
-            flashlight.enabled = false;
+        void Update()
+        {
+            if (selectionFlashlight == true)
+            {
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    isOn = !isOn;
+                }
+                if (isOn)
+                    flashlight.enabled = true;
+                else
+                    flashlight.enabled = false;
+            }
+            else
+            {
+                flashlight.enabled = false;
+            }
+           
+        }
     }
 }

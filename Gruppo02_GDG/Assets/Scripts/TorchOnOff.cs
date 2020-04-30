@@ -2,31 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TorchOnOff : MonoBehaviour
+namespace Com.Kawaiisun.SimpleHostile
 {
-    
-    public bool isOn;
-    public ParticleSystem fire;
-    public Light fireLight;
-    // Update is called once per frame
-    void Update()
+    public class TorchOnOff : MonoBehaviour
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+
+        public bool isOn;
+        public ParticleSystem fire;
+        public Light fireLight;
+        public Equipment torch;
+        // Update is called once per frame
+        void Update()
         {
-            if (isOn)
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                fireLight.enabled = false;
-                fire.Stop();
-                isOn = false;
+                if (torch.isSelected == true)
+                {
+                    if (isOn)
+                    {
+                        fireLight.enabled = true;
+                        fire.Play();
+                        isOn = true;
+                    }
+                    else
+                    {
+                        fireLight.enabled = false;
+                        fire.Stop();
+                        isOn = false;
+                    }
+               
+
+                }
+                else
+                {
+                    fireLight.enabled = false;
+                    fire.Stop();
+                    isOn = false;
+                }
+
             }
-            else
-            {
-                fireLight.enabled = true;
-                fire.Play();
-                isOn = true;
-            }
-                
         }
-        
     }
 }

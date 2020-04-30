@@ -213,6 +213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4258ce325906774097acc6253c098d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectionFlashlight: {fileID: 11400000, guid: f68a249f19dfb1c43ac9e5eaab448b25,
+    type: 2}
 --- !u!1 &4638761497626232932
 GameObject:
   m_ObjectHideFlags: 0

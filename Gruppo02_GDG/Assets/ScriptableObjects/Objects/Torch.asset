@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Torch
   prefab: {fileID: 5988819314597172145, guid: 02c28b70f2a069b46a9bed2a0839ebc0, type: 3}
-  aimSpeed: 10
+  aimSpeed: 5
   brightness: 10
+  attackRange: 1
+  damage: 40
+  attackRate: 1
+  isSelected: 0
