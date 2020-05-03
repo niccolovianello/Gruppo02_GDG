@@ -60,12 +60,18 @@ namespace Com.Kawaiisun.SimpleHostile
         void Equip(int eq_index)
 
         {
+            if (pickLoadout[eq_index] == null)
+            {
+                Debug.Log("There's not any object in the selected slot");
+                return;
+            }
 
             if (currentObject != null)
             {
                 Destroy(currentObject);
                 pickLoadout[currentIndex].isSelected = false;
-            } 
+            }
+
 
             GameObject t_newEquipment = Instantiate(pickLoadout[eq_index].prefab, objectParent.position, objectParent.rotation, objectParent) as GameObject;
             

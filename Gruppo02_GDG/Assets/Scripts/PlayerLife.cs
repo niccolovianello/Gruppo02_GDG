@@ -24,10 +24,10 @@ public class PlayerLife : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(/*torch_light.enabled == false &&*/ flashlight_light.enabled == false)
-        {
-            Die();
-        }
+        //if(/*torch_light.enabled == false &&*/ flashlight_light.enabled == false)
+        //{
+        //    Die();
+        //}
     }
 
     void Die()

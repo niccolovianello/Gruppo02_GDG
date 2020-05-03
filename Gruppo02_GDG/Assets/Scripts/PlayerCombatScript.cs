@@ -49,8 +49,11 @@ public class PlayerCombatScript : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, attackRange))
             {
-                Debug.Log("colpisco distante");
-                hit.collider.GetComponent<EnemyGeneral>().TakeDamage(attackDamage);
+                if (hit.collider.GetComponent<EnemyGeneral>())
+                {               
+                    Debug.Log("colpisco distante");
+                    hit.collider.GetComponent<EnemyGeneral>().TakeDamage(attackDamage);
+                }
             }
         }
     }

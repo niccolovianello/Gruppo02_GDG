@@ -18,5 +18,5 @@ MonoBehaviour:
   brightness: 10
   attackRange: 20
   damage: 30
-  attackRate: 0.1
+  attackRate: 10
   isSelected: 1

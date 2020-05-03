@@ -16,19 +16,21 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
+                Debug.Log(torch.isSelected);
                 if (torch.isSelected == true)
                 {
                     if (isOn)
                     {
-                        fireLight.enabled = true;
-                        fire.Play();
-                        isOn = true;
-                    }
-                    else
-                    {
+                        
                         fireLight.enabled = false;
                         fire.Stop();
                         isOn = false;
+                    }
+                    else
+                    {
+                        fireLight.enabled = true;
+                        fire.Play();
+                        isOn = true;
                     }
                
 
