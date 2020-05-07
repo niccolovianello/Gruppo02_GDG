@@ -20637,7 +20637,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bd06f25f66d96e438d192012b79bd01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 0}
 --- !u!1 &1015128736
 GameObject:
   m_ObjectHideFlags: 0
@@ -40375,6 +40374,12 @@ MonoBehaviour:
   gravity: -30
   jumpHeight: 3
   sprintModifier: 1.2
+  maxStamina: 100
+  currentStamina: 0
+  ratioStaminaDischarge: 25
+  ratioStaminaCharge: 7.5
+  blockSprint: 0
+  refractoryTime: 3
   normalCam: {fileID: 963194227}
   armParent: {fileID: 1163218896}
   groundCheck: {fileID: 449116942}

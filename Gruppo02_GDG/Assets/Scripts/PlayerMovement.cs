@@ -12,6 +12,12 @@ public class PlayerMovement : MonoBehaviour
     public float jumpHeight = 3f;
     private bool isSprinting;
     public float sprintModifier;
+    public float maxStamina = 100;
+    public float currentStamina;
+    public float ratioStaminaDischarge = 15f;
+    public float ratioStaminaCharge = 10f;
+    public bool blockSprint = false;
+    public float refractoryTime = 3f;
     
    
     private float movementCounter;
@@ -40,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
         baseFOV = normalCam.fieldOfView;
         isSprinting = false;
         armParentOrigin = armParent.localPosition;
+        currentStamina = maxStamina;
     }
     void Update()
     {
@@ -61,12 +68,28 @@ public class PlayerMovement : MonoBehaviour
 
 
         float t_adjustedSpeed = speed;
-        if (isSprinting)
+        if (isSprinting && currentStamina > 0 && blockSprint == false)
         {
             t_adjustedSpeed *= sprintModifier;
+            currentStamina -= ratioStaminaDischarge * Time.deltaTime;
+            normalCam.fieldOfView = Mathf.Lerp(normalCam.fieldOfView, baseFOV * sprintModifier, Time.deltaTime * 8f);
+            HeadBob(movementCounter, .15f, 0.075f);
+            movementCounter += Time.deltaTime * 7f;
+            armParent.localPosition = Vector3.Lerp(armParent.localPosition, targetArmBobPosition, Time.deltaTime * 10f);
+            
+            if (currentStamina <= 0)
+                blockSprint = true;
+        }
+        if(!isSprinting || currentStamina < 0 || blockSprint ==true)
+        {
+            normalCam.fieldOfView = Mathf.Lerp(normalCam.fieldOfView, baseFOV, Time.deltaTime * 8f);
+
+            currentStamina += ratioStaminaCharge * Time.deltaTime;
+            StartCoroutine(BlockSprintMethod(refractoryTime));
+            
         }
 
-        
+
 
         Vector3 move = transform.right * x + transform.forward * z;
 
@@ -81,14 +104,8 @@ public class PlayerMovement : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
-        if (isSprinting)
-        {
-            normalCam.fieldOfView = Mathf.Lerp(normalCam.fieldOfView, baseFOV * sprintModifier, Time.deltaTime * 8f);
-        }
-        else
-        {
-            normalCam.fieldOfView = Mathf.Lerp(normalCam.fieldOfView, baseFOV, Time.deltaTime * 8f);
-        }
+        
+        
 
         if (x == 0 && z == 0)
         {
@@ -102,12 +119,7 @@ public class PlayerMovement : MonoBehaviour
             movementCounter += Time.deltaTime * 3f;
             armParent.localPosition = Vector3.Lerp(armParent.localPosition, targetArmBobPosition, Time.deltaTime * 6f);
         }
-        else 
-        {
-            HeadBob(movementCounter, .15f, 0.075f);
-            movementCounter += Time.deltaTime * 7f;
-            armParent.localPosition = Vector3.Lerp(armParent.localPosition, targetArmBobPosition, Time.deltaTime * 10f);
-        }
+       
 
 
 
@@ -120,6 +132,12 @@ public class PlayerMovement : MonoBehaviour
     void HeadBob(float p_z,float p_x_intensity,float p_y_intensity)
     {
         targetArmBobPosition = armParentOrigin + new Vector3(Mathf.Cos(p_z)*p_x_intensity, Mathf.Sin(p_z * 2)*p_y_intensity,0);
+    }
+
+    IEnumerator BlockSprintMethod(float timeRest)
+    {
+        yield return new WaitForSeconds(timeRest);
+        blockSprint = false;
     }
     #endregion
 }
