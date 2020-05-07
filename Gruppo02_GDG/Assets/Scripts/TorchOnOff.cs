@@ -11,38 +11,66 @@ namespace Com.Kawaiisun.SimpleHostile
         public ParticleSystem fire;
         public Light fireLight;
         public Equipment torch;
-        // Update is called once per frame
+        private ObjectsManagement obj;
+        public float timeOfTorchLife = 50f;
+        public float currentTimeOfTorchLife;
+        public float decrementRate = 0.5f;
+        
+        private void Start()
+        {
+            currentTimeOfTorchLife = timeOfTorchLife;
+            isOn = false;
+            obj = FindObjectOfType<ObjectsManagement>();
+        }
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (torch.isSelected == true)
             {
-                Debug.Log(torch.isSelected);
-                if (torch.isSelected == true)
+                if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    if (isOn)
-                    {
-                        
-                        fireLight.enabled = false;
-                        fire.Stop();
-                        isOn = false;
-                    }
-                    else
+                Debug.Log(torch.isSelected);
+                
+                isOn = !isOn;
+
+                    if (isOn && obj.ammo[0] > 0)
                     {
                         fireLight.enabled = true;
                         fire.Play();
-                        isOn = true;
+                        obj.ammo[0]--;
+
                     }
-               
+                    else
+                    {
+                        Debug.Log("Sono finiti i fiammiferi");
+                    }
+
 
                 }
-                else
+                if (!isOn)
                 {
+
                     fireLight.enabled = false;
                     fire.Stop();
-                    isOn = false;
                 }
 
+
+
+                if (isOn)
+                {
+                    currentTimeOfTorchLife -= decrementRate * Time.deltaTime;
+                }
+                if (currentTimeOfTorchLife <= 0)
+                {
+                    Destroy(this);
+                    int i = obj.getCurrentIndex();
+                    obj.pickLoadout[i] = null;
+                }
+
+
             }
+
+           
+            
         }
     }
 }

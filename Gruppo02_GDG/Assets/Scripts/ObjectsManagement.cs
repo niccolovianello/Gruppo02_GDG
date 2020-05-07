@@ -11,6 +11,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public Transform objectParent;
         private GameObject currentObject;
         public PlayerCombatScript weaponProperties;
+        public int[] ammo; // 0 fiammiferi 1 olio 2 batterie
 
         private int currentIndex = 0;
         
@@ -18,6 +19,9 @@ namespace Com.Kawaiisun.SimpleHostile
         private void Start()
         {
             pickLoadout = new Equipment[3];
+            ammo = new int[4];
+
+
         }
 
         void Update()
@@ -46,7 +50,13 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 Equip(1);
                 currentIndex = 1;
-            } 
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                Equip(2);
+                currentIndex = 2;
+            }
 
             if (currentObject != null)
             {
@@ -91,7 +101,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
         void Aim(bool isAiming)
         {
-            if (currentObject == null)
+            if (currentObject == null || pickLoadout[currentIndex] == null)
                 return;
 
             Transform t_anchor = currentObject.transform.Find("Anchor");
@@ -153,5 +163,9 @@ namespace Com.Kawaiisun.SimpleHostile
             Equip(ind_pick);
         }
 
+        public int getCurrentIndex()
+        {
+            return currentIndex;
+        }
     }
 }
