@@ -16,11 +16,15 @@ namespace Com.Kawaiisun.SimpleHostile
         public float currentTimeOfTorchLife;
         public float decrementRate = 0.5f;
 
+        float startIntensity;
+
         private void Start()
         {
             currentTimeOfTorchLife = timeOfTorchLife;
             isOn = false;
             obj = FindObjectOfType<ObjectsManagement>();
+
+            startIntensity = fireLight.intensity;
         }
         void Update()
         {
@@ -61,7 +65,10 @@ namespace Com.Kawaiisun.SimpleHostile
 
                     //fadelight
 
-                    
+                    if ((currentTimeOfTorchLife / 10f) < /*3f*/ startIntensity)
+                    {
+                        fireLight.intensity = Random.Range(Random.Range((currentTimeOfTorchLife / 10f), /*3f*/ startIntensity), /*3f*/ startIntensity);
+                    }
 
                     //end fadelight
                 }

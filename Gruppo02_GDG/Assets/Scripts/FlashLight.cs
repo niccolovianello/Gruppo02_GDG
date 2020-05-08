@@ -14,17 +14,15 @@ namespace Com.Kawaiisun.SimpleHostile
         public float maxEnergySingleBattery;
         public float dischargeBatteryVelocity = 0.5f;
 
-        //flicker
-        float maxRange = 1.5f;
-        float minRange = 0.6f;
-        float flickerSpeed = 0.5f;
-
+        float startIntensity;
 
         private void Start()
         {
             obj = FindObjectOfType<ObjectsManagement>();
             flashlight = this.GetComponent<Light>();
             currentBatteryEnergy = selectionFlashlight.charge;
+
+            startIntensity = flashlight.intensity;
         }
         void Update()
         {
@@ -55,7 +53,11 @@ namespace Com.Kawaiisun.SimpleHostile
 
                     //flicker
 
-                    flashlight.intensity = Random.Range(0.1f, 1.5f);
+                    //Debug.Log(currentBatteryEnergy + " + " + flashlight.intensity + " + " + currentBatteryEnergy/20f);
+                    if ((currentBatteryEnergy / 20f) < /*1.5f*/ startIntensity)
+                    {
+                        flashlight.intensity = Random.Range(Random.Range((currentBatteryEnergy / 20f), /*1.5f*/ startIntensity), /*1.5f*/ startIntensity);
+                    }
 
                     //end flicker
                 } 
