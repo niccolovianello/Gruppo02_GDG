@@ -15,7 +15,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public float timeOfTorchLife = 50f;
         public float currentTimeOfTorchLife;
         public float decrementRate = 0.5f;
-        
+
         private void Start()
         {
             currentTimeOfTorchLife = timeOfTorchLife;
@@ -58,6 +58,12 @@ namespace Com.Kawaiisun.SimpleHostile
                 if (isOn)
                 {
                     currentTimeOfTorchLife -= decrementRate * Time.deltaTime;
+
+                    //fadelight
+
+                    
+
+                    //end fadelight
                 }
                 if (currentTimeOfTorchLife <= 0)
                 {

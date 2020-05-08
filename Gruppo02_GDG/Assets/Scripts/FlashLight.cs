@@ -14,6 +14,11 @@ namespace Com.Kawaiisun.SimpleHostile
         public float maxEnergySingleBattery;
         public float dischargeBatteryVelocity = 0.5f;
 
+        //flicker
+        float maxRange = 1.5f;
+        float minRange = 0.6f;
+        float flickerSpeed = 0.5f;
+
 
         private void Start()
         {
@@ -47,6 +52,12 @@ namespace Com.Kawaiisun.SimpleHostile
                 {
                     flashlight.enabled = true;
                     currentBatteryEnergy -= dischargeBatteryVelocity * Time.deltaTime;
+
+                    //flicker
+
+                    flashlight.intensity = Random.Range(0.1f, 1.5f);
+
+                    //end flicker
                 } 
                 else
                     flashlight.enabled = false;

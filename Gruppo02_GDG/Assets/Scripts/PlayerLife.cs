@@ -2,46 +2,68 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerLife : MonoBehaviour
+
+namespace Com.Kawaiisun.SimpleHostile
 {
-    public int playerHealth = 100;
-    int plCurrentHealth;
 
-    //CHANGE
-    public Light torch_light;
-    public Light flashlight_light;
-
-    // access equipment list
-
-    //CHANGE END
-
-    // Start is called before the first frame update
-    void Start()
+    public class PlayerLife : MonoBehaviour
     {
-        plCurrentHealth = playerHealth;
-    }
+        float timeLeft = 30f;
+        float plCurrentTime;
 
-    // Update is called once per frame
-    void Update()
-    {
-        //if(/*torch_light.enabled == false &&*/ flashlight_light.enabled == false)
-        //{
-        //    Die();
-        //}
-    }
+        public ObjectsManagement obj;
 
-    void Die()
-    {
-        Debug.Log("alldark");
+        // Start is called before the first frame update
+        void Start()
+        {
+            plCurrentTime = timeLeft;
+            obj = FindObjectOfType<ObjectsManagement>();
+        }
 
-        StartCoroutine(ExecuteAfterTime(2f));
-    }
+        // Update is called once per frame
+        void Update()
+        {
+            if (obj.getCurrentObj() != null)
+            {
+                Light objLight = obj.getCurrentObj().GetComponentInChildren<Light>();
 
-    IEnumerator ExecuteAfterTime(float time)
-    {
-        yield return new WaitForSeconds(time);
+                if (objLight.enabled == true)
+                {
+                    if (plCurrentTime < 30f && plCurrentTime > 0f)
+                    {
+                        plCurrentTime += Time.deltaTime;
+                    }
+                }
+                else if(objLight.enabled == false)
+                {
+                    //if(plCurrentTime > 0f)
+                    //{
+                        plCurrentTime -= Time.deltaTime;
+                    //}
+                }
+            }
 
-        Debug.Log("i'm_dead");
-        //Destroy(gameObject);
+            Debug.Log(Mathf.Round(plCurrentTime));
+            if(plCurrentTime < 0f)
+            {
+                Die();
+            }
+
+        }
+
+        void Die()
+        {
+            Debug.Log("alldark");
+
+            StartCoroutine(ExecuteAfterTime(2f)); //delete and destroy gameobject?
+        }
+
+        IEnumerator ExecuteAfterTime(float time)
+        {
+            yield return new WaitForSeconds(time);
+
+            Debug.Log("i'm_dead");
+            //Destroy(gameObject);
+        }
     }
 }

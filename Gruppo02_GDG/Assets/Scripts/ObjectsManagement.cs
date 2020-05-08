@@ -167,5 +167,11 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             return currentIndex;
         }
+
+        // return current object
+        public GameObject getCurrentObj()
+        {
+            return currentObject;
+        }
     }
 }
