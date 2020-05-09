@@ -3,31 +3,51 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
+using UnityEngine.Animations;
 
 public class EnemyController : MonoBehaviour
 {
+    public Transform[] navPoint;
+    public NavMeshAgent agent;
+    public Transform goal;
     public Transform player;
+    private Animator anim;
+   
     public float playerDistance;
     public float awareAI = 14f;
     public float AIMoveSpeed;
-    public float damping = 6.0f;
-    public Transform[] navPoint;
-    public NavMeshAgent agent;
+    public float damping = 6.0f;    
     public int destPoint = 0;
-    public Transform goal;
+    
     //bool ischasing = false;
     float angleToPlayer;
 
-    // Start is called before the first frame update
+
+    //variabili animazione
+    
+    
+    
+
+
+    
     void Start()
     {
+        
         agent = GetComponent<NavMeshAgent>();
         //agent.destination = goal.position;
         agent.autoBraking = false;
         MoveToNextPoint();
+        
+        // controllo su animator
+        anim = this.GetComponent<Animator>();
+        if (anim == null)
+        {
+            Debug.Log("no animator");
+            return;
+        }
     }
 
-    // Update is called once per frame
+  
     void Update()
     {
         playerDistance = Vector3.Distance(player.position, transform.position);
@@ -103,4 +123,11 @@ public class EnemyController : MonoBehaviour
         agent.speed = AIMoveSpeed;
         agent.stoppingDistance = 3f;
     }
+
+    private void UpdateAnimation() // metodo dove implementare animazioni  da richiamare dell'update
+    { 
+     
+        if(!isFollowingPlayer)
+    }
+
 }

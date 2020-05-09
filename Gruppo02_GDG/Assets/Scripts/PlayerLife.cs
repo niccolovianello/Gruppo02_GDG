@@ -43,7 +43,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 }
             }
 
-            Debug.Log(Mathf.Round(plCurrentTime));
+            //Debug.Log(Mathf.Round(plCurrentTime));
             if(plCurrentTime < 0f)
             {
                 Die();
