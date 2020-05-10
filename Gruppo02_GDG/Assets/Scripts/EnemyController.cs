@@ -27,6 +27,9 @@ public class EnemyController : MonoBehaviour
     float timer = 15f; //tempo inseguimento se non visto
     float timeleft;
 
+    bool seenplayer = false;
+    bool closeattack = false;
+
     //variabili animazione
     
 
@@ -51,9 +54,22 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        if(anim != null)
+            UpdateAnimations();
+
         playerDistance = Vector3.Distance(player.position, transform.position);
         Vector3 targetDir = player.position - transform.position;
         angleToPlayer = (Vector3.Angle(targetDir, transform.forward));
+
+        if (playerDistance < 3f)
+        {
+            closeattack = true;
+        }
+        else
+        {
+            closeattack = false;
+        }
+
 
         /*if (playerDistance < awareAI && angleToPlayer >= -60 && angleToPlayer <= 60)
         {
@@ -62,6 +78,8 @@ public class EnemyController : MonoBehaviour
 
         if (playerDistance < awareAI && angleToPlayer >= -60 && angleToPlayer <= 60) //se in cono visivo (120) ed entro distanza
         {
+            seenplayer = true;
+
             timeleft = timer;
             LookAtPlayer();
 
@@ -122,6 +140,13 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    private void UpdateAnimations()
+    {
+        anim.SetFloat("Speed", agent.speed);
+        anim.SetBool("NoticePlayer", seenplayer);
+        anim.SetBool("CloseEnoughToAttack", closeattack);
+    }
+
     void MoveToNextPoint()
     {
         if (ischasing == true)
@@ -132,6 +157,8 @@ public class EnemyController : MonoBehaviour
             agent.speed = 3.4f;
         if (timeleft != timer)
             timeleft = timer;
+
+        seenplayer = false;
 
         if (navPoint.Length == 0)
             return;
