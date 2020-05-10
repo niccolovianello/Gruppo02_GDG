@@ -13,29 +13,31 @@ public class EnemyController : MonoBehaviour
     public Transform player;
     private Animator anim;
    
-    public float playerDistance;
+    float playerDistance;
     public float awareAI = 14f;
     public float AIMoveSpeed;
     public float damping = 6.0f;    
-    public int destPoint = 0;
+    int destPoint = 0;
     
-    //bool ischasing = false;
+    bool ischasing = false;
+    bool isfollowing = false;
     float angleToPlayer;
+    float startSpeed;
 
+    float timer = 15f; //tempo inseguimento se non visto
+    float timeleft;
 
     //variabili animazione
     
-    
-    
-
 
     
     void Start()
     {
-        
         agent = GetComponent<NavMeshAgent>();
         //agent.destination = goal.position;
         agent.autoBraking = false;
+        startSpeed = agent.speed;
+        timeleft = timer;
         MoveToNextPoint();
         
         // controllo su animator
@@ -47,50 +49,74 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-  
     void Update()
     {
         playerDistance = Vector3.Distance(player.position, transform.position);
         Vector3 targetDir = player.position - transform.position;
         angleToPlayer = (Vector3.Angle(targetDir, transform.forward));
 
-        if (playerDistance < awareAI && angleToPlayer >= -60 && angleToPlayer <= 60)
+        /*if (playerDistance < awareAI && angleToPlayer >= -60 && angleToPlayer <= 60)
         {
             LookAtPlayer();
-        }
+        }*/
 
-        if (playerDistance < awareAI && angleToPlayer >= -60 && angleToPlayer <= 60)
+        if (playerDistance < awareAI && angleToPlayer >= -60 && angleToPlayer <= 60) //se in cono visivo (120) ed entro distanza
         {
+            timeleft = timer;
+            LookAtPlayer();
+
             if (playerDistance > 2f)
             {
-                //Chase();
                 //ischasing = true;
-                StartCoroutine(ExecuteAfterTime(2f));
+                if(ischasing == false)
+                {
+                    ischasing = true;
+                    isfollowing = false;
+                    StartCoroutine(ExecuteAfterTime(2f));
+                }
+                //StartCoroutine(ExecuteAfterTime(2f));
             }
-            else { 
-            //if (!agent.pathPending && agent.remainingDistance < 0.5f)
-                //{
-                    MoveToNextPoint();
-                //}
+            /*else
+            { 
+                MoveToNextPoint();
+            }*/
+        }
+        else if(ischasing == true) //timer inseguimento se non in cono visivo e in certa distanza
+        {
+            if(timeleft > 0f)
+            {
+                timeleft -= Time.deltaTime;
+                //Debug.Log(Mathf.Round(timeleft));
+                Chase();
             }
+            else //quando scade timer
+            {
+                ischasing = false;
+            }
+        }
+        else //patrol
+        {
+            if(ischasing == false)
+            {
+                MoveToNextPoint();
+            }
+            //MoveToNextPoint();
         }
 
         void LookAtPlayer()
         {
-            /*if(ischasing == false)
+            if(ischasing == false || isfollowing == false) //se non lo sta già inseguendo si ferma a guardare player
             {
-                transform.DOLookAt(player.position, 1.0f);
+                agent.speed = 0f;
             }
-            else
-            {
-                transform.LookAt(player);
-            }*/
             Vector3 direction = (player.position - transform.position).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+
+            StartCoroutine(FollowAfterTime(2f)); //dopo 2 secondi inizia a seguire player
         }
 
-        if (!agent.pathPending && agent.remainingDistance < 0.5f)
+        if (!agent.pathPending && agent.remainingDistance < 0.5f && ischasing == false) //patrol
         {
             MoveToNextPoint();
         }
@@ -98,10 +124,14 @@ public class EnemyController : MonoBehaviour
 
     void MoveToNextPoint()
     {
-        if (agent.stoppingDistance != 0)
-            agent.stoppingDistance = 0;
+        if (ischasing == true)
+            ischasing = false;
+        if (agent.stoppingDistance != 0f) //tutti reset condizione patrol, non inseguimento
+            agent.stoppingDistance = 0f;
         if (agent.speed == AIMoveSpeed)
             agent.speed = 3.4f;
+        if (timeleft != timer)
+            timeleft = timer;
 
         if (navPoint.Length == 0)
             return;
@@ -116,7 +146,18 @@ public class EnemyController : MonoBehaviour
         Chase();
     }
 
-    void Chase()
+    IEnumerator FollowAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+
+        if(agent.speed < startSpeed) //aumento velocità da quando si ferma
+        {
+            agent.speed = startSpeed;
+        }
+        isfollowing = true;
+    }
+
+    void Chase() //inseguimento player, ischasing settato prima, in update
     {
         //transform.Translate(Vector3.forward * AIMoveSpeed * Time.deltaTime);
         agent.SetDestination(goal.position);
@@ -127,7 +168,7 @@ public class EnemyController : MonoBehaviour
     private void UpdateAnimation() // metodo dove implementare animazioni  da richiamare dell'update
     { 
      
-        if(!isFollowingPlayer)
+        //if(!isFollowingPlayer)
     }
 
 }
