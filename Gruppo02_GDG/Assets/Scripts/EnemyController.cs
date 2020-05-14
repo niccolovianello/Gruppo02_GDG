@@ -30,15 +30,24 @@ public class EnemyController : MonoBehaviour
     bool seenplayer = false;
     bool closeattack = false;
 
-    //variabili animazione
     
+    //public Transform attackPoint;
+    //public float attackRange;
+    //public LayerMask playerLayer;
+    //public int timeToAttack;
+    //Coroutine currentCoroutine;
+    //public bool attackFlag;
 
-    
+    //variabili animazione
+
+
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         //agent.destination = goal.position;
         agent.autoBraking = false;
+        agent.stoppingDistance = 1f;
         startSpeed = agent.speed;
         timeleft = timer;
         MoveToNextPoint();
@@ -50,20 +59,32 @@ public class EnemyController : MonoBehaviour
             Debug.Log("no animator");
             return;
         }
+        if (anim != null)
+            UpdateAnimations();
     }
 
     void Update()
     {
-        if(anim != null)
-            UpdateAnimations();
 
+        //if (attackFlag == false)
+        //{
+        //    if(currentCoroutine != null)
+        //        StopCoroutine(currentCoroutine);
+        //}
         playerDistance = Vector3.Distance(player.position, transform.position);
         Vector3 targetDir = player.position - transform.position;
         angleToPlayer = (Vector3.Angle(targetDir, transform.forward));
 
-        if (playerDistance < 3f)
+        if (playerDistance < 2f)
         {
+            //attackFlag = true;
             closeattack = true;
+            Debug.Log("enemyattack");
+            anim.SetTrigger("Attack");
+            //if(attackFlag == true)
+            //    currentCoroutine = StartCoroutine(TimeToAttackMethod(timeToAttack));
+           
+           
         }
         else
         {
@@ -143,8 +164,7 @@ public class EnemyController : MonoBehaviour
     private void UpdateAnimations()
     {
         anim.SetFloat("Speed", agent.speed);
-        anim.SetBool("NoticePlayer", seenplayer);
-        anim.SetBool("CloseEnoughToAttack", closeattack);
+       
     }
 
     void MoveToNextPoint()
@@ -189,7 +209,7 @@ public class EnemyController : MonoBehaviour
         //transform.Translate(Vector3.forward * AIMoveSpeed * Time.deltaTime);
         agent.SetDestination(goal.position);
         agent.speed = AIMoveSpeed;
-        agent.stoppingDistance = 3f;
+        agent.stoppingDistance = 1f;
     }
 
     private void UpdateAnimation() // metodo dove implementare animazioni  da richiamare dell'update
@@ -197,5 +217,25 @@ public class EnemyController : MonoBehaviour
      
         //if(!isFollowingPlayer)
     }
+
+    //private IEnumerator TimeToAttackMethod(int t_before_attack)
+    //{
+       
+    //    yield return new WaitForSeconds(t_before_attack);
+    //    Collider[] playerCollider = Physics.OverlapSphere(attackPoint.position, attackRange, playerLayer);
+    //    if (playerCollider.Length != 0)
+    //    {
+    //        Debug.Log("colpisco player");
+    //        Debug.Log(playerCollider[0]);
+    //        playerCollider[0].GetComponent<PlayerHealthManager>().TakeDamage(30);
+    //        closeattack = false;
+
+    //    }
+    //    attackFlag = false;
+        
+        
+
+
+    //}
 
 }

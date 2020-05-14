@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyGeneral : MonoBehaviour
+public class PlayerHealthManager : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;
@@ -25,7 +25,7 @@ public class EnemyGeneral : MonoBehaviour
 
     void Die()
     {
-        Destroy(this);
-        Debug.Log("Enemy die");
+        
+        Debug.Log("Player die");
     }
 }
