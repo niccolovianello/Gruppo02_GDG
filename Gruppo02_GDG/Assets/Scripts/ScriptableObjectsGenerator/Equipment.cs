@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 namespace Com.Kawaiisun.SimpleHostile
 {
     [CreateAssetMenu(fileName = "New Object", menuName = "Equipment")]
@@ -16,6 +17,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public float attackRate = 1f;
         public bool isSelected = false;
         public float charge = 0;
+        public Animator animatorObject;
 
     }
 }

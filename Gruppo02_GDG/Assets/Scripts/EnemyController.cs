@@ -30,6 +30,8 @@ public class EnemyController : MonoBehaviour
     bool seenplayer = false;
     bool closeattack = false;
 
+    public GameObject monster_Right_Fist;
+
     
     //public Transform attackPoint;
     //public float attackRange;
@@ -209,7 +211,7 @@ public class EnemyController : MonoBehaviour
         //transform.Translate(Vector3.forward * AIMoveSpeed * Time.deltaTime);
         agent.SetDestination(goal.position);
         agent.speed = AIMoveSpeed;
-        agent.stoppingDistance = 1f;
+        agent.stoppingDistance = 2f;
     }
 
     private void UpdateAnimation() // metodo dove implementare animazioni  da richiamare dell'update
@@ -220,7 +222,7 @@ public class EnemyController : MonoBehaviour
 
     //private IEnumerator TimeToAttackMethod(int t_before_attack)
     //{
-       
+
     //    yield return new WaitForSeconds(t_before_attack);
     //    Collider[] playerCollider = Physics.OverlapSphere(attackPoint.position, attackRange, playerLayer);
     //    if (playerCollider.Length != 0)
@@ -232,10 +234,19 @@ public class EnemyController : MonoBehaviour
 
     //    }
     //    attackFlag = false;
-        
-        
+
+
 
 
     //}
 
+    public void activateFist()
+    {
+        monster_Right_Fist.GetComponent<Collider>().enabled = true;
+    }
+
+    public void deactivateFist()
+    {
+        monster_Right_Fist.GetComponent<Collider>().enabled = false;
+    }
 }

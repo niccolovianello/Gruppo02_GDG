@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class PlayerCombatScript : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class PlayerCombatScript : MonoBehaviour
     public LayerMask enemyLayers;
     public Camera fpsCam;
     EnemyGeneral en;
+    //public Animator animationObj;
     
 
     public float attackRange =50f;
@@ -16,6 +18,10 @@ public class PlayerCombatScript : MonoBehaviour
     public float attackRate = 1f;
     float nextAttackTime = 0f;
 
+    private EnemyGeneral enem;
+   
+
+   
     void Update()
     {
         
@@ -40,7 +46,12 @@ public class PlayerCombatScript : MonoBehaviour
             foreach (Collider enemy in hitEnemies)
             {
                 Debug.Log("colpisco vicino");
-                enemy.GetComponent<EnemyGeneral>().TakeDamage(attackDamage);
+                enem = enemy.GetComponent<EnemyGeneral>();
+                //animationObj.SetTrigger("TorchAttack");
+
+            if(enem != null)
+                    enem.TakeDamage(attackDamage);
+
             }
             
         }

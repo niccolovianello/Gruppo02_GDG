@@ -15,6 +15,7 @@ public class PlayerHealthManager : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        Debug.Log("il nemico ti ha colpito");
 
         if (currentHealth <= 0)
         {
@@ -23,6 +24,13 @@ public class PlayerHealthManager : MonoBehaviour
 
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "MonsterFist")
+        {
+            TakeDamage(30);
+        }
+    }
     void Die()
     {
         

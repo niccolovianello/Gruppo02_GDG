@@ -95,6 +95,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 weaponProperties.attackRange = loadout[2].attackRange;
                 weaponProperties.attackRate = loadout[2].attackRate;
                 weaponProperties.attackDamage = loadout[2].damage;
+                //weaponProperties.animationObj = loadout[2].animatorObject;
                 currentObject = match;
 
 
@@ -136,7 +137,8 @@ namespace Com.Kawaiisun.SimpleHostile
             weaponProperties.attackRange = pickLoadout[eq_index].attackRange;
             weaponProperties.attackRate = pickLoadout[eq_index].attackRate;
             weaponProperties.attackDamage = pickLoadout[eq_index].damage;
-           
+            //weaponProperties.animationObj = pickLoadout[eq_index].animatorObject;
+
 
             currentObject = t_newEquipment;
             currentIndex = eq_index;

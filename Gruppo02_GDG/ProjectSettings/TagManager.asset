@@ -8,6 +8,7 @@ TagManager:
   - Equipment
   - Battery
   - Matches
+  - MonsterFist
   layers:
   - Default
   - TransparentFX

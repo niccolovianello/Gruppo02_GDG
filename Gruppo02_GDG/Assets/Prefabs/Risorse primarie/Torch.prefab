@@ -142,7 +142,6 @@ MonoBehaviour:
   fire: {fileID: 5988819315564237970}
   fireLight: {fileID: 5988819315687608043}
   torch: {fileID: 11400000, guid: b2fad2e46c393eb48a9a95e67d0ff235, type: 2}
-  timeOfTorchLife: 50
   currentTimeOfTorchLife: 0
   decrementRate: 0.5
 --- !u!65 &2747087995256248669
@@ -156,8 +155,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.44881797, y: 0.5833504, z: 1.4120209}
-  m_Center: {x: 1.0952834, y: -0.3473965, z: 1.2007486}
+  m_Size: {x: 0.48070908, y: 0.5833504, z: 1.4120209}
+  m_Center: {x: 1.2833157, y: -0.3473965, z: 1.2007486}
 --- !u!1 &5988819314620194209
 GameObject:
   m_ObjectHideFlags: 0
