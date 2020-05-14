@@ -89,6 +89,11 @@ public class PlayerMovement : MonoBehaviour
             
         }
 
+        if (currentStamina > maxStamina)
+        {
+            currentStamina = maxStamina;
+        }
+
 
 
         Vector3 move = transform.right * x + transform.forward * z;

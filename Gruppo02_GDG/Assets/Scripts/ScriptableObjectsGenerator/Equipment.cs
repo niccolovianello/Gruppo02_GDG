@@ -15,7 +15,6 @@ namespace Com.Kawaiisun.SimpleHostile
         public int damage;
         public float attackRate = 1f;
         public bool isSelected = false;
-        public bool alreadyPicked = true;
         public float charge = 0;
 
     }

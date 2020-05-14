@@ -19,6 +19,5 @@ MonoBehaviour:
   attackRange: 1
   damage: 40
   attackRate: 1
-  isSelected: 1
-  alreadyPicked: 1
-  charge: 0
+  isSelected: 0
+  charge: 50

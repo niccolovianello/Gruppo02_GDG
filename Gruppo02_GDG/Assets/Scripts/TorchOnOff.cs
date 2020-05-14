@@ -6,21 +6,22 @@ namespace Com.Kawaiisun.SimpleHostile
 {
     public class TorchOnOff : MonoBehaviour
     {
-
+        
         public bool isOn;
         public ParticleSystem fire;
         public Light fireLight;
         public Equipment torch;
         private ObjectsManagement obj;
-        public float timeOfTorchLife = 50f;
         public float currentTimeOfTorchLife;
         public float decrementRate = 0.5f;
+        private SupportScriptResources ssr;
 
         float startIntensity;
 
         private void Start()
         {
-            currentTimeOfTorchLife = timeOfTorchLife;
+            ssr = FindObjectOfType<SupportScriptResources>();
+            currentTimeOfTorchLife = torch.charge;
             isOn = false;
             obj = FindObjectOfType<ObjectsManagement>();
 
@@ -32,20 +33,30 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                Debug.Log(torch.isSelected);
-                
-                isOn = !isOn;
+                    Debug.Log(torch.isSelected);
 
-                    if (isOn && obj.ammo[0] > 0)
+                    isOn = !isOn;
+
+                    if (obj.getCurrentObj() == null)
+                        return;
+
+                    if (isOn)
                     {
-                        fireLight.enabled = true;
-                        fire.Play();
-                        obj.ammo[0]--;
+                        currentTimeOfTorchLife = ssr.GetRemainLifeTorch();
+                        if (obj.ammo[0] > 0)
+                        {
+                            fireLight.enabled = true;
+                            fire.Play();
+                            obj.ammo[0]--;
+                        }
+                       
 
                     }
                     else
                     {
-                        Debug.Log("Sono finiti i fiammiferi");
+                        ssr.SetRemainLifeTorch(currentTimeOfTorchLife);
+                        if (obj.ammo[0] == 0)
+                            Debug.Log("Sono finiti i fiammiferi");
                     }
 
 
@@ -74,14 +85,21 @@ namespace Com.Kawaiisun.SimpleHostile
                 }
                 if (currentTimeOfTorchLife <= 0)
                 {
-                    Destroy(this);
+                    
+                    
                     int i = obj.getCurrentIndex();
                     obj.pickLoadout[i] = null;
+                    Destroy(obj.getCurrentObj());
                 }
 
 
             }
+            if(torch.isSelected == false)
+            {
+                ssr.SetRemainLifeTorch(currentTimeOfTorchLife);
+            }
 
+           
            
             
         }

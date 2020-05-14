@@ -11,13 +11,14 @@ namespace Com.Kawaiisun.SimpleHostile
         public Equipment selectionFlashlight;
         public ObjectsManagement obj;
         public float currentBatteryEnergy;
-        public float maxEnergySingleBattery;
         public float dischargeBatteryVelocity = 0.5f;
+        private SupportScriptResources ssr;
 
         float startIntensity;
 
         private void Start()
         {
+            ssr = FindObjectOfType<SupportScriptResources>();
             obj = FindObjectOfType<ObjectsManagement>();
             flashlight = this.GetComponent<Light>();
             currentBatteryEnergy = selectionFlashlight.charge;
@@ -26,12 +27,16 @@ namespace Com.Kawaiisun.SimpleHostile
         }
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (obj.getCurrentObj() == null)
+                return;
+
+            if (Input.GetKeyDown(KeyCode.R) && selectionFlashlight.isSelected == true)
             {
 
                 if (obj.ammo[2] > 0)
                 {
-                    currentBatteryEnergy = maxEnergySingleBattery;
+                    Debug.Log("Ricarica!");
+                    currentBatteryEnergy = selectionFlashlight.charge;
                     obj.ammo[2]--;
                 }
                 else
@@ -40,33 +45,50 @@ namespace Com.Kawaiisun.SimpleHostile
                 }
                 
             }
-            if (selectionFlashlight == true)
+            if (selectionFlashlight.isSelected == true)
             {
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     isOn = !isOn;
-                }
-                if (isOn && currentBatteryEnergy >= 0)
-                {
-                    flashlight.enabled = true;
-                    currentBatteryEnergy -= dischargeBatteryVelocity * Time.deltaTime;
 
-                    //flicker
-
-                    //Debug.Log(currentBatteryEnergy + " + " + flashlight.intensity + " + " + currentBatteryEnergy/20f);
-                    if ((currentBatteryEnergy / 20f) < /*1.5f*/ startIntensity)
+                    if (isOn)
                     {
-                        flashlight.intensity = Random.Range(Random.Range((currentBatteryEnergy / 20f), /*1.5f*/ startIntensity), /*1.5f*/ startIntensity);
+                        currentBatteryEnergy = ssr.GetRemainEnergy();
+
+                    }
+                    else
+                        ssr.SetRemainEnergy(currentBatteryEnergy);
+                }
+                if (isOn)
+                {
+                    
+                    if (currentBatteryEnergy >= 0)
+                    {
+                        flashlight.enabled = true;
+                        currentBatteryEnergy -= dischargeBatteryVelocity * Time.deltaTime;
+
+                        //flicker
+
+                        //Debug.Log(currentBatteryEnergy + " + " + flashlight.intensity + " + " + currentBatteryEnergy/20f);
+                        if ((currentBatteryEnergy / 20f) < /*1.5f*/ startIntensity)
+                        {
+                            flashlight.intensity = Random.Range(Random.Range((currentBatteryEnergy / 20f), /*1.5f*/ startIntensity), /*1.5f*/ startIntensity);
+                        }
+
+                        //end flicker
                     }
 
-                    //end flicker
-                } 
+                }
                 else
+                {
                     flashlight.enabled = false;
+                    
+                } 
             }
             else
             {
                 flashlight.enabled = false;
+                ssr.SetRemainEnergy(currentBatteryEnergy);
             }
 
             

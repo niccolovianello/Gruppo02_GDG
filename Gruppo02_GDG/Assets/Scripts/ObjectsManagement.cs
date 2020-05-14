@@ -12,6 +12,7 @@ namespace Com.Kawaiisun.SimpleHostile
         private GameObject currentObject;
         public PlayerCombatScript weaponProperties;
         public int[] ammo; // 0 fiammiferi 1 olio 2 batterie
+        
 
         private int currentIndex = 0;
         
@@ -32,14 +33,18 @@ namespace Com.Kawaiisun.SimpleHostile
             //    {
             //        Equip(0);
             //        currentIndex = 0;
-                    
+
             //    }
             //    else {
             //        Equip(currentIndex + 1);
             //        currentIndex++;
             //    }
-                
+
             //}
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                MatchLightMethod();
+            }
 
             if (Input.GetKeyDown(KeyCode.Alpha2))
             {
@@ -67,14 +72,54 @@ namespace Com.Kawaiisun.SimpleHostile
         }
 
 
+        void MatchLightMethod()
+        {
+
+
+
+            if (ammo[0] > 0)
+            {
+                if (currentObject != null)
+                {
+                    Destroy(currentObject);
+
+                    if (pickLoadout[currentIndex] != null)
+
+                        pickLoadout[currentIndex].isSelected = false;
+                }
+                GameObject match = Instantiate(loadout[2].prefab, objectParent.position, objectParent.rotation, objectParent) as GameObject;
+
+
+                match.transform.localPosition = Vector3.zero;
+                match.transform.localEulerAngles = Vector3.zero;
+                weaponProperties.attackRange = loadout[2].attackRange;
+                weaponProperties.attackRate = loadout[2].attackRate;
+                weaponProperties.attackDamage = loadout[2].damage;
+                currentObject = match;
+
+
+
+            }
+            else
+                Debug.Log("fiammiferi finiti");
+            
+
+
+        }
         void Equip(int eq_index)
 
         {
+            //if (eq_index == currentIndex)
+            //    return;
+
             if (pickLoadout[eq_index] == null)
             {
                 Debug.Log("There's not any object in the selected slot");
                 return;
             }
+
+            if (pickLoadout[eq_index].prefab == currentObject)
+                return;
 
             if (currentObject != null)
             {
@@ -161,6 +206,7 @@ namespace Com.Kawaiisun.SimpleHostile
             Debug.Log(ind_pick);
 
             Equip(ind_pick);
+            
         }
 
         public int getCurrentIndex()
