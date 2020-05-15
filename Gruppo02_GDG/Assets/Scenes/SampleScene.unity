@@ -15242,7 +15242,6 @@ MonoBehaviour:
   player: {fileID: 1271937588}
   awareAI: 14
   AIMoveSpeed: 10
-  damping: 6
   monster_Right_Fist: {fileID: 0}
 --- !u!195 &659654139
 NavMeshAgent:
@@ -15427,7 +15426,6 @@ MonoBehaviour:
   player: {fileID: 1271937588}
   awareAI: 14
   AIMoveSpeed: 10
-  damping: 6
   monster_Right_Fist: {fileID: 0}
 --- !u!54 &674885063
 Rigidbody:
@@ -40948,7 +40946,6 @@ MonoBehaviour:
   player: {fileID: 1271937588}
   awareAI: 14
   AIMoveSpeed: 10
-  damping: 6
   monster_Right_Fist: {fileID: 0}
 --- !u!136 &1327605331
 CapsuleCollider:
@@ -61430,6 +61427,14 @@ PrefabInstance:
       propertyPath: monster_Right_Fist
       value: 
       objectReference: {fileID: 1995289249}
+    - target: {fileID: 1776542799, guid: 3b49515d53060c1469170bba90f9d58d, type: 3}
+      propertyPath: damping
+      value: 0.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 1776542800, guid: 3b49515d53060c1469170bba90f9d58d, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 1200
+      objectReference: {fileID: 0}
     - target: {fileID: 236344425585828295, guid: 3b49515d53060c1469170bba90f9d58d,
         type: 3}
       propertyPath: m_Layer

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Com.Kawaiisun.SimpleHostile
 {
@@ -9,6 +10,7 @@ namespace Com.Kawaiisun.SimpleHostile
         
         public bool isOn;
         public ParticleSystem fire;
+        private ParticleSystem[] firech;
         public Light fireLight;
         public Equipment torch;
         private ObjectsManagement obj;
@@ -16,16 +18,21 @@ namespace Com.Kawaiisun.SimpleHostile
         public float decrementRate = 0.5f;
         private SupportScriptResources ssr;
 
-        float startIntensity;
+        private float fireTimeLeftTot;
+        private float fireTimeLeft;
+        private float startRate = 0f;
 
         private void Start()
         {
             ssr = FindObjectOfType<SupportScriptResources>();
             currentTimeOfTorchLife = torch.charge;
             isOn = false;
+            fire.Stop();
+            fireLight.enabled = false;
             obj = FindObjectOfType<ObjectsManagement>();
 
-            startIntensity = fireLight.intensity;
+            firech = fire.gameObject.GetComponentsInChildren<ParticleSystem>();
+            fireTimeLeftTot = 15f;
         }
         void Update()
         {
@@ -54,6 +61,8 @@ namespace Com.Kawaiisun.SimpleHostile
                     }
                     else
                     {
+                        fireLight.enabled = false;
+                        fire.Stop();
                         ssr.SetRemainLifeTorch(currentTimeOfTorchLife);
                         if (obj.ammo[0] == 0)
                             Debug.Log("Sono finiti i fiammiferi");
@@ -61,24 +70,33 @@ namespace Com.Kawaiisun.SimpleHostile
 
 
                 }
-                if (!isOn)
-                {
-
-                    fireLight.enabled = false;
-                    fire.Stop();
-                }
-
-
 
                 if (isOn)
                 {
                     currentTimeOfTorchLife -= decrementRate * Time.deltaTime;
+                    //Debug.Log(Mathf.Round(currentTimeOfTorchLife));
 
                     //fadelight
 
-                    if ((currentTimeOfTorchLife / 10f) < /*3f*/ startIntensity)
+                    if (currentTimeOfTorchLife <= fireTimeLeftTot)
                     {
-                        fireLight.intensity = Random.Range(Random.Range((currentTimeOfTorchLife / 10f), /*3f*/ startIntensity), /*3f*/ startIntensity);
+                        fireLight.DOIntensity(0f, fireTimeLeftTot);
+                        for (int i = 0; i < firech.Length; i++)
+                        {
+                            if (startRate == 0f)
+                            {
+                                startRate = firech[i].emission.rateOverTime.Evaluate(1f);
+                                //Debug.Log("startrate assigned value: " + startRate);
+                                fireTimeLeft = fireTimeLeftTot;
+                            }
+                            if (firech[i].emission.rateOverTime.Evaluate(1f) > 0)
+                            {
+                                var emission = firech[i].emission;
+                                emission.rateOverTime = Mathf.Clamp(Mathf.Lerp(0f, startRate, fireTimeLeft / fireTimeLeftTot), 0f, startRate);
+                                //Debug.Log("Emission: " + firech[i].emission.rateOverTime.Evaluate(1f) + "firetimeleft: " + fireTimeLeft);
+                            }
+                        }
+                        fireTimeLeft -= decrementRate * Time.deltaTime;
                     }
 
                     //end fadelight

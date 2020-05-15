@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour
     float playerDistance;
     public float awareAI = 14f;
     public float AIMoveSpeed;
-    public float damping = 6.0f;    
+    //public float damping = 6.0f;    
     int destPoint = 0;
     
     bool ischasing = false;
@@ -49,7 +49,6 @@ public class EnemyController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         //agent.destination = goal.position;
         agent.autoBraking = false;
-        agent.stoppingDistance = 1f;
         startSpeed = agent.speed;
         timeleft = timer;
         MoveToNextPoint();
@@ -67,7 +66,6 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-
         //if (attackFlag == false)
         //{
         //    if(currentCoroutine != null)
@@ -82,17 +80,23 @@ public class EnemyController : MonoBehaviour
             //attackFlag = true;
             closeattack = true;
             Debug.Log("enemyattack");
-            anim.SetTrigger("Attack");
+            anim.SetTrigger("Attack"); // RISOLVERE PROBLEMA
             //if(attackFlag == true)
             //    currentCoroutine = StartCoroutine(TimeToAttackMethod(timeToAttack));
-           
-           
         }
         else
         {
             closeattack = false;
         }
 
+        /*if (anim.GetCurrentAnimatorStateInfo(0).IsName("Stabbing"))
+        {
+            agent.speed = 0.3f;
+        }
+        else
+        {
+            agent.speed = startSpeed; // RISOLVERE PROBLEMA
+        }*/
 
         /*if (playerDistance < awareAI && angleToPlayer >= -60 && angleToPlayer <= 60)
         {
@@ -166,7 +170,7 @@ public class EnemyController : MonoBehaviour
     private void UpdateAnimations()
     {
         anim.SetFloat("Speed", agent.speed);
-       
+        anim.SetBool("SeenPlayer", seenplayer);
     }
 
     void MoveToNextPoint()
@@ -193,6 +197,8 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         Chase();
+
+        //Debug.Log("insegue veloce più veloce");
     }
 
     IEnumerator FollowAfterTime(float time)
@@ -204,6 +210,7 @@ public class EnemyController : MonoBehaviour
             agent.speed = startSpeed;
         }
         isfollowing = true;
+        //Debug.Log("sta seguendo");
     }
 
     void Chase() //inseguimento player, ischasing settato prima, in update
@@ -211,7 +218,7 @@ public class EnemyController : MonoBehaviour
         //transform.Translate(Vector3.forward * AIMoveSpeed * Time.deltaTime);
         agent.SetDestination(goal.position);
         agent.speed = AIMoveSpeed;
-        agent.stoppingDistance = 2f;
+        agent.stoppingDistance = 0.7f;
     }
 
     private void UpdateAnimation() // metodo dove implementare animazioni  da richiamare dell'update

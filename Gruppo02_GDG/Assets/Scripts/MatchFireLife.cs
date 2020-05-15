@@ -18,6 +18,8 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             currentTimeOfMatchLife = match.charge;
             isOn = false;
+            fire.Stop();
+            fireLight.enabled = false;
             obj = FindObjectOfType<ObjectsManagement>();           
         }
 
@@ -27,19 +29,25 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 obj.ammo[0]--;
                 Debug.Log(obj.ammo[0]);
-                isOn = true;
+                isOn = !isOn;
+                if (isOn)
+                {
+                    fireLight.enabled = true;
+                    fire.Play();
+                }
+                else
+                {
+                    /*fireLight.enabled = false;
+                    fire.Stop();*/
+                    Destroy(obj.getCurrentObj());
+                }
             }
-            if (!isOn)
+
+            if(isOn)
             {
-                fireLight.enabled = false;
-                fire.Stop();
-            }
-            else
-            {
-                fireLight.enabled = true;
-                fire.Play();
                 currentTimeOfMatchLife -= decrementRate * Time.deltaTime;
             }
+
             if (currentTimeOfMatchLife <= 0)
             {
                 
