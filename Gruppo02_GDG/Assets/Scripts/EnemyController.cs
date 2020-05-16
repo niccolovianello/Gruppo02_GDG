@@ -12,6 +12,9 @@ public class EnemyController : MonoBehaviour
     public Transform goal;
     public Transform player;
     private Animator anim;
+
+    //public ParticleSystem flames;
+    //public ParticleSystem hurt;
    
     float playerDistance;
     public float awareAI = 14f;
@@ -52,7 +55,7 @@ public class EnemyController : MonoBehaviour
         startSpeed = agent.speed;
         timeleft = timer;
         MoveToNextPoint();
-        
+
         // controllo su animator
         anim = this.GetComponent<Animator>();
         if (anim == null)

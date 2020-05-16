@@ -22,6 +22,13 @@ namespace Com.Kawaiisun.SimpleHostile
         private float fireTimeLeft;
         private float startRate = 0f;
 
+        public UIScript UI;
+
+        private void Awake()
+        {
+            UI = GameObject.Find("Canvas").GetComponent<UIScript>();
+        }
+
         private void Start()
         {
             ssr = FindObjectOfType<SupportScriptResources>();
@@ -56,6 +63,8 @@ namespace Com.Kawaiisun.SimpleHostile
                             fireLight.enabled = true;
                             fire.Play();
                             obj.ammo[0]--;
+
+                            UI.UpdateResources("Matches", -1);
                         }
                        
 

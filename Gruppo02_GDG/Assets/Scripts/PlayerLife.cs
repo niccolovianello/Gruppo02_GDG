@@ -53,17 +53,18 @@ namespace Com.Kawaiisun.SimpleHostile
 
         void Die()
         {
-            Debug.Log("alldark");
+            Debug.Log("death_darkness");
+            //Destroy(gameObject);
 
-            StartCoroutine(ExecuteAfterTime(2f)); //delete and destroy gameobject?
+            //StartCoroutine(ExecuteAfterTime(2f)); //delete and destroy gameobject?
         }
 
-        IEnumerator ExecuteAfterTime(float time)
+        /*IEnumerator ExecuteAfterTime(float time)
         {
             yield return new WaitForSeconds(time);
 
             Debug.Log("i'm_dead");
             //Destroy(gameObject);
-        }
+        }*/
     }
 }

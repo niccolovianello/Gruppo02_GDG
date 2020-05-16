@@ -7,6 +7,15 @@ public class EnemyGeneral : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth;
 
+    public ParticleSystem flames;
+    public ParticleSystem hurt;
+
+    private void Awake()
+    {
+        hurt.Stop();
+        flames.Stop();
+    }
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -27,5 +36,15 @@ public class EnemyGeneral : MonoBehaviour
     {
         Destroy(this);
         Debug.Log("Enemy die");
+    }
+
+    public void HurtPart()
+    {
+        hurt.Play();
+    }
+
+    public void FlamePart()
+    {
+        flames.Play();
     }
 }

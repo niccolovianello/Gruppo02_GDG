@@ -51,6 +51,7 @@ public class PlayerCombatScript : MonoBehaviour
 
             if(enem != null)
                     enem.TakeDamage(attackDamage);
+                enem.HurtPart();
 
             }
             
@@ -64,6 +65,7 @@ public class PlayerCombatScript : MonoBehaviour
                 {               
                     Debug.Log("colpisco distante");
                     hit.collider.GetComponent<EnemyGeneral>().TakeDamage(attackDamage);
+                    enem.FlamePart();
                 }
             }
         }

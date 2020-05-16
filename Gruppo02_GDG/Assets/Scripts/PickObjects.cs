@@ -9,6 +9,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
         public ObjectsManagement obj;
 
+        public UIScript UI;
       
 
         void Update()
@@ -26,7 +27,13 @@ namespace Com.Kawaiisun.SimpleHostile
                         obj.PickEquipment(hit.collider.gameObject.name);
                         Destroy(hit.collider.gameObject);
                     }
+
+                    UI.UpdateInfo("E");
                 }
+            }
+            else
+            {
+                UI.UpdateInfo("");
             }
         }
 

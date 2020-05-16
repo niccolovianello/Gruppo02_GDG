@@ -21,6 +21,13 @@ namespace Com.Kawaiisun.SimpleHostile
         private float fireTimeLeft;
         private float startRate = 0f;
 
+        public UIScript UI;
+
+        private void Awake()
+        {
+            UI = GameObject.Find("Canvas").GetComponent<UIScript>();
+        }
+
         private void Start()
         {
             currentTimeOfMatchLife = match.charge;
@@ -51,6 +58,8 @@ namespace Com.Kawaiisun.SimpleHostile
                     /*fireLight.enabled = false;
                     fire.Stop();*/
                     Destroy(obj.getCurrentObj());
+
+                    UI.UpdateResources("Matches", -1);
                 }
             }
 
@@ -89,6 +98,8 @@ namespace Com.Kawaiisun.SimpleHostile
                 
                 
                 Destroy(obj.getCurrentObj());
+
+                UI.UpdateResources("Matches", -1);
             }
         }
     }

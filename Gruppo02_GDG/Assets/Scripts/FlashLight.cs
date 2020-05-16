@@ -16,6 +16,13 @@ namespace Com.Kawaiisun.SimpleHostile
 
         float startIntensity;
 
+        public UIScript UI;
+
+        private void Awake()
+        {
+            UI = GameObject.Find("Canvas").GetComponent<UIScript>();
+        }
+
         private void Start()
         {
             ssr = FindObjectOfType<SupportScriptResources>();
@@ -38,6 +45,8 @@ namespace Com.Kawaiisun.SimpleHostile
                     Debug.Log("Ricarica!");
                     currentBatteryEnergy = selectionFlashlight.charge;
                     obj.ammo[2]--;
+
+                    UI.UpdateResources("Battery", -1);
                 }
                 else
                 {
