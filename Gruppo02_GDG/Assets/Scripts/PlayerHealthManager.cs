@@ -1,15 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealthManager : MonoBehaviour
 {
-    public int maxHealth = 100;
-    public int currentHealth;
+    public float maxHealth = 100;
+    public float currentHealth;
+    public float impactMonster = 500;
+    public float ratioHealth = 3f;
 
     void Start()
     {
         currentHealth = maxHealth;
+
+    }
+
+    private void Update()
+    {
+        if (currentHealth < maxHealth)
+        {
+            currentHealth += ratioHealth * Time.deltaTime;
+        }
+        
     }
 
     public void TakeDamage(int damage)
@@ -35,5 +48,6 @@ public class PlayerHealthManager : MonoBehaviour
     {
         
         Debug.Log("Player die");
+        SceneManager.LoadScene("SampleScene");
     }
 }

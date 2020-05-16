@@ -64,7 +64,8 @@ public class PlayerCombatScript : MonoBehaviour
                 if (hit.collider.GetComponent<EnemyGeneral>())
                 {               
                     Debug.Log("colpisco distante");
-                    hit.collider.GetComponent<EnemyGeneral>().TakeDamage(attackDamage);
+                    enem = hit.collider.GetComponent<EnemyGeneral>();
+                    enem.TakeDamage(attackDamage);
                     enem.FlamePart();
                 }
             }

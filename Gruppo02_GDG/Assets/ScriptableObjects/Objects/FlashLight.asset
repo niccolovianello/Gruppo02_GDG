@@ -16,8 +16,9 @@ MonoBehaviour:
   prefab: {fileID: 1986607094979563062, guid: 44b446cc1dc50f2429f35d1cbf4c2737, type: 3}
   aimSpeed: 8
   brightness: 10
-  attackRange: 20
-  damage: 30
+  attackRange: 15
+  damage: 10
   attackRate: 10
   isSelected: 1
   charge: 50
+  animatorObject: {fileID: 0}

@@ -34,7 +34,7 @@ public class EnemyGeneral : MonoBehaviour
 
     void Die()
     {
-        Destroy(this);
+        Destroy(this.gameObject);
         Debug.Log("Enemy die");
     }
 

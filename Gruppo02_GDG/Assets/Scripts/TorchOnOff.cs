@@ -64,7 +64,7 @@ namespace Com.Kawaiisun.SimpleHostile
                             fire.Play();
                             obj.ammo[0]--;
 
-                            UI.UpdateResources("Matches", -1);
+                            //UI.UpdateResources("Matches", -1);
                         }
                        
 
