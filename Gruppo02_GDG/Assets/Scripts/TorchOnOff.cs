@@ -32,7 +32,8 @@ namespace Com.Kawaiisun.SimpleHostile
             obj = FindObjectOfType<ObjectsManagement>();
 
             firech = fire.gameObject.GetComponentsInChildren<ParticleSystem>();
-            fireTimeLeftTot = 15f;
+            fireTimeLeftTot = currentTimeOfTorchLife / 3;
+                //15f;
         }
         void Update()
         {

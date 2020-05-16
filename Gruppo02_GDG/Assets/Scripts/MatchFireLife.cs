@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Com.Kawaiisun.SimpleHostile
 {
@@ -8,19 +9,29 @@ namespace Com.Kawaiisun.SimpleHostile
     {
         public bool isOn;
         public ParticleSystem fire;
+        private ParticleSystem[] firech;
         public Light fireLight;
         
         public Equipment match;
         private ObjectsManagement obj;
         public float currentTimeOfMatchLife;
         public float decrementRate = 0.5f;
+
+        private float fireTimeLeftTot;
+        private float fireTimeLeft;
+        private float startRate = 0f;
+
         private void Start()
         {
             currentTimeOfMatchLife = match.charge;
             isOn = false;
             fire.Stop();
             fireLight.enabled = false;
-            obj = FindObjectOfType<ObjectsManagement>();           
+            obj = FindObjectOfType<ObjectsManagement>();
+
+            firech = fire.gameObject.GetComponentsInChildren<ParticleSystem>();
+            fireTimeLeftTot = currentTimeOfMatchLife / 3;
+                //15f;
         }
 
         private void Update()
@@ -46,6 +57,31 @@ namespace Com.Kawaiisun.SimpleHostile
             if(isOn)
             {
                 currentTimeOfMatchLife -= decrementRate * Time.deltaTime;
+
+                // fadelight
+
+                if (currentTimeOfMatchLife <= fireTimeLeftTot)
+                {
+                    fireLight.DOIntensity(0f, fireTimeLeftTot);
+                    for (int i = 0; i < firech.Length; i++)
+                    {
+                        if (startRate == 0f)
+                        {
+                            startRate = firech[i].emission.rateOverTime.Evaluate(1f);
+                            //Debug.Log("startrate assigned value: " + startRate);
+                            fireTimeLeft = fireTimeLeftTot;
+                        }
+                        if (firech[i].emission.rateOverTime.Evaluate(1f) > 0)
+                        {
+                            var emission = firech[i].emission;
+                            emission.rateOverTime = Mathf.Clamp(Mathf.Lerp(0f, startRate, fireTimeLeft / fireTimeLeftTot), 0f, startRate);
+                            //Debug.Log("Emission: " + firech[i].emission.rateOverTime.Evaluate(1f) + "firetimeleft: " + fireTimeLeft);
+                        }
+                    }
+                    fireTimeLeft -= decrementRate * Time.deltaTime;
+                }
+
+                //end fadelight
             }
 
             if (currentTimeOfMatchLife <= 0)
