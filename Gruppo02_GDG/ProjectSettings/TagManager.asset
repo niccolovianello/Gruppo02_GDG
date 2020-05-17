@@ -9,6 +9,7 @@ TagManager:
   - Battery
   - Matches
   - MonsterFist
+  - HealthObject
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Objects
   - Enemies
   - Player
-  - 
+  - Resources
   - 
   - 
   - 

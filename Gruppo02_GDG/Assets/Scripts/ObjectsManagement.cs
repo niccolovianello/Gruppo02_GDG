@@ -11,17 +11,17 @@ namespace Com.Kawaiisun.SimpleHostile
         public Transform objectParent;
         private GameObject currentObject;
         public PlayerCombatScript weaponProperties;
-        public int[] ammo; // 0 fiammiferi 1 olio 2 batterie
+        public int[] ammo; // 0 fiammiferi 1 olio 2 batterie 5 oggetti curativi
         
 
         private int currentIndex = 0;
         public UIScript UI;
         
-
+        
         private void Start()
         {
             pickLoadout = new Equipment[3];
-            ammo = new int[4];
+            ammo = new int[5];
 
 
         }

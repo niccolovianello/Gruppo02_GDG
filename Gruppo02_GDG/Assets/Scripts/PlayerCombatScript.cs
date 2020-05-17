@@ -49,10 +49,12 @@ public class PlayerCombatScript : MonoBehaviour
                 enem = enemy.GetComponent<EnemyGeneral>();
                 //animationObj.SetTrigger("TorchAttack");
 
-            if(enem != null)
+                if (enem != null)
+                {
                     enem.TakeDamage(attackDamage);
-                enem.HurtPart();
-
+                    enem.HurtPart();
+                }
+               
             }
             
         }

@@ -125,6 +125,11 @@ namespace Com.Kawaiisun.SimpleHostile
                 alpha = damage;
                 DeathPanel.GetComponentInChildren<Text>().DOColor(new Color32(255, 255, 255, 255), 0.7f);
             }
+            else if (damage == 0)
+            {
+                alpha = damage;
+            }
+                
             else
             {
                 alpha += (damage * 0.5f);

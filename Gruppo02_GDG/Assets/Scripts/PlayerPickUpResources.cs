@@ -51,7 +51,14 @@ namespace Com.Kawaiisun.SimpleHostile
 
                 UI.UpdateResources(hit.gameObject.name, Matches);
             }
-           
+            if (hit.gameObject.tag == "HealthObject")
+            {
+                obj.ammo[4] = obj.ammo[4] + 1;
+                hit.collider.enabled = false;
+                Destroy(hit.gameObject);
+            }
+
+
         }
 
     }

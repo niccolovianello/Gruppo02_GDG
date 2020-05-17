@@ -31,7 +31,7 @@ namespace Com.Kawaiisun.SimpleHostile
             ssr = FindObjectOfType<SupportScriptResources>();
             obj = FindObjectOfType<ObjectsManagement>();
             flashlight = this.GetComponent<Light>();
-            currentBatteryEnergy = selectionFlashlight.charge;
+            currentBatteryEnergy = 10f;
 
             startIntensity = flashlight.intensity;
         }
@@ -73,7 +73,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 }
                 if (isOn)
                 {
-                    
+
                     if (currentBatteryEnergy >= 0)
                     {
                         flashlight.enabled = true;
@@ -89,6 +89,12 @@ namespace Com.Kawaiisun.SimpleHostile
 
                         //end flicker
                     }
+                    else 
+                    {
+                        flashlight.enabled = false;
+                        
+                    }
+                        
 
                 }
                 else

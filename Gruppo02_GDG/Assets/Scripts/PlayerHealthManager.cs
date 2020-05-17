@@ -10,22 +10,29 @@ public class PlayerHealthManager : MonoBehaviour
     public float currentHealth;
     public float impactMonster = 500;
     public float ratioHealth = 3f;
+    private ObjectsManagement obj;
 
     public UIScript UI;
 
     void Start()
     {
         currentHealth = maxHealth;
+        obj = FindObjectOfType<ObjectsManagement>();
 
     }
 
     private void Update()
     {
-        if (currentHealth < maxHealth)
-        {
-            currentHealth += ratioHealth * Time.deltaTime;
-        }
-        
+        if (Input.GetKeyDown(KeyCode.C))
+            if (obj.ammo[4] > 0)
+            {
+                currentHealth = maxHealth;
+                obj.ammo[4]--;
+                UI.HurtUI(0);
+                Debug.Log("cura");
+            }
+            
+
     }
 
     public void TakeDamage(int damage)
@@ -48,7 +55,8 @@ public class PlayerHealthManager : MonoBehaviour
     {
         if (other.gameObject.tag == "MonsterFist")
         {
-            TakeDamage(30);
+            TakeDamage(10);
+            Debug.Log("hit player");
         }
     }
     void Die()
