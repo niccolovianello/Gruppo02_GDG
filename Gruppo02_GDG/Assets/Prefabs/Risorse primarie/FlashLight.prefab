@@ -185,7 +185,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1986607095522866772
 Transform:
   m_ObjectHideFlags: 0
@@ -279,7 +279,6 @@ MonoBehaviour:
   currentBatteryEnergy: 0
   dischargeBatteryVelocity: 0.5
   UI: {fileID: 0}
-  fl: {fileID: 1986607094979563062}
 --- !u!1 &1986607095988953283
 GameObject:
   m_ObjectHideFlags: 0

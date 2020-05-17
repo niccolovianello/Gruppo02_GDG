@@ -34,6 +34,7 @@ namespace Com.Kawaiisun.SimpleHostile
             currentBatteryEnergy = 10f;
 
             startIntensity = flashlight.intensity;
+            isOn = false;
         }
         void Update()
         {
