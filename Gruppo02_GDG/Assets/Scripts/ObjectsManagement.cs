@@ -22,6 +22,8 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             pickLoadout = new Equipment[3];
             ammo = new int[5];
+            ammo[0] = 5;
+            UI.UpdateResources("Matches", 5);
 
 
         }

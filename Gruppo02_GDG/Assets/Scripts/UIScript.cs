@@ -19,7 +19,7 @@ namespace Com.Kawaiisun.SimpleHostile
         //Text t = child.GetComponent<Text>();
 
         // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             Resources = transform.Find("Resources");
             Weapons = transform.Find("WeaponsInventory");
