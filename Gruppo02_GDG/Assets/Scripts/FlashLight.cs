@@ -20,7 +20,10 @@ namespace Com.Kawaiisun.SimpleHostile
 
         private void Awake()
         {
-            UI = GameObject.Find("Canvas").GetComponent<UIScript>();
+            UI = GameObject.Find("CanvasUI").GetComponent<UIScript>();
+            if (UI == null)
+                Debug.Log("not found UI from flashlight");
+            //Debug.Log(UI.name);
         }
 
         private void Start()

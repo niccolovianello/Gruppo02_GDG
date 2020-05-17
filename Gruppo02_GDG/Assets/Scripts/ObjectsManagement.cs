@@ -15,6 +15,7 @@ namespace Com.Kawaiisun.SimpleHostile
         
 
         private int currentIndex = 0;
+        public UIScript UI;
         
 
         private void Start()
@@ -98,7 +99,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 //weaponProperties.animationObj = loadout[2].animatorObject;
                 currentObject = match;
 
-
+                UI.ActiveWeapon(-1);
 
             }
             else
@@ -144,6 +145,7 @@ namespace Com.Kawaiisun.SimpleHostile
             currentIndex = eq_index;
             pickLoadout[eq_index].isSelected = true;
 
+            UI.ActiveWeapon(currentIndex);
         }
 
         void Aim(bool isAiming)
@@ -208,7 +210,9 @@ namespace Com.Kawaiisun.SimpleHostile
             Debug.Log(ind_pick);
 
             Equip(ind_pick);
-            
+
+            UI.UpdateWeapons(equipmentPick, ind_pick);
+            UI.ActiveWeapon(ind_pick);
         }
 
         public int getCurrentIndex()

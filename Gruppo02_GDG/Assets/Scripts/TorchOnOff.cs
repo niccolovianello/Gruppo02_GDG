@@ -26,7 +26,10 @@ namespace Com.Kawaiisun.SimpleHostile
 
         private void Awake()
         {
-            UI = GameObject.Find("Canvas").GetComponent<UIScript>();
+            UI = GameObject.Find("CanvasUI").GetComponent<UIScript>();
+            if (UI == null)
+                Debug.Log("not found UI from torch");
+            //Debug.Log(UI.name);
         }
 
         private void Start()
@@ -64,7 +67,7 @@ namespace Com.Kawaiisun.SimpleHostile
                             fire.Play();
                             obj.ammo[0]--;
 
-                            //UI.UpdateResources("Matches", -1);
+                            UI.UpdateResources("Matches", -1);
                         }
                        
 
@@ -118,6 +121,8 @@ namespace Com.Kawaiisun.SimpleHostile
                     int i = obj.getCurrentIndex();
                     obj.pickLoadout[i] = null;
                     Destroy(obj.getCurrentObj());
+
+                    UI.ActiveWeapon(3);
                 }
 
 

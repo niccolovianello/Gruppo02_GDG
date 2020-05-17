@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 namespace Com.Kawaiisun.SimpleHostile
@@ -12,6 +13,8 @@ namespace Com.Kawaiisun.SimpleHostile
         float plCurrentTime;
 
         public ObjectsManagement obj;
+
+        public UIScript UI;
 
         // Start is called before the first frame update
         void Start()
@@ -32,6 +35,8 @@ namespace Com.Kawaiisun.SimpleHostile
                     if (plCurrentTime < 30f && plCurrentTime > 0f)
                     {
                         plCurrentTime += Time.deltaTime;
+
+                        UI.TimerDarkUI(plCurrentTime);
                     }
                 }
                 else if(objLight.enabled == false)
@@ -39,6 +44,8 @@ namespace Com.Kawaiisun.SimpleHostile
                     //if(plCurrentTime > 0f)
                     //{
                         plCurrentTime -= Time.deltaTime;
+
+                        UI.TimerDarkUI(plCurrentTime);
                     //}
                 }
             }
@@ -47,24 +54,26 @@ namespace Com.Kawaiisun.SimpleHostile
             if(plCurrentTime < 0f)
             {
                 Die();
+
             }
 
         }
 
         void Die()
         {
-            Debug.Log("death_darkness");
-            //Destroy(gameObject);
+            //Debug.Log("death_darkness");
+            UI.TimerDarkUI(255);
 
-            //StartCoroutine(ExecuteAfterTime(2f)); //delete and destroy gameobject?
+            StartCoroutine(ExecuteAfterTime(1f)); //delete and destroy gameobject?
         }
 
-        /*IEnumerator ExecuteAfterTime(float time)
+        IEnumerator ExecuteAfterTime(float time)
         {
             yield return new WaitForSeconds(time);
 
             Debug.Log("i'm_dead");
-            //Destroy(gameObject);
-        }*/
+            Destroy(gameObject);
+            SceneManager.LoadScene("SampleScene");
+        }
     }
 }
