@@ -82,7 +82,7 @@ public class EnemyController : MonoBehaviour
         {
             //attackFlag = true;
             closeattack = true;
-            Debug.Log("enemyattack");
+            //Debug.Log("enemyattack");
             anim.SetTrigger("Attack"); // RISOLVERE PROBLEMA
             //if(attackFlag == true)
             //    currentCoroutine = StartCoroutine(TimeToAttackMethod(timeToAttack));

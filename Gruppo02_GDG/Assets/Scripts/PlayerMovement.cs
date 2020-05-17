@@ -124,9 +124,13 @@ public class PlayerMovement : MonoBehaviour
             movementCounter += Time.deltaTime * 3f;
             armParent.localPosition = Vector3.Lerp(armParent.localPosition, targetArmBobPosition, Time.deltaTime * 6f);
         }
-       
 
 
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            Debug.Log("Sei uscito");
+            Application.Quit();
+        }
 
 
     }
