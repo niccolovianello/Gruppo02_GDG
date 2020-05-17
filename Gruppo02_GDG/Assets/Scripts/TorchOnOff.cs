@@ -123,6 +123,7 @@ namespace Com.Kawaiisun.SimpleHostile
                     Destroy(obj.getCurrentObj());
 
                     UI.ActiveWeapon(3);
+                    UI.UpdateWeapons("", i);
                 }
 
 
