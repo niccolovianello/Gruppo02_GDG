@@ -33,9 +33,8 @@ namespace Com.Kawaiisun.SimpleHostile
             flashlight = this.GetComponent<Light>();
             currentBatteryEnergy = 10f;
 
-            
             startIntensity = flashlight.intensity;
-            isOn = false;
+            isOn = true;
         }
         void Update()
         {

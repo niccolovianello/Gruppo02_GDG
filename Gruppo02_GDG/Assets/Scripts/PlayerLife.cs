@@ -29,7 +29,7 @@ namespace Com.Kawaiisun.SimpleHostile
             if (obj.getCurrentObj() != null)
             {
                 Light objLight = obj.getCurrentObj().GetComponentInChildren<Light>();
-                Debug.Log(objLight);
+                Debug.Log(obj.getCurrentObj());
 
                 if (objLight.enabled == true)
                 {
