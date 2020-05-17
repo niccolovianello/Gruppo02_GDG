@@ -29,6 +29,7 @@ public class PlayerHealthManager : MonoBehaviour
                 currentHealth = maxHealth;
                 obj.ammo[4]--;
                 UI.HurtUI(0);
+                UI.UpdateResources("CurativeObject", -1);
                 Debug.Log("cura");
             }
             

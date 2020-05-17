@@ -56,6 +56,8 @@ namespace Com.Kawaiisun.SimpleHostile
                 obj.ammo[4] = obj.ammo[4] + 1;
                 hit.collider.enabled = false;
                 Destroy(hit.gameObject);
+
+                UI.UpdateResources(hit.gameObject.name, 1);
             }
 
 
