@@ -11,7 +11,6 @@ namespace Com.Kawaiisun.SimpleHostile
         public Transform objectParent;
         private GameObject currentObject;
         public PlayerCombatScript weaponProperties;
-        private Animator JhonnyAnimator;
         public int[] ammo; // 0 fiammiferi 1 olio 2 batterie 5 oggetti curativi
         
 
@@ -25,10 +24,7 @@ namespace Com.Kawaiisun.SimpleHostile
             ammo = new int[5];
             ammo[0] = 5;
             UI.UpdateResources("Matches", 5);
-            JhonnyAnimator = FindObjectOfType<Animator>();
 
-            // JhonnyAnimator.SetBool("HaveTorch", true);
-            //JhonnyAnimator.SetBool("HaveTorch", false);
 
         }
 
@@ -75,9 +71,6 @@ namespace Com.Kawaiisun.SimpleHostile
             //    Aim(Input.GetMouseButton(1));
             //}
 
-            
-
-
 
         }
 
@@ -98,7 +91,7 @@ namespace Com.Kawaiisun.SimpleHostile
                         pickLoadout[currentIndex].isSelected = false;
                 }
                 GameObject match = Instantiate(loadout[2].prefab, objectParent.position, objectParent.rotation, objectParent) as GameObject;
-                JhonnyAnimator.SetBool("HaveTorch", false);
+
 
                 match.transform.localPosition = Vector3.zero;
                 match.transform.localEulerAngles = Vector3.zero;
@@ -113,8 +106,8 @@ namespace Com.Kawaiisun.SimpleHostile
             }
             else
                 Debug.Log("fiammiferi finiti");
+            
 
-           
 
         }
         void Equip(int eq_index)
@@ -155,11 +148,6 @@ namespace Com.Kawaiisun.SimpleHostile
             pickLoadout[eq_index].isSelected = true;
 
             UI.ActiveWeapon(currentIndex);
-
-            if (pickLoadout[currentIndex].name == "Torch")
-                JhonnyAnimator.SetBool("HaveTorch", true);
-            else
-                JhonnyAnimator.SetBool("HaveTorch", false);
         }
 
         //void Aim(bool isAiming)
@@ -216,7 +204,6 @@ namespace Com.Kawaiisun.SimpleHostile
             }
             if (replacement == true)
             {
-                pickLoadout[currentIndex].isSelected = false;
                 pickLoadout[currentIndex] = loadout[index];
                 ind_pick = currentIndex;
 
