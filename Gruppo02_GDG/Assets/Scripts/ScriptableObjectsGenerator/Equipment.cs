@@ -10,6 +10,8 @@ namespace Com.Kawaiisun.SimpleHostile
 
         public string name;
         public GameObject prefab;
+        public Vector3 l_position;
+        public Vector3 l_rotation;
         public float aimSpeed;
         public float brightness;
         public float attackRange;
