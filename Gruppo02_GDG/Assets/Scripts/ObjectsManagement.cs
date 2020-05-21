@@ -73,10 +73,12 @@ namespace Com.Kawaiisun.SimpleHostile
                 Aim(Input.GetMouseButton(1));
             }
 
-            if (currentObject != null)
-            {
-                Aim(Input.GetMouseButton(1));
-            }
+
+            //if (currentObject != null)
+            //{
+            //    Aim(Input.GetMouseButton(1));
+            //}
+
 
 
         }
