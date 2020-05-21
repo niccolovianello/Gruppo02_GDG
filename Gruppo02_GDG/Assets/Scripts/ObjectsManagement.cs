@@ -66,20 +66,16 @@ namespace Com.Kawaiisun.SimpleHostile
                 currentIndex = 2;
             }
 
-<<<<<<< HEAD
+
             //if (currentObject != null)
             //{
             //    Aim(Input.GetMouseButton(1));
             //}
-=======
-            if (currentObject != null)
-            {
-                Aim(Input.GetMouseButton(1));
-            }
-<<<<<<< HEAD
->>>>>>> parent of 5b0f01d... Flavio 20:00
-=======
->>>>>>> parent of 5b0f01d... Flavio 20:00
+
+            //if (currentObject != null)
+            //{
+            //    Aim(Input.GetMouseButton(1));
+            //}
 
 
         }
