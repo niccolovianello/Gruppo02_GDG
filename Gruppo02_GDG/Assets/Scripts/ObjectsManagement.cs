@@ -76,6 +76,9 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 Aim(Input.GetMouseButton(1));
             }
+<<<<<<< HEAD
+>>>>>>> parent of 5b0f01d... Flavio 20:00
+=======
 >>>>>>> parent of 5b0f01d... Flavio 20:00
 
 
