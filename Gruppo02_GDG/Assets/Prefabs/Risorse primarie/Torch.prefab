@@ -118,7 +118,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5988819314597172145}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.18, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5988819314080373978}
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5988819314597172145}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 37df4d88b645dcb46bf450347f311d27, type: 3}
   m_Name: 
@@ -144,6 +144,7 @@ MonoBehaviour:
   torch: {fileID: 11400000, guid: b2fad2e46c393eb48a9a95e67d0ff235, type: 2}
   currentTimeOfTorchLife: 0
   decrementRate: 0.5
+  UI: {fileID: 0}
 --- !u!65 &2747087995256248669
 BoxCollider:
   m_ObjectHideFlags: 0

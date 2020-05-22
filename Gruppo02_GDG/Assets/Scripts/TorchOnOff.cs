@@ -17,6 +17,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public float currentTimeOfTorchLife;
         public float decrementRate = 0.5f;
         private SupportScriptResources ssr;
+        
 
         private float fireTimeLeftTot;
         private float fireTimeLeft;
@@ -30,6 +31,7 @@ namespace Com.Kawaiisun.SimpleHostile
             if (UI == null)
                 Debug.Log("not found UI from torch");
             //Debug.Log(UI.name);
+            
         }
 
         private void Start()
@@ -49,6 +51,8 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             if (torch.isSelected == true)
             {
+                
+
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     Debug.Log(torch.isSelected);
@@ -119,6 +123,7 @@ namespace Com.Kawaiisun.SimpleHostile
                     
                     
                     int i = obj.getCurrentIndex();
+                    obj.pickLoadout[i].isSelected = false;
                     obj.pickLoadout[i] = null;
                     Destroy(obj.getCurrentObj());
 
@@ -131,6 +136,7 @@ namespace Com.Kawaiisun.SimpleHostile
             if(torch.isSelected == false)
             {
                 ssr.SetRemainLifeTorch(currentTimeOfTorchLife);
+               
             }
 
            
