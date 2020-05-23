@@ -7,7 +7,7 @@ public class MouseLook : MonoBehaviour
     public float mouseSensitivity = 100f;
 
     public Transform playerBody;
-    public Transform equipmentRotation;
+    
 
     float xRotation = 0f;
    
@@ -24,7 +24,7 @@ public class MouseLook : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y")* mouseSensitivity* Time.deltaTime;
 
 
-        equipmentRotation.rotation = this.transform.rotation;
+        
        
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -60f, 60f);

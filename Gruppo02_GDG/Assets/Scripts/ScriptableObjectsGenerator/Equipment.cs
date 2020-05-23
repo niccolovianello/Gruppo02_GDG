@@ -10,6 +10,8 @@ namespace Com.Kawaiisun.SimpleHostile
 
         public string name;
         public GameObject prefab;
+        public Vector3 eq_position;
+        public Vector3 eq_rotation;
         public float aimSpeed;
         public float brightness;
         public float attackRange;
@@ -17,7 +19,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public float attackRate = 1f;
         public bool isSelected = false;
         public float charge = 0;
-        public Animator animatorObject;
+       
 
     }
 }

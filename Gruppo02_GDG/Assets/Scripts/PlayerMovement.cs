@@ -50,7 +50,8 @@ public class PlayerMovement : MonoBehaviour
         isSprinting = false;
         armParentOrigin = armParent.localPosition;
         currentStamina = maxStamina;
-        JhonnyAnimator = FindObjectOfType<Animator>();
+        //JhonnyAnimator = FindObjectOfType<Animator>();
+       // Debug.Log(JhonnyAnimator);
     }
     void Update()
     {

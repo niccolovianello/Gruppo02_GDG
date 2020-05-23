@@ -11,7 +11,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public Transform objectParent;
         private GameObject currentObject;
         public PlayerCombatScript weaponProperties;
-        private Animator JhonnyAnimator;
+        public Animator JhonnyAnimator;
         public int[] ammo; // 0 fiammiferi 1 olio 2 batterie 5 oggetti curativi
         
 
@@ -25,7 +25,7 @@ namespace Com.Kawaiisun.SimpleHostile
             ammo = new int[5];
             ammo[0] = 5;
             UI.UpdateResources("Matches", 5);
-            JhonnyAnimator = FindObjectOfType<Animator>();
+            //JhonnyAnimator = FindObjectOfType<Animator>();
 
             // JhonnyAnimator.SetBool("HaveTorch", true);
             //JhonnyAnimator.SetBool("HaveTorch", false);
@@ -70,10 +70,10 @@ namespace Com.Kawaiisun.SimpleHostile
                 currentIndex = 2;
             }
 
-            if (currentObject != null)
-            {
-                Aim(Input.GetMouseButton(1));
-            }
+            //if (currentObject != null)
+            //{
+            //    Aim(Input.GetMouseButton(1));
+            //}
 
             
 
@@ -141,8 +141,8 @@ namespace Com.Kawaiisun.SimpleHostile
 
             GameObject t_newEquipment = Instantiate(pickLoadout[eq_index].prefab, objectParent.position, objectParent.rotation, objectParent) as GameObject;
             
-            t_newEquipment.transform.localPosition = Vector3.zero;
-            t_newEquipment.transform.localEulerAngles = Vector3.zero;
+            t_newEquipment.transform.localPosition = pickLoadout[eq_index].eq_position;
+            t_newEquipment.transform.localEulerAngles = pickLoadout[eq_index].eq_rotation;
 
             weaponProperties.attackRange = pickLoadout[eq_index].attackRange;
             weaponProperties.attackRate = pickLoadout[eq_index].attackRate;
@@ -157,31 +157,39 @@ namespace Com.Kawaiisun.SimpleHostile
             UI.ActiveWeapon(currentIndex);
 
             if (pickLoadout[currentIndex].name == "Torch")
+            {
                 JhonnyAnimator.SetBool("HaveTorch", true);
+                
+            }
+
             else
+            {
                 JhonnyAnimator.SetBool("HaveTorch", false);
+            }
+            
+               
         }
 
-        void Aim(bool isAiming)
-        {
-            if (currentObject == null || pickLoadout[currentIndex] == null)
-                return;
+        //void Aim(bool isAiming)
+        //{
+        //    if (currentObject == null || pickLoadout[currentIndex] == null)
+        //        return;
 
-            Transform t_anchor = currentObject.transform.Find("Anchor");
-            Transform t_state_ads = currentObject.transform.Find("States/ADS");
-            Transform t_state_hip = currentObject.transform.Find("States/Hip");
+        //    Transform t_anchor = currentObject.transform.Find("Anchor");
+        //    Transform t_state_ads = currentObject.transform.Find("States/ADS");
+        //    Transform t_state_hip = currentObject.transform.Find("States/Hip");
 
-            if (isAiming)
-            {
-                t_anchor.position = Vector3.Lerp(t_anchor.position, t_state_ads.position, Time.deltaTime * pickLoadout[currentIndex].aimSpeed);
-            }
-            else
-            {
+        //    if (isAiming)
+        //    {
+        //        t_anchor.position = Vector3.Lerp(t_anchor.position, t_state_ads.position, Time.deltaTime * pickLoadout[currentIndex].aimSpeed);
+        //    }
+        //    else
+        //    {
 
-                t_anchor.position = Vector3.Lerp(t_anchor.position, t_state_hip.position, Time.deltaTime * pickLoadout[currentIndex].aimSpeed);
-            }
+        //        t_anchor.position = Vector3.Lerp(t_anchor.position, t_state_hip.position, Time.deltaTime * pickLoadout[currentIndex].aimSpeed);
+        //    }
 
-        }
+        //}
 
         public void PickEquipment(string equipmentPick)
         { 
