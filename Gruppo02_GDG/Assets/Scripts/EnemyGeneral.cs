@@ -47,4 +47,9 @@ public class EnemyGeneral : MonoBehaviour
     {
         flames.Play();
     }
+
+    public void Respawn()
+    {
+        // TO DO
+    }
 }

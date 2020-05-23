@@ -17,9 +17,6 @@ namespace Com.Kawaiisun.SimpleHostile
         public Transform player;
         private Animator anim;
 
-        //public ParticleSystem flames;
-        //public ParticleSystem hurt;
-
         float playerDistance;
         public float awareAI = 14f;
         public float angleAwareness;
@@ -51,8 +48,6 @@ namespace Com.Kawaiisun.SimpleHostile
 
         //variabili animazione
 
-
-
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
@@ -62,6 +57,7 @@ namespace Com.Kawaiisun.SimpleHostile
             timeleft = timer;
             MoveToNextPoint();
             obj = FindObjectOfType<ObjectsManagement>();
+            angleAwareness = 40f;
 
             // controllo su animator
             anim = this.GetComponent<Animator>();
@@ -85,6 +81,14 @@ namespace Com.Kawaiisun.SimpleHostile
             Vector3 targetDir = player.position - transform.position;
             angleToPlayer = (Vector3.Angle(targetDir, transform.forward));
 
+            //if(seenplayer == true)
+            //{
+            //    Debug.Log(gameObject.name + "saw me");
+            //}
+            //else
+            //{
+            //    Debug.Log(gameObject.name + "not seeing me");
+            //}
 
             if (obj.getCurrentObj() != null)
             {
@@ -98,6 +102,10 @@ namespace Com.Kawaiisun.SimpleHostile
                 {
                     angleAwareness = 40f;
                 }
+            }
+            else
+            {
+                angleAwareness = 40f;
             }
 
             if (playerDistance < 2f)
@@ -123,11 +131,6 @@ namespace Com.Kawaiisun.SimpleHostile
                 agent.speed = startSpeed; // RISOLVERE PROBLEMA
             }*/
 
-            /*if (playerDistance < awareAI && angleToPlayer >= -angleAwareness && angleToPlayer <= angleAwareness)
-            {
-                LookAtPlayer();
-            }*/
-
             if (playerDistance < awareAI && angleToPlayer >= -angleAwareness && angleToPlayer <= angleAwareness) //se in cono visivo (120) ed entro distanza
             {
                 seenplayer = true;
@@ -144,7 +147,6 @@ namespace Com.Kawaiisun.SimpleHostile
                         isfollowing = false;
                         StartCoroutine(ExecuteAfterTime(2f));
                     }
-                    //StartCoroutine(ExecuteAfterTime(2f));
                 }
                 /*else
                 { 
@@ -169,8 +171,8 @@ namespace Com.Kawaiisun.SimpleHostile
                 if (ischasing == false)
                 {
                     MoveToNextPoint();
+                    //Debug.Log(gameObject.name + "called from else ischasing");
                 }
-                //MoveToNextPoint();
             }
 
             void LookAtPlayer()
@@ -183,13 +185,14 @@ namespace Com.Kawaiisun.SimpleHostile
                 Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
                 transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
 
-                StartCoroutine(FollowAfterTime(2f)); //dopo 2 secondi inizia a seguire player
+                StartCoroutine(FollowAfterTime(1.5f)); //dopo 2 secondi inizia a seguire player
             }
 
-            if (!agent.pathPending && agent.remainingDistance < 0.5f && ischasing == false) //patrol
-            {
-                MoveToNextPoint();
-            }
+            //if (!agent.pathPending && agent.remainingDistance < 0.5f && ischasing == false) //patrol COMMENTO PERCHE' NON SEMBRA CHE VENGA MAI CHIAMATO
+            //{
+            //    MoveToNextPoint();
+            //    Debug.Log(gameObject.name + "called from if pathpending");
+            //}
         }
 
         private void UpdateAnimations()
@@ -200,6 +203,8 @@ namespace Com.Kawaiisun.SimpleHostile
 
         void MoveToNextPoint()
         {
+            //Debug.Log(gameObject.name + "called");
+            
             if (ischasing == true)
                 ischasing = false;
             if (agent.stoppingDistance != 0f) //tutti reset condizione patrol, non inseguimento
