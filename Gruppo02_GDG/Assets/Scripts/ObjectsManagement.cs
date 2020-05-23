@@ -100,8 +100,8 @@ namespace Com.Kawaiisun.SimpleHostile
                 GameObject match = Instantiate(loadout[2].prefab, objectParent.position, objectParent.rotation, objectParent) as GameObject;
                 JhonnyAnimator.SetBool("HaveTorch", false);
 
-                match.transform.localPosition = Vector3.zero;
-                match.transform.localEulerAngles = Vector3.zero;
+                match.transform.localPosition = loadout[2].eq_position;
+                match.transform.localEulerAngles = loadout[2].eq_rotation;
                 weaponProperties.attackRange = loadout[2].attackRange;
                 weaponProperties.attackRate = loadout[2].attackRate;
                 weaponProperties.attackDamage = loadout[2].damage;
