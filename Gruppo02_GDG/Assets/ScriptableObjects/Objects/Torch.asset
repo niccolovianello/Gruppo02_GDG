@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Torch
   prefab: {fileID: 8298779367389354967, guid: bde16fcc88ba82e4eb4cec3cdf8013a0, type: 3}
-  eq_position: {x: -0.078, y: 0.108, z: 0.023}
-  eq_rotation: {x: 2.764, y: -40.35, z: 116.961}
+  eq_position: {x: 0.02, y: 0.08, z: 0.038}
+  eq_rotation: {x: -11.972, y: -16.008, z: 97.604}
   aimSpeed: 5
   brightness: 10
   attackRange: 1

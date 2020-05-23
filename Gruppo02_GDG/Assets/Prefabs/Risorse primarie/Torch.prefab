@@ -23877,6 +23877,7 @@ GameObject:
   - component: {fileID: 5003628951080511940}
   - component: {fileID: 4047452635895993330}
   - component: {fileID: 7716911162885369611}
+  - component: {fileID: 5527201198897084550}
   m_Layer: 0
   m_Name: Torch
   m_TagString: Untagged
@@ -23891,14 +23892,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8298779367389354967}
-  m_LocalRotation: {x: 0.28210956, y: 0.1995215, z: -0.8043042, w: -0.48342547}
+  m_LocalRotation: {x: -0.2821136, y: -0.19952041, z: 0.8043026, w: 0.48342624}
   m_LocalPosition: {x: -0.078, y: 0.108, z: 0.023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4077687450244942540}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 48.851, y: 2.2110002, z: 24.614}
+  m_LocalEulerAnglesHint: {x: 2.762, y: -40.351, z: 116.969}
 --- !u!33 &4047452635895993330
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -23946,6 +23947,25 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &5527201198897084550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298779367389354967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37df4d88b645dcb46bf450347f311d27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isOn: 0
+  fire: {fileID: 6249828884151676287}
+  fireLight: {fileID: 2583262900235324867}
+  torch: {fileID: 11400000, guid: b2fad2e46c393eb48a9a95e67d0ff235, type: 2}
+  currentTimeOfTorchLife: 0
+  decrementRate: 0.5
+  UI: {fileID: 0}
 --- !u!1 &8300613482916543741
 GameObject:
   m_ObjectHideFlags: 0
