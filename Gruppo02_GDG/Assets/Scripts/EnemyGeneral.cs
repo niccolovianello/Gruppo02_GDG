@@ -50,6 +50,6 @@ public class EnemyGeneral : MonoBehaviour
 
     public void Respawn()
     {
-        // TO DO
+       // TO DO, connect with PatrolPointsData on Player 
     }
 }
