@@ -1,75 +1,80 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+using UnityEditor.Animations;
 
 namespace Com.Kawaiisun.SimpleHostile
 {
     public class PatrolPointsData : MonoBehaviour
     {
-        GameObject patrol;
+        public GameObject player;
+        public GameObject enemy;
+        EnemyController ec;
         GameObject[] patrPoints;
+        int deadEnemies;
+        GameObject PSpawn;
 
         // Start is called before the first frame update
         void Start()
         {
-            patrol = GameObject.Find("PatrolPoints");
-            if (patrol == null)
-                Debug.Log("not found PatrolPoints");
-            patrPoints = new GameObject[patrol.transform.childCount];
-            for (int i = 0; i < patrol.transform.childCount; i++)
+            patrPoints = new GameObject[transform.childCount];
+            for (int i = 0; i < transform.childCount; i++)
             {
-                patrPoints[i] = patrol.transform.GetChild(i).gameObject;
+                patrPoints[i] = transform.GetChild(i).gameObject;
             }
+
+            deadEnemies = 0;
         }
 
         // Update is called once per frame
         void Update()
         {
-
+            if (Input.GetKeyDown(KeyCode.L)) // PUT THIS WHERE IT BELONGS AND MAKE CONTROL SETDEADENEMIES 1-4
+            {
+                SortedArray();
+                ChooseSpawn();
+                SpawnEnemy();
+            }
         }
 
-        public GameObject ChoosePNum() // returns cluster farther from player TO CHANGE WITH PROBABILITY THAT FILLS RANDOM RANGE
+        public void SortedArray() // sorted array, far > near
         {
-            GameObject MaxP = null;
-            float maxDist = 0;
-            Vector3 currentPos = transform.position;
-            foreach (GameObject g in patrPoints)
+            patrPoints = patrPoints.OrderBy(patrPoints => (patrPoints.transform.position - player.transform.position).sqrMagnitude).ToArray();
+        }
+
+        public void SetDeadEnemies() // set when one enemy dies
+        {
+            if(deadEnemies < 4)
             {
-                float dist = Vector3.Distance(g.transform.position, currentPos);
-                if (dist > maxDist)
+                deadEnemies += deadEnemies;
+            }
+            else
+            {
+                deadEnemies = 0;
+            }
+        }
+
+        public GameObject ChooseSpawn() //choose cluster P# where to spawn
+        {
+            foreach (GameObject p in patrPoints)
+            {
+                GameObject enemiesEmpty = p.transform.Find("Enemies").gameObject;
+                if (enemiesEmpty.transform.childCount < 4)
                 {
-                    MaxP = g;
-                    maxDist = dist;
+                    PSpawn = p;
+                    break;
                 }
             }
-            return MaxP;
+            return PSpawn;
+        }
 
-
-            //int GetRandomValue()
-            //{
-            //    float rand = Random.value;
-            //    if (rand <= .5f)
-            //        return Random.Range(0, 6);
-            //    if (rand <= .8f)
-            //        return Random.Range(6, 9);
-
-            //    return Random.Range(9, 11);
-            //}
-
-            //var r = Random.Range(0, 100);
-            //if (r < 20)
-            //{
-            //    scene = Random.Range(1, 10);
-            //}
-            //else if (r >= 20 && r < 40)
-            //{
-            //    scene = Random.Range(11, 20);
-            //}
-            //else if (r >= 40)
-            //{
-            //    scene = Random.Range(21, 30);
-            //}
-
+        public void SpawnEnemy()
+        {
+            ec = enemy.GetComponent<EnemyController>();
+            ec.SetNavSize(Random.Range(2,5), PSpawn.transform);
+            var newenemy = Instantiate(enemy, PSpawn.transform.position, Quaternion.identity);
+            newenemy.transform.parent = PSpawn.transform.Find("Enemies");
         }
     }
 }

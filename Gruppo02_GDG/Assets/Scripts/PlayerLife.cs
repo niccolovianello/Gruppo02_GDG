@@ -49,6 +49,12 @@ namespace Com.Kawaiisun.SimpleHostile
                     //}
                 }
             }
+            else
+            {
+                plCurrentTime -= Time.deltaTime;
+
+                UI.TimerDarkUI(plCurrentTime);
+            }
 
             //Debug.Log(Mathf.Round(plCurrentTime));
             if(plCurrentTime < 0f)

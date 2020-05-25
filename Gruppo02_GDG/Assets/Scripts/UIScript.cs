@@ -146,9 +146,11 @@ namespace Com.Kawaiisun.SimpleHostile
             }
             else
             {
-                alpha1 = (255 / timer);
+                alpha1 = (255 / (timer/4)); //timer/n, where n++, smoother is darkness
             }
             DeathPanel.GetComponent<Image>().DOColor(new Color32(0, 0, 0, (byte)alpha1), 0.5f);
+
+            //Debug.Log(alpha1 + " " + timer);
         }
 
         /*public void UnSeenPlayerUI(bool seen)

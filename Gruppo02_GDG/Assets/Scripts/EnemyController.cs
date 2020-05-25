@@ -13,8 +13,8 @@ namespace Com.Kawaiisun.SimpleHostile
     {
         public Transform[] navPoint;
         public NavMeshAgent agent;
-        public Transform goal;
-        public Transform player;
+        Transform goal;
+        Transform player;
         private Animator anim;
 
         float playerDistance;
@@ -58,6 +58,11 @@ namespace Com.Kawaiisun.SimpleHostile
             MoveToNextPoint();
             obj = FindObjectOfType<ObjectsManagement>();
             angleAwareness = 40f;
+
+            player = GameObject.Find("Player").transform;
+            goal = GameObject.Find("Player").transform;
+            if (player == null || goal == null)
+                Debug.Log("not found player");
 
             // controllo su animator
             anim = this.GetComponent<Animator>();
@@ -285,6 +290,26 @@ namespace Com.Kawaiisun.SimpleHostile
         public void deactivateFist()
         {
             monster_Right_Fist.GetComponent<Collider>().enabled = false;
+        }
+
+        public void SetNavSize(int s, Transform navP)
+        {
+            navPoint = new Transform[s];
+            List<int> list = new List<int>();
+
+            for (int n = 0; n < 5; n++)
+            {
+                list.Add(n);
+            }
+
+            for (int i = 0; i < s; i++)
+            {
+                int index = Random.Range(0, list.Count - 1);
+                int nr = list[index];
+                navPoint[i] = navP.GetChild(nr);
+                list.RemoveAt(index);
+            }
+            
         }
     } 
 }
