@@ -71,15 +71,16 @@ public class PlayerMovement : MonoBehaviour
         
         bool isSprinting = sprint && z>0 && isGrounded;
 
-
+        
         float t_adjustedSpeed = speed;
         if (isSprinting && currentStamina > 0 && blockSprint == false)
         {
+            Debug.Log("corre");
             t_adjustedSpeed *= sprintModifierVelocity;
             JhonnyAnimator.SetFloat("Speed", 15);
             currentStamina -= ratioStaminaDischarge * Time.deltaTime;
             normalCam.fieldOfView = Mathf.Lerp(normalCam.fieldOfView, baseFOV * sprintModifier, Time.deltaTime * 8f);
-            HeadBob(movementCounter, .15f, 0.075f);
+            //HeadBob(movementCounter, .15f, 0.075f);
             movementCounter += Time.deltaTime * 7f;
             armParent.localPosition = Vector3.Lerp(armParent.localPosition, targetArmBobPosition, Time.deltaTime * 10f);
             
@@ -125,13 +126,13 @@ public class PlayerMovement : MonoBehaviour
 
         if (x == 0 && z == 0)
         {
-            HeadBob(idleCounter, 0.025f, 0.025f);
+            //HeadBob(idleCounter, 0.025f, 0.025f);
             idleCounter += Time.deltaTime;
             armParent.localPosition = Vector3.Lerp(armParent.localPosition, targetArmBobPosition, Time.deltaTime * 2f);
         }
         else if(!isSprinting)
         {
-            HeadBob(movementCounter, 0.035f, 0.035f);
+            //HeadBob(movementCounter, 0.035f, 0.035f);
             movementCounter += Time.deltaTime * 3f;
             armParent.localPosition = Vector3.Lerp(armParent.localPosition, targetArmBobPosition, Time.deltaTime * 6f);
         }
@@ -149,10 +150,10 @@ public class PlayerMovement : MonoBehaviour
 
     #region Private Methods
 
-    void HeadBob(float p_z,float p_x_intensity,float p_y_intensity)
-    {
-        targetArmBobPosition = armParentOrigin + new Vector3(Mathf.Cos(p_z)*p_x_intensity, Mathf.Sin(p_z * 2)*p_y_intensity,0);
-    }
+    //void HeadBob(float p_z,float p_x_intensity,float p_y_intensity)
+    //{
+    //    targetArmBobPosition = armParentOrigin + new Vector3(Mathf.Cos(p_z)*p_x_intensity, Mathf.Sin(p_z * 2)*p_y_intensity,0);
+    //}
 
     IEnumerator BlockSprintMethod(float timeRest)
     {
