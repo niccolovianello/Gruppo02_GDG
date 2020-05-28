@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: ff2867d6ba79a6a43808b8004af7302c
+guid: c30a7929208b23943b02ff4b54630b98
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Torch_Attack 01
+    second: mixamo.com
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Torch_Attack 01
+      name: mixamo.com
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 115
+      lastFrame: 58
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

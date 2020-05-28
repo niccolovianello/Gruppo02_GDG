@@ -23878,9 +23878,10 @@ GameObject:
   - component: {fileID: 4047452635895993330}
   - component: {fileID: 7716911162885369611}
   - component: {fileID: 5527201198897084550}
+  - component: {fileID: 8049509878809413171}
   m_Layer: 0
-  m_Name: Torch
-  m_TagString: Untagged
+  m_Name: TorchEquipment
+  m_TagString: Torch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -23966,6 +23967,19 @@ MonoBehaviour:
   currentTimeOfTorchLife: 0
   decrementRate: 0.5
   UI: {fileID: 0}
+--- !u!135 &8049509878809413171
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8298779367389354967}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.18665941
+  m_Center: {x: 0.13696374, y: 0.19971082, z: 0.09581598}
 --- !u!1 &8300613482916543741
 GameObject:
   m_ObjectHideFlags: 0

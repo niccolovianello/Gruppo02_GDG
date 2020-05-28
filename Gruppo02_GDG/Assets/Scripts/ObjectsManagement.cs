@@ -25,6 +25,7 @@ namespace Com.Kawaiisun.SimpleHostile
             ammo = new int[5];
             ammo[0] = 5;
             UI.UpdateResources("Matches", 5);
+            weaponProperties.animationObj = JhonnyAnimator;
             //JhonnyAnimator = FindObjectOfType<Animator>();
 
             // JhonnyAnimator.SetBool("HaveTorch", true);

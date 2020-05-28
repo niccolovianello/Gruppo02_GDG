@@ -11,6 +11,7 @@ TagManager:
   - MonsterFist
   - HealthObject
   - PatrolPoint
+  - Torch
   layers:
   - Default
   - TransparentFX

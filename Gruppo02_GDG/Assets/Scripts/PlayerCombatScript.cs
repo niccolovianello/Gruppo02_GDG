@@ -1,7 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Animations;
+using UnityEngine.AI;
+using DG.Tweening;
+using UnityEngine;
 
 public class PlayerCombatScript : MonoBehaviour
 {
@@ -9,7 +12,7 @@ public class PlayerCombatScript : MonoBehaviour
     public LayerMask enemyLayers;
     public Camera fpsCam;
     EnemyGeneral en;
-    //public Animator animationObj;
+   public Animator animationObj;
     
 
     public float attackRange =50f;
@@ -41,6 +44,8 @@ public class PlayerCombatScript : MonoBehaviour
     {
         if (attackRange < 3)
         {
+            animationObj.SetTrigger("TorchAttack");
+            
             Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
 
             foreach (Collider enemy in hitEnemies)
@@ -84,4 +89,14 @@ public class PlayerCombatScript : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+
+    public void ActivateHitTorchk()
+        {
+            this.GetComponent<SphereCollider>().enabled = true;
+        }
+
+    public void DeactivateHitTorch()
+        {
+            this.GetComponent<SphereCollider>().enabled = false;
+        }
 }
