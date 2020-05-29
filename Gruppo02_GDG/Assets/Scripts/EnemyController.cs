@@ -49,14 +49,15 @@ namespace Com.Kawaiisun.SimpleHostile
 
         //variabili animazione
 
-        void Awake()
+        void Start()
         {
             if (navPoint.Length > 0)
             {
                 navPointPos = new Vector3[navPoint.Length];
                 for (int i = 0; i < navPointPos.Length; i++)
                 {
-                    navPointPos[i] = navPoint[i].GetComponent<PatrolPointsRaycast>().GetPPLocation();
+                    navPointPos[i] = navPoint[i].gameObject.GetComponent<PatrolPointsRaycast>().GetPPLocation();
+                    //Debug.Log(navPointPos[i]);
                 }
                 //Debug.Log(navPoint.Length + " " + navPointPos.Length);
             }
@@ -65,10 +66,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 //Debug.Log(navPoint.Length + " " + navPointPos.Length);
                 return;
             }
-        }
 
-        void Start()
-        {
             agent = GetComponent<NavMeshAgent>();
             //agent.destination = goal.position;
             agent.autoBraking = false;

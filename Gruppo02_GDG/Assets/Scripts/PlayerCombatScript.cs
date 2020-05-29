@@ -89,14 +89,4 @@ public class PlayerCombatScript : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
-
-    public void ActivateHitTorchk()
-        {
-            this.GetComponent<SphereCollider>().enabled = true;
-        }
-
-    public void DeactivateHitTorch()
-        {
-            this.GetComponent<SphereCollider>().enabled = false;
-        }
 }

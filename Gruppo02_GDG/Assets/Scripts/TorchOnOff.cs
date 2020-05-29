@@ -144,6 +144,14 @@ namespace Com.Kawaiisun.SimpleHostile
             
         }
 
-     
+        public void ActivateHitTorch()
+        {
+            this.GetComponent<SphereCollider>().enabled = true;
+        }
+
+        public void DeactivateHitTorch()
+        {
+            this.GetComponent<SphereCollider>().enabled = false;
+        }
     }
 }
