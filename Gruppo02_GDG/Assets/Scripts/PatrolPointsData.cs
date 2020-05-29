@@ -30,29 +30,49 @@ namespace Com.Kawaiisun.SimpleHostile
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.L)) // PUT THIS WHERE IT BELONGS AND MAKE CONTROL SETDEADENEMIES 1-4
+            //if (Input.GetKeyDown(KeyCode.L)) // NOT USEFUL, JUST FOR TRY
+            //{
+            //    SortedArray();
+            //    ChooseSpawn();
+            //    SpawnEnemy();
+            //}
+        }
+
+        public void SetDeadEnemies() // set when one enemy dies
+        {
+            if (deadEnemies < 2) // to change with 4
+            {
+                deadEnemies += 1;
+            }
+            else
+            {
+                deadEnemies = 0;
+            }
+        }
+
+        public void RespawnEnemy() 
+        {
+            if(deadEnemies == 2) // to change with 4
             {
                 SortedArray();
                 ChooseSpawn();
                 SpawnEnemy();
+
+                Debug.Log("spawned one enemy");
+            }
+            else
+            {
+                //Debug.Log("not yet, too many enemies, only " + deadEnemies + " dead enemies");
+                return;
             }
         }
 
         public void SortedArray() // sorted array, far > near
         {
             patrPoints = patrPoints.OrderBy(patrPoints => (patrPoints.transform.position - player.transform.position).sqrMagnitude).ToArray();
-        }
-
-        public void SetDeadEnemies() // set when one enemy dies
-        {
-            if(deadEnemies < 4)
-            {
-                deadEnemies += deadEnemies;
-            }
-            else
-            {
-                deadEnemies = 0;
-            }
+            //Debug.Log(patrPoints[0] + "" + patrPoints[1] + patrPoints[2] + "" + patrPoints[3]);
+            patrPoints = patrPoints.Reverse().ToArray();
+            //Debug.Log(patrPoints[0] + "" + patrPoints[1] + patrPoints[2] + "" + patrPoints[3]);
         }
 
         public GameObject ChooseSpawn() //choose cluster P# where to spawn

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Com.Kawaiisun.SimpleHostile;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,10 +11,14 @@ public class EnemyGeneral : MonoBehaviour
     public ParticleSystem flames;
     public ParticleSystem hurt;
 
+    public PatrolPointsData ppd;
+
     private void Awake()
     {
         hurt.Stop();
         flames.Stop();
+
+        ppd = FindObjectOfType<PatrolPointsData>();
     }
 
     void Start()
@@ -28,6 +33,8 @@ public class EnemyGeneral : MonoBehaviour
         if (currentHealth <= 0)
         {
             Die();
+            ppd.SetDeadEnemies();
+            Respawn();
         }
 
     }
@@ -50,6 +57,6 @@ public class EnemyGeneral : MonoBehaviour
 
     public void Respawn()
     {
-       // TO DO, connect with PatrolPointsData on PatrolPoints 
+        ppd.RespawnEnemy();
     }
 }

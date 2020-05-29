@@ -12,6 +12,7 @@ namespace Com.Kawaiisun.SimpleHostile
     public class EnemyController : MonoBehaviour
     {
         public Transform[] navPoint;
+        public Vector3[] navPointPos;
         public NavMeshAgent agent;
         Transform goal;
         Transform player;
@@ -22,7 +23,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public float angleAwareness;
         public float AIMoveSpeed;
         //public float damping = 6.0f;    
-        int destPoint = 0;
+        public int destPoint = 0;
 
         bool ischasing = false;
         bool isfollowing = false;
@@ -47,6 +48,24 @@ namespace Com.Kawaiisun.SimpleHostile
         //public bool attackFlag;
 
         //variabili animazione
+
+        void Awake()
+        {
+            if (navPoint.Length > 0)
+            {
+                navPointPos = new Vector3[navPoint.Length];
+                for (int i = 0; i < navPointPos.Length; i++)
+                {
+                    navPointPos[i] = navPoint[i].GetComponent<PatrolPointsRaycast>().GetPPLocation();
+                }
+                //Debug.Log(navPoint.Length + " " + navPointPos.Length);
+            }
+            else
+            {
+                //Debug.Log(navPoint.Length + " " + navPointPos.Length);
+                return;
+            }
+        }
 
         void Start()
         {
@@ -171,14 +190,14 @@ namespace Com.Kawaiisun.SimpleHostile
                     ischasing = false;
                 }
             }
-            else //patrol
-            {
-                if (ischasing == false)
-                {
-                    MoveToNextPoint();
-                    //Debug.Log(gameObject.name + "called from else ischasing");
-                }
-            }
+            //else //patrol NON METTERE MAI
+            //{
+            //    if (ischasing == false)
+            //    {
+            //        MoveToNextPoint();
+            //        //Debug.Log(gameObject.name + "called from else ischasing");
+            //    }
+            //}
 
             void LookAtPlayer()
             {
@@ -193,11 +212,11 @@ namespace Com.Kawaiisun.SimpleHostile
                 StartCoroutine(FollowAfterTime(1.5f)); //dopo 2 secondi inizia a seguire player
             }
 
-            //if (!agent.pathPending && agent.remainingDistance < 0.5f && ischasing == false) //patrol COMMENTO PERCHE' NON SEMBRA CHE VENGA MAI CHIAMATO
-            //{
-            //    MoveToNextPoint();
-            //    Debug.Log(gameObject.name + "called from if pathpending");
-            //}
+            if (!agent.pathPending && agent.remainingDistance < 0.5f && ischasing == false) //patrol
+            {
+                MoveToNextPoint();
+                //Debug.Log(gameObject.name + "called from if pathpending");
+            }
         }
 
         private void UpdateAnimations()
@@ -221,10 +240,10 @@ namespace Com.Kawaiisun.SimpleHostile
 
             seenplayer = false;
 
-            if (navPoint.Length == 0)
+            if (navPointPos.Length == 0)
                 return;
-            agent.destination = navPoint[destPoint].position;
-            destPoint = (destPoint + 1) % navPoint.Length;
+            agent.destination = navPointPos[destPoint];//.position;
+            destPoint = (destPoint + 1) % navPointPos.Length;
         }
 
         IEnumerator ExecuteAfterTime(float time)
@@ -294,7 +313,8 @@ namespace Com.Kawaiisun.SimpleHostile
 
         public void SetNavSize(int s, Transform navP)
         {
-            navPoint = new Transform[s];
+            navPoint = new Transform[0];
+            navPointPos = new Vector3[s];
             List<int> list = new List<int>();
 
             for (int n = 0; n < 5; n++)
@@ -306,10 +326,11 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 int index = Random.Range(0, list.Count - 1);
                 int nr = list[index];
-                navPoint[i] = navP.GetChild(nr);
+                navPointPos[i] = navP.GetChild(nr).GetComponent<PatrolPointsRaycast>().GetPPLocation();
                 list.RemoveAt(index);
+
+                //Debug.Log(navP.GetChild(nr).name);
             }
-            
         }
     } 
 }
