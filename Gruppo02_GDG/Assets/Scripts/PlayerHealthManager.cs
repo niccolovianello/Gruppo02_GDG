@@ -11,6 +11,7 @@ public class PlayerHealthManager : MonoBehaviour
     public float impactMonster = 500;
     public float ratioHealth = 3f;
     private ObjectsManagement obj;
+    public Transform hand;
 
     public UIScript UI;
 
@@ -73,5 +74,14 @@ public class PlayerHealthManager : MonoBehaviour
 
         Debug.Log("i'm_dead");
         SceneManager.LoadScene("SampleScene");
+    }
+    public void ActivateHitTorch()
+    {
+        hand.GetComponent<SphereCollider>().enabled = true;
+    }
+
+    public void DeactivateHitTorch()
+    {
+        hand.GetComponent<SphereCollider>().enabled = false;
     }
 }

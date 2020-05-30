@@ -59,4 +59,12 @@ public class EnemyGeneral : MonoBehaviour
     {
         ppd.RespawnEnemy();
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "PlayerAttackCloseRange")
+        {
+            TakeDamage(40);
+            Debug.Log("hit enemy");
+        }
+    }
 }

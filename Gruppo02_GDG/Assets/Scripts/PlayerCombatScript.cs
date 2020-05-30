@@ -46,21 +46,21 @@ public class PlayerCombatScript : MonoBehaviour
         {
             animationObj.SetTrigger("TorchAttack");
             
-            Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
+            //Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
 
-            foreach (Collider enemy in hitEnemies)
-            {
-                Debug.Log("colpisco vicino");
-                enem = enemy.GetComponent<EnemyGeneral>();
-                //animationObj.SetTrigger("TorchAttack");
+            //foreach (Collider enemy in hitEnemies)
+            //{
+            //    Debug.Log("colpisco vicino");
+            //    enem = enemy.GetComponent<EnemyGeneral>();
+            //    //animationObj.SetTrigger("TorchAttack");
 
-                if (enem != null)
-                {
-                    enem.TakeDamage(attackDamage);
-                    enem.HurtPart();
-                }
+            //    if (enem != null)
+            //    {
+            //        enem.TakeDamage(attackDamage);
+            //        enem.HurtPart();
+            //    }
                
-            }
+            //}
             
         }
         else

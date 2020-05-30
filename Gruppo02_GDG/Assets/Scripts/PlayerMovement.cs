@@ -75,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
         float t_adjustedSpeed = speed;
         if (isSprinting && currentStamina > 0 && blockSprint == false)
         {
-            Debug.Log("corre");
+            
             t_adjustedSpeed *= sprintModifierVelocity;
             JhonnyAnimator.SetFloat("Speed", 15);
             currentStamina -= ratioStaminaDischarge * Time.deltaTime;
@@ -113,6 +113,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            JhonnyAnimator.SetTrigger("Jump");
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             JhonnyAnimator.SetTrigger("Jump");
         }

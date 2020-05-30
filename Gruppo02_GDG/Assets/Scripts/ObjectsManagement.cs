@@ -231,7 +231,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
             }
 
-            Debug.Log(ind_pick);
+            //Debug.Log(ind_pick);
 
             Equip(ind_pick);
 
@@ -249,5 +249,6 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             return currentObject;
         }
+      
     }
 }

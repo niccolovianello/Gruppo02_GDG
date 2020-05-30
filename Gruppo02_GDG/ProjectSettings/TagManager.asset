@@ -12,6 +12,7 @@ TagManager:
   - HealthObject
   - PatrolPoint
   - Torch
+  - PlayerAttackCloseRange
   layers:
   - Default
   - TransparentFX

@@ -55,7 +55,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    Debug.Log(torch.isSelected);
+                    //Debug.Log(torch.isSelected);
 
                     isOn = !isOn;
 
@@ -144,14 +144,6 @@ namespace Com.Kawaiisun.SimpleHostile
             
         }
 
-        public void ActivateHitTorch()
-        {
-            this.GetComponent<SphereCollider>().enabled = true;
-        }
-
-        public void DeactivateHitTorch()
-        {
-            this.GetComponent<SphereCollider>().enabled = false;
-        }
+   
     }
 }
