@@ -90,6 +90,10 @@ namespace Com.Kawaiisun.SimpleHostile
 
             if (ammo[0] > 0)
             {
+               
+                   
+
+              
                 if (currentObject != null)
                 {
                     Destroy(currentObject);
@@ -99,7 +103,7 @@ namespace Com.Kawaiisun.SimpleHostile
                         pickLoadout[currentIndex].isSelected = false;
                 }
                 GameObject match = Instantiate(loadout[2].prefab, objectParent.position, objectParent.rotation, objectParent) as GameObject;
-                JhonnyAnimator.SetBool("HaveTorch", false);
+                JhonnyAnimator.SetBool("HaveTorch", true);
 
                 match.transform.localPosition = loadout[2].eq_position;
                 match.transform.localEulerAngles = loadout[2].eq_rotation;
@@ -114,8 +118,8 @@ namespace Com.Kawaiisun.SimpleHostile
             }
             else
                 Debug.Log("fiammiferi finiti");
-
            
+
 
         }
         void Equip(int eq_index)

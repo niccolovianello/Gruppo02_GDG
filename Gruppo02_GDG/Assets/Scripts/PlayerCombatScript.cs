@@ -8,11 +8,11 @@ using UnityEngine;
 
 public class PlayerCombatScript : MonoBehaviour
 {
-    public Transform attackPoint;
+   
     public LayerMask enemyLayers;
     public Camera fpsCam;
     EnemyGeneral en;
-   public Animator animationObj;
+    public Animator animationObj;
     
 
     public float attackRange =50f;
@@ -42,25 +42,9 @@ public class PlayerCombatScript : MonoBehaviour
 
     public void Attack()
     {
-        if (attackRange < 3)
+        if (attackRange == 3)
         {
             animationObj.SetTrigger("TorchAttack");
-            
-            //Collider[] hitEnemies = Physics.OverlapSphere(attackPoint.position, attackRange, enemyLayers);
-
-            //foreach (Collider enemy in hitEnemies)
-            //{
-            //    Debug.Log("colpisco vicino");
-            //    enem = enemy.GetComponent<EnemyGeneral>();
-            //    //animationObj.SetTrigger("TorchAttack");
-
-            //    if (enem != null)
-            //    {
-            //        enem.TakeDamage(attackDamage);
-            //        enem.HurtPart();
-            //    }
-               
-            //}
             
         }
         else
@@ -80,13 +64,5 @@ public class PlayerCombatScript : MonoBehaviour
     }
        
 
-    private void OnDrawGizmosSelected()
-    {
-        if (attackPoint == null)
-        {
-            return;
-        }
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
-    }
+   
 }
