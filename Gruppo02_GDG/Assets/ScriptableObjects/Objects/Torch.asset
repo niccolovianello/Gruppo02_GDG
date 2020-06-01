@@ -18,7 +18,7 @@ MonoBehaviour:
   eq_rotation: {x: -11.972, y: -16.008, z: 97.604}
   aimSpeed: 5
   brightness: 10
-  attackRange: 1
+  attackRange: 3
   damage: 40
   attackRate: 1
   isSelected: 1

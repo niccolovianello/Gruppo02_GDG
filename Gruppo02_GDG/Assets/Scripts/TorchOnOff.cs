@@ -137,13 +137,7 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 ssr.SetRemainLifeTorch(currentTimeOfTorchLife);
                
-            }
-
-           
-           
-            
-        }
-
-   
+            }            
+        }   
     }
 }

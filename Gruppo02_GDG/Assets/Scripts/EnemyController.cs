@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
 using UnityEngine.Animations;
-
+//using System.Diagnostics;
 
 namespace Com.Kawaiisun.SimpleHostile 
 {
@@ -33,7 +33,7 @@ namespace Com.Kawaiisun.SimpleHostile
         float timer = 15f; //tempo inseguimento se non visto
         float timeleft;
 
-        bool seenplayer = false;
+        //bool seenplayer = false; // FIX THIS
         bool closeattack = false;
 
         public GameObject monster_Right_Fist;
@@ -81,8 +81,23 @@ namespace Com.Kawaiisun.SimpleHostile
             if (player == null || goal == null)
                 Debug.Log("not found player");
 
-            // controllo su animator
+            //// controllo su animator
             anim = this.GetComponent<Animator>();
+            //if (anim == null)
+            //{
+            //    Debug.Log("no animator");
+            //    return;
+            //}
+            //if (anim != null)
+            //    UpdateAnimations();
+
+
+            agent.acceleration = 70f;
+        }
+
+        void Update()
+        {
+            // controllo su animator
             if (anim == null)
             {
                 Debug.Log("no animator");
@@ -90,10 +105,7 @@ namespace Com.Kawaiisun.SimpleHostile
             }
             if (anim != null)
                 UpdateAnimations();
-        }
 
-        void Update()
-        {
             //if (attackFlag == false)
             //{
             //    if(currentCoroutine != null)
@@ -102,15 +114,6 @@ namespace Com.Kawaiisun.SimpleHostile
             playerDistance = Vector3.Distance(player.position, transform.position);
             Vector3 targetDir = player.position - transform.position;
             angleToPlayer = (Vector3.Angle(targetDir, transform.forward));
-
-            //if(seenplayer == true)
-            //{
-            //    Debug.Log(gameObject.name + "saw me");
-            //}
-            //else
-            //{
-            //    Debug.Log(gameObject.name + "not seeing me");
-            //}
 
             if (obj.getCurrentObj() != null)
             {
@@ -144,18 +147,9 @@ namespace Com.Kawaiisun.SimpleHostile
                 closeattack = false;
             }
 
-            /*if (anim.GetCurrentAnimatorStateInfo(0).IsName("Stabbing"))
-            {
-                agent.speed = 0.3f;
-            }
-            else
-            {
-                agent.speed = startSpeed; // RISOLVERE PROBLEMA
-            }*/
-
             if (playerDistance < awareAI && angleToPlayer >= -angleAwareness && angleToPlayer <= angleAwareness) //se in cono visivo (120) ed entro distanza
             {
-                seenplayer = true;
+                //seenplayer = true;
 
                 timeleft = timer;
                 LookAtPlayer();
@@ -214,29 +208,44 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 MoveToNextPoint();
                 //Debug.Log(gameObject.name + "called from if pathpending");
+
+                Debug.Log("called " + ischasing);
+            }
+
+            if (anim != null)
+            {
+                if (anim.GetCurrentAnimatorStateInfo(1).IsName("Stabbing"))
+                {
+                    agent.speed = 0f;
+                }
+                else
+                {
+                }
+            }
+            else
+            {
+                return;
             }
         }
 
         private void UpdateAnimations()
         {
             anim.SetFloat("Speed", agent.speed);
-            anim.SetBool("SeenPlayer", seenplayer);
+            //anim.SetBool("SeenPlayer", seenplayer);
         }
 
         void MoveToNextPoint()
         {
-            //Debug.Log(gameObject.name + "called");
-            
             if (ischasing == true)
                 ischasing = false;
-            if (agent.stoppingDistance != 0f) //tutti reset condizione patrol, non inseguimento
-                agent.stoppingDistance = 0f;
+            //if (agent.stoppingDistance != 0f) //tutti reset condizione patrol, non inseguimento
+            //    agent.stoppingDistance = 0f;
             if (agent.speed == AIMoveSpeed)
                 agent.speed = 3.4f;
             if (timeleft != timer)
                 timeleft = timer;
 
-            seenplayer = false;
+            //seenplayer = false;
 
             if (navPointPos.Length == 0)
                 return;
@@ -249,15 +258,13 @@ namespace Com.Kawaiisun.SimpleHostile
             yield return new WaitForSeconds(time);
 
             Chase();
-
-            //Debug.Log("insegue veloce più veloce");
         }
 
         IEnumerator FollowAfterTime(float time)
         {
             yield return new WaitForSeconds(time);
 
-            if (agent.speed < startSpeed) //aumento velocità da quando si ferma
+            if (agent.speed < startSpeed && !anim.GetCurrentAnimatorStateInfo(1).IsName("Stabbing")) //aumento velocità da quando si ferma
             {
                 agent.speed = startSpeed;
             }
@@ -270,18 +277,16 @@ namespace Com.Kawaiisun.SimpleHostile
             //transform.Translate(Vector3.forward * AIMoveSpeed * Time.deltaTime);
             agent.SetDestination(goal.position);
             agent.speed = AIMoveSpeed;
-            agent.stoppingDistance = 0.7f;
+            //agent.stoppingDistance = 0.7f; // REMOVED FOR NOW
         }
 
-        private void UpdateAnimation() // metodo dove implementare animazioni  da richiamare dell'update
-        {
-
-            //if(!isFollowingPlayer)
-        }
+        //private void UpdateAnimation() // metodo dove implementare animazioni  da richiamare dell'update
+        //{
+        //    //if(!isFollowingPlayer)
+        //}
 
         //private IEnumerator TimeToAttackMethod(int t_before_attack)
         //{
-
         //    yield return new WaitForSeconds(t_before_attack);
         //    Collider[] playerCollider = Physics.OverlapSphere(attackPoint.position, attackRange, playerLayer);
         //    if (playerCollider.Length != 0)
@@ -293,10 +298,6 @@ namespace Com.Kawaiisun.SimpleHostile
 
         //    }
         //    attackFlag = false;
-
-
-
-
         //}
 
         public void activateFist()

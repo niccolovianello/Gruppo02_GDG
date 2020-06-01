@@ -65,6 +65,7 @@ public class EnemyGeneral : MonoBehaviour
         {
             TakeDamage(40);
             Debug.Log("hit enemy");
+            HurtPart();
         }
     }
 }
