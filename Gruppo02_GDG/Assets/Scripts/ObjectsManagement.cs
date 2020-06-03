@@ -12,7 +12,7 @@ namespace Com.Kawaiisun.SimpleHostile
         private GameObject currentObject;
         public PlayerCombatScript weaponProperties;
         public Animator JhonnyAnimator;
-        public int[] ammo; // 0 fiammiferi 1 olio 2 batterie 5 oggetti curativi
+        public int[] ammo; // 0 fiammiferi 1 olio 2 batterie 3 frecce 5 oggetti curativi
         
 
         private int currentIndex = 0;
@@ -24,6 +24,7 @@ namespace Com.Kawaiisun.SimpleHostile
             pickLoadout = new Equipment[3];
             ammo = new int[5];
             ammo[0] = 5;
+            ammo[1] = 1;
             UI.UpdateResources("Matches", 5);
             weaponProperties.animationObj = JhonnyAnimator;
             //JhonnyAnimator = FindObjectOfType<Animator>();
@@ -90,10 +91,11 @@ namespace Com.Kawaiisun.SimpleHostile
 
             if (ammo[0] > 0)
             {
-               
-                   
 
-              
+
+
+                JhonnyAnimator.SetBool("HaveLantern", false);
+                JhonnyAnimator.SetBool("HaveFlashlight", false);
                 if (currentObject != null)
                 {
                     Destroy(currentObject);
@@ -172,7 +174,29 @@ namespace Com.Kawaiisun.SimpleHostile
                 JhonnyAnimator.SetBool("HaveTorch", false);
             }
             
-               
+            if (pickLoadout[currentIndex].name == "Lantern")
+            {
+                JhonnyAnimator.SetBool("HaveLantern", true);
+
+            }
+
+            else
+            {
+                JhonnyAnimator.SetBool("HaveLantern", false);
+            }
+            if (pickLoadout[currentIndex].name == "FlashLight")
+            {
+                JhonnyAnimator.SetBool("HaveFlashlight", true);
+
+            }
+
+            else
+            {
+                JhonnyAnimator.SetBool("HaveFlashlight", false);
+            }
+
+
+
         }
 
         //void Aim(bool isAiming)

@@ -56,8 +56,11 @@ namespace Com.Kawaiisun.SimpleHostile
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     //Debug.Log(torch.isSelected);
-
-                    isOn = !isOn;
+                    if (obj.ammo[0] > 0)
+                    {
+                        isOn = !isOn;
+                        
+                    } 
 
                     if (obj.getCurrentObj() == null)
                         return;
@@ -65,14 +68,14 @@ namespace Com.Kawaiisun.SimpleHostile
                     if (isOn)
                     {
                         currentTimeOfTorchLife = ssr.GetRemainLifeTorch();
-                        if (obj.ammo[0] > 0)
-                        {
+                        
+                        
                             fireLight.enabled = true;
                             fire.Play();
                             obj.ammo[0]--;
 
                             UI.UpdateResources("Matches", -1);
-                        }
+                        
                        
 
                     }

@@ -7,7 +7,7 @@ namespace Com.Kawaiisun.SimpleHostile
     public class SupportScriptResources : MonoBehaviour
     {
         private float remainEnergy = 10;
-        private float remainOil = 0;
+        private float remainOil = 20;
         private float remainLifeTorch = 50;
 
         public float GetRemainEnergy()

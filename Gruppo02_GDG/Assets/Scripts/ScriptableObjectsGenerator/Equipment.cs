@@ -12,7 +12,6 @@ namespace Com.Kawaiisun.SimpleHostile
         public GameObject prefab;
         public Vector3 eq_position;
         public Vector3 eq_rotation;
-        public float aimSpeed;
         public float brightness;
         public float attackRange;
         public int damage;
