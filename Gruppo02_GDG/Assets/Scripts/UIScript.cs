@@ -27,11 +27,11 @@ namespace Com.Kawaiisun.SimpleHostile
             DeathPanel = transform.Find("DeathPanel");
         }
 
-        // Update is called once per frame
-        void Update()
-        {
+        //// Update is called once per frame
+        //void Update()
+        //{
             
-        }
+        //}
 
         public void UpdateWeapons(string weaponname, int weaponpos)
         {
@@ -42,10 +42,11 @@ namespace Com.Kawaiisun.SimpleHostile
 
         public void ActiveWeapon(int newwpos)
         {
+            //Debug.Log(newwpos);
             Image Matches = Resources.Find("Panel/Matches").GetComponent<Image>();
-            if (newwpos != 3)
+            if (newwpos != 4)
             {
-                for (int i = -1; i < 2; i++) // POI METTERE < 3 QUANDO AGGIUNGO ULTIMO SLOT + CAMBIA IN DESTROY MATCH E TORCH (3 -> 4)
+                for (int i = -1; i < 3; i++) // POI METTERE < 3 QUANDO AGGIUNGO ULTIMO SLOT + CAMBIA IN DESTROY MATCH E TORCH (3 -> 4)
                 {
                     if (newwpos == i)
                     {
@@ -73,7 +74,7 @@ namespace Com.Kawaiisun.SimpleHostile
             }
             else
             {
-                for (int i = -1; i < 2; i++)
+                for (int i = -1; i < 3; i++)
                 {
                     if(i == -1)
                     {
@@ -143,6 +144,10 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 alpha1 = timer;
                 DeathPanel.GetComponentInChildren<Text>().DOColor(new Color32(255, 255, 255, 255), 0.7f);
+            }
+            else if (timer >= 30f)
+            {
+                alpha1 = 0f;
             }
             else
             {

@@ -13,10 +13,14 @@ public class EnemyGeneral : MonoBehaviour
 
     public PatrolPointsData ppd;
 
+    public EnemyController en;
+
     private void Awake()
     {
         hurt.Stop();
         flames.Stop();
+
+        en = FindObjectOfType<EnemyController>();
 
         ppd = FindObjectOfType<PatrolPointsData>();
     }
@@ -29,6 +33,11 @@ public class EnemyGeneral : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+
+        if(en.GetChasing() == false && en.GetFollowing() == false) // TO FIX
+        {
+            en.SetSeen();
+        }
 
         if (currentHealth <= 0)
         {

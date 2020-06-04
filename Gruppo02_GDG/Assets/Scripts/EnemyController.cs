@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using DG.Tweening;
 using UnityEngine.Animations;
+using System.Runtime.Serialization;
 //using System.Diagnostics;
 
 namespace Com.Kawaiisun.SimpleHostile 
@@ -39,6 +40,8 @@ namespace Com.Kawaiisun.SimpleHostile
         public GameObject monster_Right_Fist;
 
         public ObjectsManagement obj;
+
+        bool seen = false;
 
         //public Transform attackPoint;
         //public float attackRange;
@@ -133,7 +136,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 angleAwareness = 40f;
             }
 
-            if (playerDistance < 2f)
+            if (playerDistance < 2f /*added*/&& playerDistance < awareAI && angleToPlayer >= -angleAwareness && angleToPlayer <= angleAwareness/*added*/)
             {
                 //attackFlag = true;
                 closeattack = true;
@@ -147,10 +150,9 @@ namespace Com.Kawaiisun.SimpleHostile
                 closeattack = false;
             }
 
-            if (playerDistance < awareAI && angleToPlayer >= -angleAwareness && angleToPlayer <= angleAwareness) //se in cono visivo (120) ed entro distanza
+            if ((playerDistance < awareAI && angleToPlayer >= -angleAwareness && angleToPlayer <= angleAwareness) || seen == true) //se in cono visivo (120) ed entro distanza
             {
                 //seenplayer = true;
-
                 timeleft = timer;
                 LookAtPlayer();
 
@@ -161,6 +163,9 @@ namespace Com.Kawaiisun.SimpleHostile
                     {
                         ischasing = true;
                         isfollowing = false;
+
+                        seen = false; //added
+
                         StartCoroutine(ExecuteAfterTime(2f));
                     }
                 }
@@ -182,14 +187,6 @@ namespace Com.Kawaiisun.SimpleHostile
                     ischasing = false;
                 }
             }
-            //else //patrol NON METTERE MAI
-            //{
-            //    if (ischasing == false)
-            //    {
-            //        MoveToNextPoint();
-            //        //Debug.Log(gameObject.name + "called from else ischasing");
-            //    }
-            //}
 
             void LookAtPlayer()
             {
@@ -209,7 +206,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 MoveToNextPoint();
                 //Debug.Log(gameObject.name + "called from if pathpending");
 
-                Debug.Log("called " + ischasing);
+                //Debug.Log("called " + ischasing);
             }
 
             if (anim != null)
@@ -330,6 +327,21 @@ namespace Com.Kawaiisun.SimpleHostile
 
                 //Debug.Log(navP.GetChild(nr).name);
             }
+        }
+
+        public bool GetFollowing()
+        {
+            return isfollowing;
+        }
+
+        public bool GetChasing()
+        {
+            return ischasing;
+        }
+
+        public void SetSeen()
+        {
+            seen = true;
         }
     } 
 }

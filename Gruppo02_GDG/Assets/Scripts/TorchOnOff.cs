@@ -130,7 +130,7 @@ namespace Com.Kawaiisun.SimpleHostile
                     obj.pickLoadout[i] = null;
                     Destroy(obj.getCurrentObj());
 
-                    UI.ActiveWeapon(3);
+                    UI.ActiveWeapon(4);
                     UI.UpdateWeapons("", i);
                 }
 

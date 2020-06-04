@@ -60,10 +60,10 @@ namespace Com.Kawaiisun.SimpleHostile
                 {
                     /*fireLight.enabled = false;
                     fire.Stop();*/
-                    Destroy(obj.getCurrentObj());
-
+                    UI.ActiveWeapon(4);
                     UI.UpdateResources("Matches", -1);
-                    UI.ActiveWeapon(3);
+
+                    Destroy(obj.getCurrentObj());
                 }
             }
 
@@ -103,6 +103,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 
                 Destroy(obj.getCurrentObj());
 
+                UI.ActiveWeapon(4);
                 UI.UpdateResources("Matches", -1);
             }
         }
