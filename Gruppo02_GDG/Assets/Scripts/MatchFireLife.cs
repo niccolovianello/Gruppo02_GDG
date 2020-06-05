@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.Animations;
 
 namespace Com.Kawaiisun.SimpleHostile
 {
@@ -14,6 +15,7 @@ namespace Com.Kawaiisun.SimpleHostile
         
         public Equipment match;
         private ObjectsManagement obj;
+        private Animator JhonnyAnimator;
         public float currentTimeOfMatchLife;
         public float decrementRate = 0.5f;
 
@@ -38,9 +40,10 @@ namespace Com.Kawaiisun.SimpleHostile
             fire.Stop();
             fireLight.enabled = false;
             obj = FindObjectOfType<ObjectsManagement>();
-
+            JhonnyAnimator = obj.JhonnyAnimator;
             firech = fire.gameObject.GetComponentsInChildren<ParticleSystem>();
             fireTimeLeftTot = currentTimeOfMatchLife / 3;
+            Debug.Log(JhonnyAnimator);
                 //15f;
         }
 
@@ -64,6 +67,9 @@ namespace Com.Kawaiisun.SimpleHostile
                     UI.UpdateResources("Matches", -1);
 
                     Destroy(obj.getCurrentObj());
+                    JhonnyAnimator.SetBool("HaveTorch", false);
+                    Debug.Log(JhonnyAnimator.GetBool("HaveTorch"));
+
                 }
             }
 

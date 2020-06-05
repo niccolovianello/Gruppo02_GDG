@@ -23,7 +23,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        Debug.Log("Hi raccolto un oggetto!");
+                        Debug.Log(hit.collider.gameObject.name);
                         obj.PickEquipment(hit.collider.gameObject.name);
                         Destroy(hit.collider.gameObject);
                     }

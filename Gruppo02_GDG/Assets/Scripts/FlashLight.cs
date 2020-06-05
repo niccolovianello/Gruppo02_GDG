@@ -7,7 +7,7 @@ namespace Com.Kawaiisun.SimpleHostile
     {
 
         private Light flashlight;
-        private bool isOn = false;
+        public bool isOn = false;
         public Equipment selectionFlashlight;
         public ObjectsManagement obj;
         public float currentBatteryEnergy;

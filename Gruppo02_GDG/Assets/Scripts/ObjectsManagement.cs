@@ -119,7 +119,10 @@ namespace Com.Kawaiisun.SimpleHostile
 
             }
             else
+            {
                 Debug.Log("fiammiferi finiti");
+                JhonnyAnimator.SetBool("HaveTorch", false);
+            } 
            
 
 
@@ -199,26 +202,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
         }
 
-        //void Aim(bool isAiming)
-        //{
-        //    if (currentObject == null || pickLoadout[currentIndex] == null)
-        //        return;
-
-        //    Transform t_anchor = currentObject.transform.Find("Anchor");
-        //    Transform t_state_ads = currentObject.transform.Find("States/ADS");
-        //    Transform t_state_hip = currentObject.transform.Find("States/Hip");
-
-        //    if (isAiming)
-        //    {
-        //        t_anchor.position = Vector3.Lerp(t_anchor.position, t_state_ads.position, Time.deltaTime * pickLoadout[currentIndex].aimSpeed);
-        //    }
-        //    else
-        //    {
-
-        //        t_anchor.position = Vector3.Lerp(t_anchor.position, t_state_hip.position, Time.deltaTime * pickLoadout[currentIndex].aimSpeed);
-        //    }
-
-        //}
+      
 
         public void PickEquipment(string equipmentPick)
         { 

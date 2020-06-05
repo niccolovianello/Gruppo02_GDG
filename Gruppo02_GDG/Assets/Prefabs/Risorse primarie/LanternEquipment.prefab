@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 391676398801855497}
   - component: {fileID: 8661694369242422847}
   - component: {fileID: 3100741848222261958}
-  - component: {fileID: -156722716546564409}
   - component: {fileID: 4384118744689618804}
   m_Layer: 10
   m_Name: LanternEquipment
@@ -83,19 +82,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &-156722716546564409
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3689813984190125594}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 6.432995, y: 18.309187, z: 5.6931396}
-  m_Center: {x: -0.051932365, y: 1.4434075, z: 0.11984709}
 --- !u!114 &4384118744689618804
 MonoBehaviour:
   m_ObjectHideFlags: 0

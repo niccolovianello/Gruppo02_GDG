@@ -139,11 +139,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            Debug.Log("Sei uscito");
-            Application.Quit();
-        }
+      
 
 
     }

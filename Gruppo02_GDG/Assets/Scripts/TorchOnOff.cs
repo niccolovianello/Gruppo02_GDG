@@ -63,8 +63,10 @@ namespace Com.Kawaiisun.SimpleHostile
                     if (obj.ammo[0] > 0)
                     {
                         isOn = !isOn;
-                        
-                    } 
+
+                    }
+                    else
+                        isOn = false;
 
                     if (obj.getCurrentObj() == null)
                         return;
@@ -77,8 +79,8 @@ namespace Com.Kawaiisun.SimpleHostile
                             fireLight.enabled = true;
                             fire.Play();
                             obj.ammo[0]--;
-
-                            UI.UpdateResources("Matches", -1);
+                        Debug.Log(obj.ammo[0]);
+                        UI.UpdateResources("Matches", -1);
                         
                        
 
@@ -89,11 +91,13 @@ namespace Com.Kawaiisun.SimpleHostile
                         fire.Stop();
                         ssr.SetRemainLifeTorch(currentTimeOfTorchLife);
                         if (obj.ammo[0] == 0)
-                            Debug.Log("Sono finiti i fiammiferi");
+                            Debug.Log("fiammiferi finiti");
                     }
+                    
 
 
                 }
+                
 
                 if (isOn)
                 {
