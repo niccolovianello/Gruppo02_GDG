@@ -16,6 +16,11 @@ namespace Com.Kawaiisun.SimpleHostile
 
         float alpha;
         float alpha1;
+
+        float batterylife;
+        float torchlife;
+        float matchlife;
+        float lanternlife;
         //Text t = child.GetComponent<Text>();
 
         // Start is called before the first frame update
@@ -158,14 +163,6 @@ namespace Com.Kawaiisun.SimpleHostile
             //Debug.Log(alpha1 + " " + timer);
         }
 
-        /*public void UnSeenPlayerUI(bool seen)
-        {
-            if(seen == true)
-            {
-                transform.GetComponentInChildren<>
-            }
-        }*/
-
         IEnumerator ExecuteAfterTime(float time, Text t)
         {
             yield return new WaitForSeconds(time);
@@ -179,5 +176,50 @@ namespace Com.Kawaiisun.SimpleHostile
 
             t.text = "";
         }*/
+
+
+        public void SetFBattery(float currentbattery)
+        {
+            batterylife = currentbattery;
+        }
+
+        public void SetTLife(float currentTlife)
+        {
+            torchlife = currentTlife;
+        }
+
+        public void SetMLife(float currentMlife)
+        {
+            matchlife = currentMlife;
+        }
+
+        public void SetLLife(float currentLlife)
+        {
+            lanternlife = currentLlife;
+        }
+
+        // ADD BOW
+
+        public float GetFBattery()
+        {
+            return batterylife;
+        }
+
+        public float GetTLife()
+        {
+            return torchlife;
+        }
+
+        public float GetMLife()
+        {
+            return matchlife;
+        }
+
+        public float GetLLife()
+        {
+            return lanternlife;
+        }
+
+        // ADD BOW
     }
 }

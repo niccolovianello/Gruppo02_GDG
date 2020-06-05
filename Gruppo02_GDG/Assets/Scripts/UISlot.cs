@@ -15,6 +15,9 @@ namespace Com.Kawaiisun.SimpleHostile
         float torchlife;
         float matchlife;
         float lanternlife;
+        float bowlife; // TO ADD
+
+        public UIScript UI;
 
         Image charge;
         //float bowlife; //POI AGGIUNGI
@@ -25,16 +28,20 @@ namespace Com.Kawaiisun.SimpleHostile
             charge = this.transform.Find("Charge").GetComponent<Image>();
 
             charge.fillAmount = 0;
+
+            UI = GameObject.Find("CanvasUI").GetComponent<UIScript>();
+            if (UI == null)
+                Debug.Log("not found UI from UISlot");
         }
 
         // Update is called once per frame
         void Update()
         {
-            Debug.Log(batterylife);
-            Debug.Log(torchlife);
-            Debug.Log(matchlife);
-            Debug.Log(lanternlife);
-
+            batterylife = UI.GetFBattery();
+            torchlife = UI.GetTLife();
+            matchlife = UI.GetMLife();
+            lanternlife = UI.GetLLife();
+            
             PickBackground();
             if (selected == true)
             {
@@ -43,6 +50,17 @@ namespace Com.Kawaiisun.SimpleHostile
                 PickName();
                 DoFade();
                 //Debug.Log(name);
+            }
+
+            if(this.transform.Find("ResourceName") != null)
+            {
+                if (this.transform.Find("ResourceName").GetComponent<Text>().text == "M")
+                {
+                    if (selected == false)
+                    {
+                        charge.fillAmount = 0f;
+                    }
+                }
             }
         }
 
@@ -82,84 +100,34 @@ namespace Com.Kawaiisun.SimpleHostile
 
         void DoFade()
         {
-            Debug.Log("entra con " + letterswitch);
+            //Debug.Log("entra con " + letterswitch);
 
             switch (letterswitch)
             {
                 case "M":
                     charge.fillAmount = (matchlife / 15);
-                    Debug.Log(matchlife / 15 + "match");
+                    //Debug.Log(matchlife / 15 + "match");
                     break;
                 case "T":
                     charge.fillAmount = (torchlife / 50);
-                    Debug.Log(torchlife / 50 + "torch");
+                    //Debug.Log(torchlife / 50 + "torch");
                     break;
                 case "F":
                     charge.fillAmount = (batterylife / 50);
-                    Debug.Log(batterylife / 50 + "battery");
+                    //Debug.Log(batterylife / 50 + "battery");
                     break;
                 case "L":
                     charge.fillAmount = (lanternlife / 50);
-                    Debug.Log(lanternlife / 50 + "lantern");
+                    //Debug.Log(lanternlife / 50 + "lantern");
                     break;
                 //case "B":
                 //    
                 //    break;
                 default:
-                    print("Incorrect weapon");
+                    //print("Incorrect weapon");
                     charge.fillAmount = 0;
                     break;
             }
-
-            //if(letterswitch == "M")
-            //{
-            //    charge.fillAmount = (matchlife / 15);
-            //    Debug.Log(matchlife / 15 + "match");
-            //}
-            //else if(letterswitch == "T")
-            //{
-            //    charge.fillAmount = (torchlife / 50);
-            //    Debug.Log(torchlife / 50 + "torch");
-            //}
-            //else if (letterswitch == "F")
-            //{
-            //    charge.fillAmount = (batterylife / 50);
-            //    Debug.Log(batterylife / 50 + "battery");
-            //}
-            //else if (letterswitch == "L")
-            //{
-            //    charge.fillAmount = (lanternlife / 50);
-            //    Debug.Log(lanternlife / 50 + "lantern");
-            //}
-            ////else if (letterswitch == "B")
-            ////{
-
-            ////}
-            //else
-            //{
-            //    Debug.Log("Incorrect weapon");
-            //    charge.fillAmount = 0;
-            //}
-        }
-
-        public void SetFBattery(float currentbattery)
-        {
-            batterylife = currentbattery;
-        }
-
-        public void SetTLife(float currentTlife)
-        {
-            torchlife = currentTlife;
-        }
-
-        public void SetMLife(float currentMlife)
-        {
-            matchlife = currentMlife;
-        }
-
-        public void SetLLife(float currentLlife)
-        {
-            lanternlife = currentLlife;
         }
     }
 }

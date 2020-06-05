@@ -17,16 +17,16 @@ namespace Com.Kawaiisun.SimpleHostile
         float startIntensity;
 
         public UIScript UI;
-        public UISlot UISlot;
+        //public UISlot UISlot;
 
         private void Awake()
         {
             UI = GameObject.Find("CanvasUI").GetComponent<UIScript>();
             if (UI == null)
                 Debug.Log("not found UI from flashlight");
-            UISlot = GameObject.Find("CanvasUI").GetComponentInChildren<UISlot>();
-            if (UISlot == null)
-                Debug.Log("not found UISlot from flashlight");
+            //UISlot = GameObject.Find("CanvasUI").GetComponentInChildren<UISlot>();
+            //if (UISlot == null)
+            //    Debug.Log("not found UISlot from flashlight");
             //Debug.Log(UI.name);
         }
 
@@ -114,7 +114,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 ssr.SetRemainEnergy(currentBatteryEnergy);
             }
 
-            UISlot.SetFBattery(currentBatteryEnergy);
+            UI.SetFBattery(currentBatteryEnergy);
            
         }
     }

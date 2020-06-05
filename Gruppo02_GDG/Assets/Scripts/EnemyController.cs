@@ -136,7 +136,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 angleAwareness = 40f;
             }
 
-            if (playerDistance < 2f /*added*/&& playerDistance < awareAI && angleToPlayer >= -angleAwareness && angleToPlayer <= angleAwareness/*added*/)
+            if (playerDistance < 2f)
             {
                 //attackFlag = true;
                 closeattack = true;
