@@ -23,12 +23,16 @@ namespace Com.Kawaiisun.SimpleHostile
         private float startRate = 0f;
 
         public UIScript UI;
+        public UISlot UISlot;
 
         private void Awake()
         {
             UI = GameObject.Find("CanvasUI").GetComponent<UIScript>();
             if (UI == null)
-                Debug.Log("not found UI from torch");
+                Debug.Log("not found UI from lantern");
+            UISlot = GameObject.Find("CanvasUI").GetComponentInChildren<UISlot>();
+            if (UISlot == null)
+                Debug.Log("not found UISlot from lantern");
             //Debug.Log(UI.name);
 
         }
@@ -155,6 +159,8 @@ namespace Com.Kawaiisun.SimpleHostile
                 ssr.SetRemainOil(currentOilRemainTime);
 
             }
+
+            UISlot.SetLLife(currentOilRemainTime);
         }
     }
 }

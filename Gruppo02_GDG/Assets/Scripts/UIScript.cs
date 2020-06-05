@@ -46,7 +46,7 @@ namespace Com.Kawaiisun.SimpleHostile
             Image Matches = Resources.Find("Panel/Matches").GetComponent<Image>();
             if (newwpos != 4)
             {
-                for (int i = -1; i < 3; i++) // POI METTERE < 3 QUANDO AGGIUNGO ULTIMO SLOT + CAMBIA IN DESTROY MATCH E TORCH (3 -> 4)
+                for (int i = -1; i < 3; i++)
                 {
                     if (newwpos == i)
                     {
