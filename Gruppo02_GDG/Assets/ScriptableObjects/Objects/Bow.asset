@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: 
   name: Bow
-  prefab: {fileID: 0}
-  eq_position: {x: 0, y: 0, z: 0}
-  eq_rotation: {x: 0, y: 0, z: 0}
+  prefab: {fileID: 1435703925766320618, guid: 397a20d3f0cc1f643ba7d16bcb0a61d6, type: 3}
+  eq_position: {x: -0.075, y: 0.093, z: -0.006}
+  eq_rotation: {x: 76.775, y: 458.507, z: -147.703}
   brightness: 0
   attackRange: 0
   damage: 0
   attackRate: 1
-  isSelected: 0
+  isSelected: 1
   charge: 0

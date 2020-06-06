@@ -197,6 +197,16 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 JhonnyAnimator.SetBool("HaveFlashlight", false);
             }
+            if (pickLoadout[currentIndex].name == "Bow")
+            {
+                JhonnyAnimator.SetBool("HaveBow", true);
+
+            }
+
+            else
+            {
+                JhonnyAnimator.SetBool("HaveBow", false);
+            }
 
 
 

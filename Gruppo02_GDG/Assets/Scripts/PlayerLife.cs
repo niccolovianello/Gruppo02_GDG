@@ -30,6 +30,12 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 Light objLight = obj.getCurrentObj().GetComponentInChildren<Light>();
 
+                //pezzo codice flavio
+                if (objLight == null)
+                    return;
+                // fine codice flavio
+
+
                 if (objLight.enabled == true)
                 {
                     if (plCurrentTime < 30f && plCurrentTime > 0f)

@@ -139,7 +139,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-      
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (JhonnyAnimator.GetBool("Aim") == false)
+                JhonnyAnimator.SetBool("Aim", true);
+            else
+                JhonnyAnimator.SetBool("Aim", false);
+        } 
 
 
     }

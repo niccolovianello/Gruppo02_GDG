@@ -61,7 +61,7 @@ namespace Com.Kawaiisun.SimpleHostile
                     {
 
                         //animationObj.SetTrigger("TorchAttack");
-                        Debug.Log("colpisco distante");
+                            Debug.Log("colpisco distante");
                             enem = hit.collider.GetComponent<EnemyGeneral>();
                             enem.TakeDamage(attackDamage);
                             enem.FlamePart();

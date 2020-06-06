@@ -121,7 +121,13 @@ namespace Com.Kawaiisun.SimpleHostile
             if (obj.getCurrentObj() != null)
             {
                 Light objLight = obj.getCurrentObj().GetComponentInChildren<Light>();
+                // codice flavio
+                if (objLight == null)
+                    return;
 
+
+
+                // fine codice flavio
                 if (objLight.enabled == true)
                 {
                     angleAwareness = 60f;

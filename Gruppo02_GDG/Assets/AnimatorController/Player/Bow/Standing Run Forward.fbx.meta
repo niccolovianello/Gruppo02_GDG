@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: d819120bba08fc1408d3df07421d9428
+guid: 6001f0a9e990ce74388db5f6cf96f7c8
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Arco_Jump
+    second: mixamo.com
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Arco_Jump
+      name: mixamo.com
       takeName: mixamo.com
       internalID: 0
       firstFrame: 0
-      lastFrame: 44
+      lastFrame: 26
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
