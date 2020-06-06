@@ -13,7 +13,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public float currentBatteryEnergy;
         public float dischargeBatteryVelocity = 0.5f;
         private SupportScriptResources ssr;
-
+        private PlayerCombatScript pl;
         float startIntensity;
 
         public UIScript UI;
@@ -36,7 +36,7 @@ namespace Com.Kawaiisun.SimpleHostile
             obj = FindObjectOfType<ObjectsManagement>();
             flashlight = this.GetComponent<Light>();
             currentBatteryEnergy = 10f;
-
+            pl = FindObjectOfType<PlayerCombatScript>();
             startIntensity = flashlight.intensity;
             isOn = true;
         }
@@ -67,6 +67,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     isOn = !isOn;
+                    pl.isOn = isOn;
 
                     if (isOn)
                     {

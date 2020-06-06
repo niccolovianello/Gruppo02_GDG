@@ -10,7 +10,7 @@ namespace Com.Kawaiisun.SimpleHostile
 {
     public class PlayerCombatScript : MonoBehaviour
     {
-
+        public bool isOn = false;
         public LayerMask enemyLayers;
         public Camera fpsCam;
         EnemyGeneral en;
@@ -56,11 +56,12 @@ namespace Com.Kawaiisun.SimpleHostile
                 RaycastHit hit;
                 if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, attackRange))
                 {
-                    if (hit.collider.GetComponent<EnemyGeneral>())
+                    
+                    if (hit.collider.GetComponent<EnemyGeneral>() && isOn == true )
                     {
-                      
-                        
-                            Debug.Log("colpisco distante");
+
+                        //animationObj.SetTrigger("TorchAttack");
+                        Debug.Log("colpisco distante");
                             enem = hit.collider.GetComponent<EnemyGeneral>();
                             enem.TakeDamage(attackDamage);
                             enem.FlamePart();

@@ -60,12 +60,14 @@ namespace Com.Kawaiisun.SimpleHostile
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
                     currentOilRemainTime = ssr.GetRemainOil();
-                    
+
                     if (obj.ammo[0] > 0 && currentOilRemainTime > 0)
                     {
                         isOn = !isOn;
                         Debug.Log("lanterna accesa");
                     }
+                    else
+                        isOn = false;
                         
 
                     if (obj.getCurrentObj() == null)
