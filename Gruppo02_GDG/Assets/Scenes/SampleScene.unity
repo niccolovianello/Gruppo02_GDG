@@ -45918,7 +45918,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.15
+  near clip plane: 0.05
   far clip plane: 1000
   field of view: 100
   orthographic: 0
@@ -72672,7 +72672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1271937587}
-  speed: 12
+  speed: 8
   gravity: -30
   jumpHeight: 2.2
   sprintModifier: 1.2
@@ -78531,7 +78531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &1380570284
 Light:
   m_ObjectHideFlags: 0
