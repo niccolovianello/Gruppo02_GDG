@@ -349,5 +349,12 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             seen = true;
         }
+
+        void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(agent.destination, 0.5f);
+        }
+
     } 
 }

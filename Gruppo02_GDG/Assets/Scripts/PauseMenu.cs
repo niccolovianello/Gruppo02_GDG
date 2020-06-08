@@ -15,36 +15,38 @@ public class PauseMenu : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             isPaused = !isPaused;
+
+            ActivateMenu(isPaused);
         }
 
-        if (isPaused)
-        {
-            ActivateMenu();
-        }
-        else
-        {
-            DeactivateMenu();
-        }
+        //if (isPaused)
+        //{
+        //    ActivateMenu();
+        //}
+        //else
+        //{
+        //    DeactivateMenu();
+        //}
     }
 
-    void ActivateMenu()
-    {
-        Time.timeScale = 0;
-        pauseMenuUI.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-        //AudioListener.pause = true;
-    }
+    //void ActivateMenu()
+    //{
+    //    Time.timeScale = 0;
+    //    pauseMenuUI.SetActive(true);
+    //    Cursor.lockState = CursorLockMode.None;
+    //    Cursor.visible = true;
+    //    //AudioListener.pause = true;
+    //}
 
-    public void DeactivateMenu()
-    {
-        Time.timeScale = 1;
-        pauseMenuUI.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        //AudioListener.pause = false;
-        isPaused = false;
-    }
+    //public void DeactivateMenu()
+    //{
+    //    Time.timeScale = 1;
+    //    pauseMenuUI.SetActive(false);
+    //    Cursor.lockState = CursorLockMode.Locked;
+    //    Cursor.visible = false;
+    //    //AudioListener.pause = false;
+    //    isPaused = false;
+    //}
 
     public void QuitBtn()
     {
@@ -55,5 +57,27 @@ public class PauseMenu : MonoBehaviour
     public void BackToMainBtn()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void ActivateMenu(bool activate)
+    {
+        if (activate)
+        {
+            Time.timeScale = 0;
+            pauseMenuUI.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            return;
+        }
+        else
+        {
+            Time.timeScale = 1;
+            pauseMenuUI.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+            //AudioListener.pause = false;
+            isPaused = false;
+            return;
+        }
     }
 }
