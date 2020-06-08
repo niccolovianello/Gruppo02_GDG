@@ -11,6 +11,9 @@ namespace Com.Kawaiisun.SimpleHostile
         public Transform arrowSpawn;
         public float shootForce = 20f;
         private ObjectsManagement obj;
+        private GameObject go;
+        private Rigidbody rb;
+        private Arrow arr;
         
 
         private void Start()
@@ -21,22 +24,46 @@ namespace Com.Kawaiisun.SimpleHostile
 
         void Update()
         {
-            //Debug.Log(obj);
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && Input.GetMouseButton(1))
+            {
+                
+                GameObject go = Instantiate(arrowprefab, arrowSpawn.position, Quaternion.identity);
+                arr = go.GetComponent<Arrow>();
+                go.transform.localEulerAngles = transform.forward;
+                rb = go.GetComponent<Rigidbody>();
+                //rb.isKinematic = false;
+                rb.constraints = RigidbodyConstraints.FreezeAll;
+
+            }
+            
+            if ((Input.GetMouseButtonUp(0) && Input.GetMouseButton(1)))
             {
                 //if (obj.ammo[3] > 0)
                 //{
-                    GameObject go = Instantiate(arrowprefab, arrowSpawn.position, Quaternion.Euler(90,0,0));
-                    go.transform.localEulerAngles = transform.forward;
-                    Rigidbody rb = go.GetComponent<Rigidbody>();
-                    rb.velocity = cam.transform.forward * shootForce;
-                    obj.ammo[3]--;
+
+                arr.isThrown = true;
+                //rb.isKinematic = true;
+                rb.constraints = RigidbodyConstraints.None;
+                rb.velocity = cam.transform.forward * shootForce;
+                obj.ammo[3]--;
                 //}
                 //else
                 //{
                 //    Debug.Log("No more Arrows");
                 //}
               
+            }
+            //if (go != null && !Input.GetMouseButton(1))
+            //{
+            //    Destroy(go);
+            //}
+        }
+
+        private void FixedUpdate()
+        {
+            if (rb != null)
+            {
+                
             }
         }
     }

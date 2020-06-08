@@ -8,7 +8,8 @@ public class Arrow : MonoBehaviour
     private float lifeTimer = 2f;
     private float timer;
     private bool hitSomething = false;
-   
+    public bool isThrown = false;
+
     void Start()
     {
         arrowBody = GetComponent<Rigidbody>();
@@ -18,15 +19,19 @@ public class Arrow : MonoBehaviour
     
     void Update()
     {
-        timer += Time.deltaTime;
-
-        if (timer >= lifeTimer)
+        if (isThrown)
         {
-            Destroy(gameObject);
-        }
+            timer += Time.deltaTime;
 
-        if(!hitSomething)
-            transform.rotation = Quaternion.LookRotation(arrowBody.velocity);
+            if (timer >= lifeTimer)
+            {
+                Destroy(gameObject);
+            }
+
+            if (!hitSomething)
+                transform.rotation = Quaternion.LookRotation(arrowBody.velocity);
+        }
+        
     }
 
     private void OnCollisionEnter(Collision collision)
