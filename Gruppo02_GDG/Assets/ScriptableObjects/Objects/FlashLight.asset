@@ -21,4 +21,4 @@ MonoBehaviour:
   damage: 3
   attackRate: 5
   isSelected: 1
-  charge: 50
+  charge: 60

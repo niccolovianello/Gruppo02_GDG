@@ -110,7 +110,7 @@ MonoBehaviour:
     type: 2}
   obj: {fileID: 0}
   currentBatteryEnergy: 0
-  dischargeBatteryVelocity: 0.5
+  dischargeBatteryVelocity: 1
   UI: {fileID: 0}
 --- !u!1 &934391514694293856
 GameObject:

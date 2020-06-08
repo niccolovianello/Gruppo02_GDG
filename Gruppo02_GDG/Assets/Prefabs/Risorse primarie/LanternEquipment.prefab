@@ -99,7 +99,7 @@ MonoBehaviour:
   fireLight: {fileID: 4339767991972178654}
   lantern: {fileID: 11400000, guid: e4640f0aab634994cb229a2e7abf35cb, type: 2}
   currentOilRemainTime: 40
-  decrementRate: 2
+  decrementRate: 1
   UI: {fileID: 0}
 --- !u!1 &4339767990957653100
 GameObject:

@@ -23964,7 +23964,7 @@ MonoBehaviour:
   fireLight: {fileID: 2583262900235324867}
   torch: {fileID: 11400000, guid: b2fad2e46c393eb48a9a95e67d0ff235, type: 2}
   currentTimeOfTorchLife: 0
-  decrementRate: 0.5
+  decrementRate: 1
   UI: {fileID: 0}
 --- !u!1 &8300613482916543741
 GameObject:
