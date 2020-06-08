@@ -137,6 +137,7 @@ namespace Com.Kawaiisun.SimpleHostile
                     obj.pickLoadout[i].isSelected = false;
                     obj.pickLoadout[i] = null;
                     Destroy(obj.getCurrentObj());
+                    obj.JhonnyAnimator.SetBool("HaveTorch", false);
 
                     UI.ActiveWeapon(4);
                     UI.UpdateWeapons("", i);

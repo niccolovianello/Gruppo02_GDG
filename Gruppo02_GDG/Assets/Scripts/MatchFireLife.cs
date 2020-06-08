@@ -111,6 +111,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
                 UI.ActiveWeapon(4);
                 UI.UpdateResources("Matches", -1);
+                obj.JhonnyAnimator.SetBool("HaveTorch", false);
             }
 
             UI.SetMLife(currentTimeOfMatchLife);
