@@ -60,18 +60,14 @@ namespace Com.Kawaiisun.SimpleHostile
                 for (int i = 0; i < navPointPos.Length; i++)
                 {
                     navPointPos[i] = navPoint[i].gameObject.GetComponent<PatrolPointsRaycast>().GetPPLocation();
-                    //Debug.Log(navPointPos[i]);
                 }
-                //Debug.Log(navPoint.Length + " " + navPointPos.Length);
             }
             else
             {
-                //Debug.Log(navPoint.Length + " " + navPointPos.Length);
                 return;
             }
 
             agent = GetComponent<NavMeshAgent>();
-            //agent.destination = goal.position;
             agent.autoBraking = false;
             startSpeed = agent.speed;
             timeleft = timer;
@@ -86,15 +82,6 @@ namespace Com.Kawaiisun.SimpleHostile
 
             //// controllo su animator
             anim = this.GetComponent<Animator>();
-            //if (anim == null)
-            //{
-            //    Debug.Log("no animator");
-            //    return;
-            //}
-            //if (anim != null)
-            //    UpdateAnimations();
-
-
             agent.acceleration = 70f;
         }
 
@@ -173,6 +160,10 @@ namespace Com.Kawaiisun.SimpleHostile
                         seen = false; //added
 
                         StartCoroutine(ExecuteAfterTime(2f));
+                    }
+                    else
+                    {
+                        Chase();
                     }
                 }
                 /*else
