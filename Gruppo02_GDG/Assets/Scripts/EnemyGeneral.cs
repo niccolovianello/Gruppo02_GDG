@@ -20,7 +20,9 @@ public class EnemyGeneral : MonoBehaviour
         hurt.Stop();
         flames.Stop();
 
-        en = FindObjectOfType<EnemyController>();
+        //en = FindObjectOfType<EnemyController>();
+
+        en = this.GetComponent<EnemyController>();
 
         ppd = FindObjectOfType<PatrolPointsData>();
     }
