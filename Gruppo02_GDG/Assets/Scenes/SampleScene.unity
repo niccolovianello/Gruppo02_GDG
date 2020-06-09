@@ -62579,6 +62579,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948698140}
   m_CullTransparentMesh: 0
+--- !u!4 &956124581 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1940763293572698037, guid: 75769a21f6ae0134e8ba4f2ee4b62e20,
+    type: 3}
+  m_PrefabInstance: {fileID: 3716441988827818986}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &956904669 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6156964031600083220, guid: 24567e458c3b54f4b9353663f0158c93,
@@ -62856,9 +62862,10 @@ MonoBehaviour:
   mouseSensitivity: 100
   cameraFollowHeadSpeed: 2
   playerBody: {fileID: 1271937588}
-  headTarget: {fileID: 2007203078}
-  hand: {fileID: 6003052534686533067}
+  headTarget: {fileID: 1056816904}
+  pointHead: {fileID: 2007203078}
   haveBow: 0
+  of: {x: 0, y: 0, z: 0.5}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130371,7 +130378,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2007203078}
   m_Layer: 0
-  m_Name: headTarget
+  m_Name: pointHead
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -130384,12 +130391,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2007203077}
-  m_LocalRotation: {x: -0.000000024214383, y: 3.1226428e-11, z: 2.5606807e-11, w: 1}
-  m_LocalPosition: {x: 0, y: -0.11537096, z: 0.1718615}
+  m_LocalRotation: {x: -0.000000026077029, y: 3.1635826e-11, z: 4.015296e-11, w: 1}
+  m_LocalPosition: {x: 0, y: 0.109999985, z: 0.2500016}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1056816904}
-  m_RootOrder: 0
+  m_Father: {fileID: 956124581}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2010015273
 PrefabInstance:

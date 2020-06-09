@@ -33,12 +33,33 @@ namespace Com.Kawaiisun.SimpleHostile
                 if (Input.GetMouseButtonDown(0))
                 {
 
-                    GameObject go = Instantiate(arrowprefab, arrowSpawn.position, Quaternion.identity);
+                    go = Instantiate(arrowprefab, arrowSpawn.position,arrowSpawn.localRotation);
                     arr = go.GetComponent<Arrow>();
-                    go.transform.localEulerAngles = transform.forward;
+                    go.transform.position = cam.transform.position + new Vector3(0, 0, 0.3f);
                     rb = go.GetComponent<Rigidbody>();
                     //rb.isKinematic = false;
                     rb.constraints = RigidbodyConstraints.FreezeAll;
+                }
+
+            }
+            else
+                cam.GetComponent<MouseLook>().haveBow = false;
+            
+
+
+           
+        }
+
+        private void FixedUpdate()
+        {
+            if (Input.GetMouseButton(1))
+
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+
+                   
+                   
 
                 }
 
@@ -55,22 +76,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
 
                 }
-
-            }
-            else
-                cam.GetComponent<MouseLook>().haveBow = false;
-            
-
-
-           
-        }
-
-        private void FixedUpdate()
-        {
-            if (rb != null)
-            {
-                
             }
         }
-    }
+}
 }

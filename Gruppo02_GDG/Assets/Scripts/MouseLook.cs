@@ -5,11 +5,13 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     public float mouseSensitivity = 100f;
-    public float cameraFollowHeadSpeed= 100f;
+    public float cameraFollowHeadSpeed= 10000;
     public Transform playerBody;
     public Transform headTarget;
-    public Transform hand;
+    public Transform pointHead;
+
     public bool haveBow= false;
+    public Vector3 of = new Vector3 ( 0,0,0.1f);
     
 
     float xRotation = 0f;
@@ -36,17 +38,20 @@ public class MouseLook : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         playerBody.Rotate(Vector3.up * mouseX);
 
-        Vector3 dPos = headTarget.position;
-        
-        Vector3 sPos = Vector3.Lerp(transform.position, dPos, cameraFollowHeadSpeed * Time.deltaTime);
        
-        transform.position = sPos;
+        
+        
+       
+        transform.position = pointHead.position;
 
         if (haveBow == true)
         {
             Debug.Log("mira");
-            //transform.localRotation();
+            transform.Rotate(new Vector3 (0,75,0),Space.World);
+            
         }
+
+
 
 
 
