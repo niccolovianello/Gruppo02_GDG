@@ -8,6 +8,8 @@ public class MouseLook : MonoBehaviour
     public float cameraFollowHeadSpeed= 100f;
     public Transform playerBody;
     public Transform headTarget;
+    public Transform hand;
+    public bool haveBow= false;
     
 
     float xRotation = 0f;
@@ -21,6 +23,7 @@ public class MouseLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         float mouseX = Input.GetAxis("Mouse X")* mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y")* mouseSensitivity* Time.deltaTime;
 
@@ -38,7 +41,13 @@ public class MouseLook : MonoBehaviour
         Vector3 sPos = Vector3.Lerp(transform.position, dPos, cameraFollowHeadSpeed * Time.deltaTime);
        
         transform.position = sPos;
-        
+
+        if (haveBow == true)
+        {
+            Debug.Log("mira");
+            //transform.localRotation();
+        }
+
 
 
 

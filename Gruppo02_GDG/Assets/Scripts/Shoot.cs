@@ -24,39 +24,45 @@ namespace Com.Kawaiisun.SimpleHostile
 
         void Update()
         {
-            if (Input.GetMouseButtonDown(0) && Input.GetMouseButton(1))
+
+            if (Input.GetMouseButton(1))
+
             {
-                
-                GameObject go = Instantiate(arrowprefab, arrowSpawn.position, Quaternion.identity);
-                arr = go.GetComponent<Arrow>();
-                go.transform.localEulerAngles = transform.forward;
-                rb = go.GetComponent<Rigidbody>();
-                //rb.isKinematic = false;
-                rb.constraints = RigidbodyConstraints.FreezeAll;
+                cam.GetComponent<MouseLook>().haveBow = true;
+
+                if (Input.GetMouseButtonDown(0))
+                {
+
+                    GameObject go = Instantiate(arrowprefab, arrowSpawn.position, Quaternion.identity);
+                    arr = go.GetComponent<Arrow>();
+                    go.transform.localEulerAngles = transform.forward;
+                    rb = go.GetComponent<Rigidbody>();
+                    //rb.isKinematic = false;
+                    rb.constraints = RigidbodyConstraints.FreezeAll;
+
+                }
+
+                if (Input.GetMouseButtonUp(0))
+
+
+                {
+
+                    arr.isThrown = true;
+
+                    rb.constraints = RigidbodyConstraints.None;
+                    rb.velocity = cam.transform.forward * shootForce;
+                    obj.ammo[3]--;
+
+
+                }
 
             }
+            else
+                cam.GetComponent<MouseLook>().haveBow = false;
             
-            if ((Input.GetMouseButtonUp(0) && Input.GetMouseButton(1)))
-            {
-                //if (obj.ammo[3] > 0)
-                //{
 
-                arr.isThrown = true;
-                //rb.isKinematic = true;
-                rb.constraints = RigidbodyConstraints.None;
-                rb.velocity = cam.transform.forward * shootForce;
-                obj.ammo[3]--;
-                //}
-                //else
-                //{
-                //    Debug.Log("No more Arrows");
-                //}
-              
-            }
-            //if (go != null && !Input.GetMouseButton(1))
-            //{
-            //    Destroy(go);
-            //}
+
+           
         }
 
         private void FixedUpdate()

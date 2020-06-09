@@ -78,5 +78,11 @@ public class EnemyGeneral : MonoBehaviour
             Debug.Log("hit enemy");
             HurtPart();
         }
+
+        if (other.gameObject.tag == "Arrow")
+
+        {
+            Die();
+        }
     }
 }

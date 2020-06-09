@@ -62857,6 +62857,8 @@ MonoBehaviour:
   cameraFollowHeadSpeed: 2
   playerBody: {fileID: 1271937588}
   headTarget: {fileID: 2007203078}
+  hand: {fileID: 6003052534686533067}
+  haveBow: 0
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
