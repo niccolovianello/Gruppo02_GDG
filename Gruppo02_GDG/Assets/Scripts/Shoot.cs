@@ -14,6 +14,8 @@ namespace Com.Kawaiisun.SimpleHostile
         private GameObject go;
         private Rigidbody rb;
         private Arrow arr;
+        private BoxCollider bxcol;
+        public Vector3 fareshi;
         
 
         private void Start()
@@ -33,10 +35,17 @@ namespace Com.Kawaiisun.SimpleHostile
                 if (Input.GetMouseButtonDown(0))
                 {
 
-                    go = Instantiate(arrowprefab, arrowSpawn.position,arrowSpawn.localRotation);
+                    go = Instantiate(arrowprefab, arrowSpawn.position,arrowSpawn.rotation, arrowSpawn) as GameObject;
+                    //go.transform.localEulerAngles = fareshi;
+                    go.transform.localRotation = Quaternion.identity;
+                        //Quaternion.Euler(18.086f,191.95f,10.619f);
+                    Debug.Log(go.transform.localRotation);
                     arr = go.GetComponent<Arrow>();
-                    go.transform.position = cam.transform.position + new Vector3(0, 0, 0.3f);
+                    //go.transform.position = cam.transform.position + new Vector3(0, 0, 0.3f);
+                    
                     rb = go.GetComponent<Rigidbody>();
+                    bxcol = go.GetComponent<BoxCollider>();
+                    bxcol.enabled = false;
                     //rb.isKinematic = false;
                     rb.constraints = RigidbodyConstraints.FreezeAll;
                 }
@@ -69,7 +78,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 {
 
                     arr.isThrown = true;
-
+                    bxcol.enabled = true;
                     rb.constraints = RigidbodyConstraints.None;
                     rb.velocity = cam.transform.forward * shootForce;
                     obj.ammo[3]--;
