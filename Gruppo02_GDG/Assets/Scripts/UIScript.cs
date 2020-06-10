@@ -11,7 +11,7 @@ namespace Com.Kawaiisun.SimpleHostile
     {
         Transform Weapons;
         Transform Resources;
-        Transform InfoPanel;
+        Transform MapPanel;
         Transform DeathPanel;
 
         float alpha;
@@ -21,6 +21,8 @@ namespace Com.Kawaiisun.SimpleHostile
         float torchlife;
         float matchlife;
         float lanternlife;
+
+        bool isActive;
         //Text t = child.GetComponent<Text>();
 
         // Start is called before the first frame update
@@ -28,15 +30,22 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             Resources = transform.Find("Resources");
             Weapons = transform.Find("WeaponsInventory");
-            InfoPanel = transform.Find("InfoPanel");
+            MapPanel = transform.Find("MapPanel");
             DeathPanel = transform.Find("DeathPanel");
+
+            isActive = false;
         }
 
         //// Update is called once per frame
-        //void Update()
-        //{
-            
-        //}
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.M))
+            {
+                isActive = !isActive;
+
+                OpenMap(isActive);
+            }
+        }
 
         public void UpdateWeapons(string weaponname, int weaponpos)
         {
@@ -116,12 +125,18 @@ namespace Com.Kawaiisun.SimpleHostile
             StartCoroutine(ExecuteAfterTime(0.5f, addrem));
         }
 
-        public void UpdateInfo(string info)
+        public void OpenMap(bool open)
         {
-            Text infotext = InfoPanel.GetComponentInChildren<Text>();
-            infotext.text = info;
-
-            //StartCoroutine(InfoAfterTime(2f, infotext));
+            if (open)
+            {
+                MapPanel.DOScale(5, 0.5f);
+                return;
+            }
+            else
+            {
+                MapPanel.DOScale(1, 0.5f);
+                return;
+            }
         }
 
         public void HurtUI(float damage)
@@ -169,14 +184,6 @@ namespace Com.Kawaiisun.SimpleHostile
 
             t.color = new Color32(0, 0, 0, 0);
         }
-
-        /*IEnumerator InfoAfterTime(float time, Text t)
-        {
-            yield return new WaitForSeconds(time);
-
-            t.text = "";
-        }*/
-
 
         public void SetFBattery(float currentbattery)
         {

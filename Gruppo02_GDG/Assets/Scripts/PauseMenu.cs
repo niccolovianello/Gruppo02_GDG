@@ -18,35 +18,7 @@ public class PauseMenu : MonoBehaviour
 
             ActivateMenu(isPaused);
         }
-
-        //if (isPaused)
-        //{
-        //    ActivateMenu();
-        //}
-        //else
-        //{
-        //    DeactivateMenu();
-        //}
     }
-
-    //void ActivateMenu()
-    //{
-    //    Time.timeScale = 0;
-    //    pauseMenuUI.SetActive(true);
-    //    Cursor.lockState = CursorLockMode.None;
-    //    Cursor.visible = true;
-    //    //AudioListener.pause = true;
-    //}
-
-    //public void DeactivateMenu()
-    //{
-    //    Time.timeScale = 1;
-    //    pauseMenuUI.SetActive(false);
-    //    Cursor.lockState = CursorLockMode.Locked;
-    //    Cursor.visible = false;
-    //    //AudioListener.pause = false;
-    //    isPaused = false;
-    //}
 
     public void QuitBtn()
     {
@@ -67,6 +39,7 @@ public class PauseMenu : MonoBehaviour
             pauseMenuUI.SetActive(true);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            //AudioListener.pause = true;
             return;
         }
         else
