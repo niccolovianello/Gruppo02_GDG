@@ -62,10 +62,21 @@ public class PlayerMovement : MonoBehaviour
         {
             velocity.y = -2f;
         }
-       
-        
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        float x;
+        float z;
+
+        if (JhonnyAnimator.GetBool("Aim") == true && JhonnyAnimator.GetBool("HaveBow") == true)
+        {
+            x = Input.GetAxis("Vertical");
+            z = Input.GetAxis("Horizontal");
+
+        }
+        else
+        {
+            x = Input.GetAxis("Horizontal");
+            z = Input.GetAxis("Vertical");
+
+        }
 
         bool sprint = Input.GetKey(KeyCode.LeftShift);
         

@@ -78,6 +78,8 @@ namespace Com.Kawaiisun.SimpleHostile
                 {
 
                     arr.isThrown = true;
+                    if (bxcol == null)
+                        return;
                     bxcol.enabled = true;
                     rb.constraints = RigidbodyConstraints.None;
                     rb.velocity = cam.transform.forward * shootForce;
