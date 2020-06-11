@@ -16,6 +16,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public Equipment match;
         private ObjectsManagement obj;
         private Animator JhonnyAnimator;
+        private AudioManager aud;
         public float currentTimeOfMatchLife;
         public float decrementRate = 0.5f;
 
@@ -27,6 +28,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
         private void Awake()
         {
+            
             UI = GameObject.Find("CanvasUI").GetComponent<UIScript>();
             if (UI == null)
                 Debug.Log("not found UI from match");
@@ -35,6 +37,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
         private void Start()
         {
+            aud = FindObjectOfType<AudioManager>();
             currentTimeOfMatchLife = match.charge;
             isOn = false;
             fire.Stop();
@@ -51,6 +54,7 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
+                aud.Play("Match");
                 obj.ammo[0]--;
                 Debug.Log(obj.ammo[0]);
                 isOn = !isOn;

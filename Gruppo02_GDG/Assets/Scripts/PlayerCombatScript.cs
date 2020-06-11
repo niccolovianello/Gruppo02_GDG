@@ -20,7 +20,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public float attackRange = 50f;
         public int attackDamage = 40;
 
-        public float attackRate = 1f;
+        public float attackRate;
         float nextAttackTime = 0f;
 
         private EnemyGeneral enem;
@@ -35,6 +35,7 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 if (Time.time >= nextAttackTime)
                 {
+                    //Debug.Log(attackRate);
                     Attack();
                     nextAttackTime = Time.time + 1 / attackRate;
                 }

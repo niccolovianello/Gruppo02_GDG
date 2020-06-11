@@ -79,7 +79,7 @@ namespace Com.Kawaiisun.SimpleHostile
                             fireLight.enabled = true;
                             fire.Play();
                             obj.ammo[0]--;
-                        Debug.Log(obj.ammo[0]);
+                        //Debug.Log(obj.ammo[0]);
                         UI.UpdateResources("Matches", -1);
                         
                        
