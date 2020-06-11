@@ -22,3 +22,4 @@ MonoBehaviour:
   attackRate: 5
   isSelected: 1
   charge: 60
+  stringAud: Torch

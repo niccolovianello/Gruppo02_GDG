@@ -5,9 +5,20 @@ using System;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
-    // Start is called before the first frame update
+    public static AudioManager istance; 
     void Awake()
     {
+        //if (istance == null)
+        //    istance = this;
+        //else
+        //{
+        //    Destroy(gameObject);
+        //    return;
+        //}
+
+        //DontDestroyOnLoad(gameObject);
+            
+
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
@@ -15,13 +26,30 @@ public class AudioManager : MonoBehaviour
 
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
+
+            s.source.loop = s.loop;
         }
     }
 
     public void Play(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log("manca clip audio " + s.name);
+            return;
+        }
         s.source.Play();
 
+    }
+    public void Stop(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null)
+        {
+            Debug.Log("manca clip audio " + s.name);
+            return;
+        }
+        s.source.Stop();
     }
 }

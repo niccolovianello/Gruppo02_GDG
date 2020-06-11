@@ -18,6 +18,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public float attackRate = 1f;
         public bool isSelected = false;
         public float charge = 0;
+        public string stringAud;
        
 
     }
