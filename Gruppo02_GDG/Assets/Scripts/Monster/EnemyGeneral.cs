@@ -39,7 +39,7 @@ public class EnemyGeneral : MonoBehaviour
     {
         currentHealth -= damage;
 
-        if(en.GetChasing() == false && en.GetFollowing() == false) // TO FIX
+        if(en.GetChasing() == false && en.GetFollowing() == false)
         {
             en.SetSeen();
         }

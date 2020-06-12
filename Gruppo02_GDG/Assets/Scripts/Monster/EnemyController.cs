@@ -44,6 +44,7 @@ namespace Com.Kawaiisun.SimpleHostile
         private AudioManager aud;
 
         bool seen = false;
+        bool isAttacking = false;
 
         //public Transform attackPoint;
         //public float attackRange;
@@ -134,12 +135,20 @@ namespace Com.Kawaiisun.SimpleHostile
 
             if (playerDistance < 2f)
             {
-                //attackFlag = true;
-                closeattack = true;
-                //Debug.Log("enemyattack");
-                anim.SetTrigger("Attack"); // RISOLVERE PROBLEMA
-                                           //if(attackFlag == true)
-                                           //    currentCoroutine = StartCoroutine(TimeToAttackMethod(timeToAttack));
+                ////attackFlag = true;
+                //closeattack = true;
+                ////Debug.Log("enemyattack");
+                //anim.SetTrigger("Attack"); // RISOLVERE PROBLEMA
+                //                           //if(attackFlag == true)
+                //                           //    currentCoroutine = StartCoroutine(TimeToAttackMethod(timeToAttack));
+
+                if (!isAttacking)
+                {
+                    closeattack = true;
+                    isAttacking = true;
+                    anim.SetTrigger("Attack");
+                    StartCoroutine(ResetBool(4f));
+                }
             }
             else
             {
@@ -269,6 +278,13 @@ namespace Com.Kawaiisun.SimpleHostile
             }
             isfollowing = true;
             //Debug.Log("sta seguendo");
+        }
+
+        IEnumerator ResetBool(float time)
+        {
+            yield return new WaitForSeconds(time);
+
+            isAttacking = false;
         }
 
         void Chase() //inseguimento player, ischasing settato prima, in update
