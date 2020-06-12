@@ -16,11 +16,17 @@ namespace Com.Kawaiisun.SimpleHostile
 
         public UIScript UI;
 
+        bool followed = false;
+
+        private AudioManager aud;
+        bool isplaying = true;
+
         // Start is called before the first frame update
         void Start()
         {
             plCurrentTime = timeLeft;
             obj = FindObjectOfType<ObjectsManagement>();
+            aud = FindObjectOfType<AudioManager>();
         }
 
         // Update is called once per frame
@@ -69,6 +75,19 @@ namespace Com.Kawaiisun.SimpleHostile
 
             }
 
+            Debug.Log(SetFollowed());
+
+            if (SetFollowed() && !isplaying)
+            {
+                aud.Play("Chasing");
+                isplaying = true;
+            }
+            else if(!SetFollowed() && isplaying)
+            {
+                aud.Stop("Chasing");
+                isplaying = false;
+            }
+
         }
 
         void Die()
@@ -87,5 +106,28 @@ namespace Com.Kawaiisun.SimpleHostile
             Destroy(gameObject);
             SceneManager.LoadScene("SampleScene");
         }
+
+        public bool SetFollowed()
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemies");
+
+            Debug.Log(enemies.Length);
+
+            foreach(GameObject e in enemies)
+            {
+                if (e.GetComponent<EnemyController>().GetChasing() || e.GetComponent<EnemyController>().GetFollowing())
+                {
+                    //Debug.Log(e.name + "isfoll or chas" + e.GetComponent<EnemyController>().GetChasing() + "CHAS" + e.GetComponent<EnemyController>().GetFollowing() + "FOLL");
+                    
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        //public bool GetFollowed()
+        //{
+        //    return followed;
+        //}
     }
 }

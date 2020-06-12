@@ -8,7 +8,7 @@ namespace Com.Kawaiisun.SimpleHostile
     {
         public ParticleSystem fire;
         //public Light fireLight;
-        public float timeBurning = 4f;
+        public float timeBurning;
 
         void Start()
         {
@@ -21,10 +21,8 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 if(child.tag.Equals("Object") == true)
                 {
-                    Debug.Log("equals");
                     if (child.gameObject.GetComponent<TorchOnOff>().isOn == true)
                     {
-                        Debug.Log("brucia");
                         StartCoroutine(Burn(timeBurning));
                         fire.Play();
                     }

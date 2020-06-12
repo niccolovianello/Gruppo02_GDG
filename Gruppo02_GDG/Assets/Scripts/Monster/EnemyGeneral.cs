@@ -17,6 +17,8 @@ public class EnemyGeneral : MonoBehaviour
 
     private AudioManager aud;
 
+    public PlayerLife plife;
+
     private void Awake()
     {
         aud = FindObjectOfType<AudioManager>();
@@ -44,6 +46,8 @@ public class EnemyGeneral : MonoBehaviour
             en.SetSeen();
         }
 
+        en.SetHurt();
+
         if (currentHealth <= 0)
         {
             Die();
@@ -56,7 +60,8 @@ public class EnemyGeneral : MonoBehaviour
     void Die()
     {
         aud.Play("MonsterDead");
-        Destroy(this.gameObject);
+        en.SetDie();
+        Destroy(this.gameObject, 5f);
         Debug.Log("Enemy die");
     }
 
@@ -74,6 +79,7 @@ public class EnemyGeneral : MonoBehaviour
     {
         ppd.RespawnEnemy();
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "PlayerAttackCloseRange")
@@ -84,7 +90,6 @@ public class EnemyGeneral : MonoBehaviour
         }
 
         if (other.gameObject.tag == "Arrow")
-
         {
             Die();
         }

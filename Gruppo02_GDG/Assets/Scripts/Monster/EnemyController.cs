@@ -86,7 +86,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
             //// controllo su animator
             anim = this.GetComponent<Animator>();
-            agent.acceleration = 70f;
+            agent.acceleration = 1000f;
         }
 
         void Update()
@@ -147,7 +147,7 @@ namespace Com.Kawaiisun.SimpleHostile
                     closeattack = true;
                     isAttacking = true;
                     anim.SetTrigger("Attack");
-                    StartCoroutine(ResetBool(4f));
+                    StartCoroutine(ResetBool(3f));
                 }
             }
             else
@@ -157,7 +157,6 @@ namespace Com.Kawaiisun.SimpleHostile
 
             if ((playerDistance < awareAI && angleToPlayer >= -angleAwareness && angleToPlayer <= angleAwareness) || seen == true) //se in cono visivo (120) ed entro distanza
             {
-                //aud.Play("SeenByMonster");
                 //seenplayer = true;
                 timeleft = timer;
                 LookAtPlayer();
@@ -167,7 +166,8 @@ namespace Com.Kawaiisun.SimpleHostile
                     //ischasing = true;
                     if (ischasing == false)
                     {
-                        
+                        aud.Play("SeenByMonster");
+
                         ischasing = true;
                         isfollowing = false;
 
@@ -196,6 +196,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 else //quando scade timer
                 {
                     ischasing = false;
+                    isfollowing = false;
                 }
             }
 
@@ -222,7 +223,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
             if (anim != null)
             {
-                if (anim.GetCurrentAnimatorStateInfo(1).IsName("Stabbing"))
+                if (/*anim.GetCurrentAnimatorStateInfo(1).IsName("Stabbing") ||*/ anim.GetCurrentAnimatorStateInfo(0).IsName("Stabbing"))
                 {
                     agent.speed = 0f;
                 }
@@ -236,6 +237,8 @@ namespace Com.Kawaiisun.SimpleHostile
             }
         }
 
+        //END UPDATE
+
         private void UpdateAnimations()
         {
             anim.SetFloat("Speed", agent.speed);
@@ -246,6 +249,8 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             if (ischasing == true)
                 ischasing = false;
+            if (isfollowing == true)
+                isfollowing = false;
             //if (agent.stoppingDistance != 0f) //tutti reset condizione patrol, non inseguimento
             //    agent.stoppingDistance = 0f;
             if (agent.speed == AIMoveSpeed)
@@ -272,7 +277,7 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             yield return new WaitForSeconds(time);
 
-            if (agent.speed < startSpeed && !anim.GetCurrentAnimatorStateInfo(1).IsName("Stabbing")) //aumento velocità da quando si ferma
+            if (agent.speed < startSpeed && /*!anim.GetCurrentAnimatorStateInfo(1).IsName("Stabbing")*/ !anim.GetCurrentAnimatorStateInfo(0).IsName("Stabbing")) //aumento velocità da quando si ferma
             {
                 agent.speed = startSpeed;
             }
@@ -368,5 +373,18 @@ namespace Com.Kawaiisun.SimpleHostile
             Gizmos.DrawWireSphere(agent.destination, 0.5f);
         }
 
+        public void SetHurt()
+        {
+            anim.SetTrigger("Hurt");
+        }
+
+        public void SetDie()
+        {
+            agent.speed = 0f;
+            agent.isStopped = true;
+            isfollowing = false;
+            ischasing = false;
+            anim.SetTrigger("Dead");
+        }
     } 
 }
