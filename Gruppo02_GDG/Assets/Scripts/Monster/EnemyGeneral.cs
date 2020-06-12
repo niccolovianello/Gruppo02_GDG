@@ -15,8 +15,11 @@ public class EnemyGeneral : MonoBehaviour
 
     public EnemyController en;
 
+    private AudioManager aud;
+
     private void Awake()
     {
+        aud = FindObjectOfType<AudioManager>();
         hurt.Stop();
         flames.Stop();
 
@@ -52,6 +55,7 @@ public class EnemyGeneral : MonoBehaviour
 
     void Die()
     {
+        aud.Play("MonsterDead");
         Destroy(this.gameObject);
         Debug.Log("Enemy die");
     }
