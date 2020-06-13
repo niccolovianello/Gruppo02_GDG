@@ -128,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            aud.Play("Jump");
             JhonnyAnimator.SetTrigger("Jump");
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
             JhonnyAnimator.SetTrigger("Jump");

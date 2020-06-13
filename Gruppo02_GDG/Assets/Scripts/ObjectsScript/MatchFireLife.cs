@@ -109,13 +109,13 @@ namespace Com.Kawaiisun.SimpleHostile
 
             if (currentTimeOfMatchLife <= 0)
             {
-                
-                
-                Destroy(obj.getCurrentObj());
-
                 UI.ActiveWeapon(4);
                 UI.UpdateResources("Matches", -1);
+
                 obj.JhonnyAnimator.SetBool("HaveTorch", false);
+                Destroy(obj.getCurrentObj());
+
+                
             }
 
             UI.SetMLife(currentTimeOfMatchLife);

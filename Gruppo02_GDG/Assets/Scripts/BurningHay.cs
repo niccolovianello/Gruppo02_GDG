@@ -9,10 +9,12 @@ namespace Com.Kawaiisun.SimpleHostile
         public ParticleSystem fire;
         //public Light fireLight;
         public float timeBurning;
+        private AudioManager aud;
 
         void Start()
         {
             fire.Stop();
+            aud = FindObjectOfType<AudioManager>();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -25,6 +27,7 @@ namespace Com.Kawaiisun.SimpleHostile
                     {
                         StartCoroutine(Burn(timeBurning));
                         fire.Play();
+                        aud.Play("Paglia");
                     }
                 }
             }
@@ -33,6 +36,7 @@ namespace Com.Kawaiisun.SimpleHostile
         IEnumerator Burn(float t)
         {
             yield return new WaitForSeconds(t);
+            aud.Stop("Paglia");
             Destroy(this.gameObject);
         }
     }

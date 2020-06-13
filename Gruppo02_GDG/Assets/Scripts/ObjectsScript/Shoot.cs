@@ -16,12 +16,14 @@ namespace Com.Kawaiisun.SimpleHostile
         private Arrow arr;
         private BoxCollider bxcol;
         public Vector3 fareshi;
+        private AudioManager aud;
         
 
         private void Start()
         {
             obj = FindObjectOfType<ObjectsManagement>();
             cam = FindObjectOfType<Camera>();
+            aud = FindObjectOfType<AudioManager>();
         }
 
         void Update()
@@ -76,7 +78,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
 
                 {
-
+                    aud.Play("Arrow");
                     arr.isThrown = true;
                     if (bxcol == null)
                         return;

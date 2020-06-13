@@ -11,14 +11,16 @@ public class PlayerHealthManager : MonoBehaviour
     public float impactMonster = 500;
     public float ratioHealth = 3f;
     private ObjectsManagement obj;
-    
+    public AudioClip[] steps;
+    private AudioSource audioSource;
 
     public UIScript UI;
 
     void Start()
     {
+        audioSource = FindObjectOfType<AudioSource>();
         currentHealth = maxHealth;
-        obj = FindObjectOfType<ObjectsManagement>();
+        
 
     }
 
@@ -36,9 +38,16 @@ public class PlayerHealthManager : MonoBehaviour
             
 
     }
+    private AudioClip GetRandomClip()
+    {
+        return steps[UnityEngine.Random.Range(0, steps.Length)];
+    }
+
 
     public void TakeDamage(int damage)
     {
+        AudioClip clip = GetRandomClip();
+        audioSource.PlayOneShot(clip);
         currentHealth -= damage;
         Debug.Log("il nemico ti ha colpito");
 

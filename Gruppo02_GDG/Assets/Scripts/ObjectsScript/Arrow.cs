@@ -20,9 +20,11 @@ namespace Com.Kawaiisun.SimpleHostile
         private float timer;
         private bool hitSomething = false;
         public bool isThrown = false;
+        private AudioManager aud;
 
         void Start()
         {
+            aud = FindObjectOfType<AudioManager>();
             obj= FindObjectOfType<ObjectsManagement>();
             currentTimeOfMatchLife = maxTimeLife;
             isOn = false;
@@ -39,6 +41,7 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 if (obj.ammo[0] > 0)
                 {
+                    aud.Play("Match");
                     obj.ammo[0]--;
                     Debug.Log(obj.ammo[0]);
                     isOn = !isOn;

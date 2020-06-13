@@ -10,8 +10,13 @@ namespace Com.Kawaiisun.SimpleHostile
         public ObjectsManagement obj;
 
         public PickObUI pickUI;
-      
+        private AudioManager aud;
 
+
+        private void Start()
+        {
+            aud = FindObjectOfType<AudioManager>();
+        }
         void Update()
         {
             RaycastHit hit;
@@ -23,6 +28,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
+                        aud.Play("ReloadFlashlight");
                         Debug.Log(hit.collider.gameObject.name);
                         obj.PickEquipment(hit.collider.gameObject.name);
                         Destroy(hit.collider.gameObject);

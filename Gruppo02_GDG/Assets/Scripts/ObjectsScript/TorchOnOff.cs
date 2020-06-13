@@ -134,18 +134,20 @@ namespace Com.Kawaiisun.SimpleHostile
                 }
                 if (currentTimeOfTorchLife <= 0)
                 {
-                    
+
                     
                     int i = obj.getCurrentIndex();
                     obj.pickLoadout[i].isSelected = false;
                     obj.pickLoadout[i] = null;
-
-                    aud.Stop("Torch");
-                    Destroy(obj.getCurrentObj());
-                    obj.JhonnyAnimator.SetBool("HaveTorch", false);
-
                     UI.ActiveWeapon(4);
                     UI.UpdateWeapons("", i);
+
+                    obj.JhonnyAnimator.SetBool("HaveTorch", false);
+                    aud.Stop("Torch");
+                    Destroy(obj.getCurrentObj());
+                    
+
+                    
                 }
 
 

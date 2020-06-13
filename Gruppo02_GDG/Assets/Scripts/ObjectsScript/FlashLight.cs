@@ -14,6 +14,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public float dischargeBatteryVelocity = 0.5f;
         private SupportScriptResources ssr;
         private PlayerCombatScript pl;
+        private AudioManager aud;
         float startIntensity;
 
         public UIScript UI;
@@ -21,6 +22,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
         private void Awake()
         {
+            
             UI = GameObject.Find("CanvasUI").GetComponent<UIScript>();
             if (UI == null)
                 Debug.Log("not found UI from flashlight");
@@ -31,7 +33,9 @@ namespace Com.Kawaiisun.SimpleHostile
         }
 
         private void Start()
+
         {
+            aud = FindObjectOfType<AudioManager>();
             ssr = FindObjectOfType<SupportScriptResources>();
             obj = FindObjectOfType<ObjectsManagement>();
             flashlight = this.GetComponent<Light>();
@@ -50,6 +54,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
                 if (obj.ammo[2] > 0)
                 {
+                    aud.Play("ReloadFlashlight");
                     Debug.Log("Ricarica!");
                     currentBatteryEnergy = selectionFlashlight.charge;
                     obj.ammo[2]--;
@@ -68,6 +73,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 {
                     isOn = !isOn;
                     pl.isOn = isOn;
+                    aud.Play("Flashlight");
 
                     if (isOn)
                     {

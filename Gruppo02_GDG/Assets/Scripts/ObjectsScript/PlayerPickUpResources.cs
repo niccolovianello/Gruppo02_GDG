@@ -12,13 +12,20 @@ namespace Com.Kawaiisun.SimpleHostile
         public int Batteries = 1;
         public int Arrows = 1;
         public ObjectsManagement obj;
+        private AudioManager aud;
+
 
         public UIScript UI;
 
+        private void Start()
+        {
+            aud = FindObjectOfType<AudioManager>();
+        }
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
             if (hit.gameObject.tag == "Arrows")
             {
+                aud.Play("PickResource");
                 obj.ammo[3] = obj.ammo[3] + Arrows;
                 hit.collider.enabled = false;
                 Destroy(hit.gameObject);
@@ -27,6 +34,7 @@ namespace Com.Kawaiisun.SimpleHostile
             }
             if (hit.gameObject.tag == "Battery")
             {
+                aud.Play("PickResource");
                 Debug.Log(hit.gameObject.name);
                 obj.ammo[2] = obj.ammo[2] + Batteries;
                 hit.collider.enabled = false;
@@ -37,6 +45,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
             if (hit.gameObject.tag == "Oil")
             {
+                aud.Play("PickResource");
                 obj.ammo[1] = obj.ammo[1] + Oil;
                 hit.collider.enabled = false;
                 Destroy(hit.gameObject);
@@ -45,6 +54,7 @@ namespace Com.Kawaiisun.SimpleHostile
             }
             if (hit.gameObject.tag == "Matches")
             {
+                aud.Play("PickResource");
                 obj.ammo[0] = obj.ammo[0] + Matches;
                 hit.collider.enabled = false;
                 Destroy(hit.gameObject);
@@ -53,6 +63,7 @@ namespace Com.Kawaiisun.SimpleHostile
             }
             if (hit.gameObject.tag == "HealthObject")
             {
+                aud.Play("PickResource");
                 obj.ammo[4] = obj.ammo[4] + 1;
                 hit.collider.enabled = false;
                 Destroy(hit.gameObject);

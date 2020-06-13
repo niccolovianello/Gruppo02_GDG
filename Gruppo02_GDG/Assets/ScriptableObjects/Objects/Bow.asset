@@ -22,3 +22,4 @@ MonoBehaviour:
   attackRate: 1
   isSelected: 1
   charge: 0
+  stringAud: Arrow
