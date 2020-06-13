@@ -17,7 +17,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public NavMeshAgent agent;
         Transform goal;
         Transform player;
-        private Animator anim;
+        public Animator anim;
 
         float playerDistance;
         public float awareAI = 14f;
@@ -55,6 +55,26 @@ namespace Com.Kawaiisun.SimpleHostile
 
         //variabili animazione
 
+        private void Awake()
+        {
+            agent = GetComponent<NavMeshAgent>();
+            agent.autoBraking = false;
+            startSpeed = agent.speed;
+            timeleft = timer;
+            MoveToNextPoint();
+            obj = FindObjectOfType<ObjectsManagement>();
+            angleAwareness = 40f;
+
+            player = GameObject.Find("Player").transform;
+            goal = GameObject.Find("Player").transform;
+            if (player == null || goal == null)
+                Debug.Log("not found player");
+
+            //// controllo su animator
+            //anim = this.GetComponent<Animator>();
+            agent.acceleration = 1000f;
+        }
+
         void Start()
         {
             aud = FindObjectOfType<AudioManager>();
@@ -85,7 +105,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 Debug.Log("not found player");
 
             //// controllo su animator
-            anim = this.GetComponent<Animator>();
+            //anim = this.GetComponent<Animator>();
             agent.acceleration = 1000f;
         }
 
@@ -111,21 +131,48 @@ namespace Com.Kawaiisun.SimpleHostile
 
             if (obj.getCurrentObj() != null)
             {
-                Light objLight = obj.getCurrentObj().GetComponentInChildren<Light>();
-                // codice flavio
-                if (objLight == null)
-                    return;
-
-
-
-                // fine codice flavio
-                if (objLight.enabled == true)
+                if (!obj.getCurrentObj().name.StartsWith("Bow"))
                 {
-                    angleAwareness = 60f;
+                    Light objLight = obj.getCurrentObj().GetComponentInChildren<Light>();
+
+                    if (objLight.enabled == true)
+                    {
+                        angleAwareness = 60f;
+                    }
+                    else if (objLight.enabled == false)
+                    {
+                        angleAwareness = 40f;
+                    }
                 }
-                else if (objLight.enabled == false)
+                else
                 {
-                    angleAwareness = 40f;
+                    Transform arr = obj.getCurrentObj().transform.Find("ArrowSpawn");
+                    Light objLight;
+
+                    if (arr.childCount != 0)
+                    {
+                        objLight = arr.gameObject.GetComponentInChildren<Light>();
+
+                        if (objLight == null)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            if (objLight.enabled == true)
+                            {
+                                angleAwareness = 60f;
+                            }
+                            else if (objLight.enabled == false)
+                            {
+                                angleAwareness = 40f;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        angleAwareness = 40f;
+                    }
                 }
             }
             else

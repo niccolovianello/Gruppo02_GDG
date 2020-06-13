@@ -22,6 +22,16 @@ namespace Com.Kawaiisun.SimpleHostile
         public bool isThrown = false;
         private AudioManager aud;
 
+        public UIScript UI;
+
+        private void Awake()
+        {
+            UI = GameObject.Find("CanvasUI").GetComponent<UIScript>();
+            if (UI == null)
+                Debug.Log("not found UI from arrow");
+            //Debug.Log(UI.name);
+        }
+
         void Start()
         {
             aud = FindObjectOfType<AudioManager>();
@@ -50,6 +60,8 @@ namespace Com.Kawaiisun.SimpleHostile
                         fireLight.enabled = true;
                         fire.Play();
                     }
+
+                    UI.UpdateResources("Matches", -1);
                 }
                 else
                     isOn = false;
@@ -83,6 +95,7 @@ namespace Com.Kawaiisun.SimpleHostile
                     transform.rotation = Quaternion.LookRotation(arrowBody.velocity);
             }
 
+            UI.SetALife(currentTimeOfMatchLife);
         }
 
         private void OnCollisionEnter(Collision collision)

@@ -15,7 +15,7 @@ namespace Com.Kawaiisun.SimpleHostile
         float torchlife;
         float matchlife;
         float lanternlife;
-        float bowlife; // TO ADD
+        float arrowlife;
 
         public UIScript UI;
 
@@ -41,6 +41,7 @@ namespace Com.Kawaiisun.SimpleHostile
             torchlife = UI.GetTLife();
             matchlife = UI.GetMLife();
             lanternlife = UI.GetLLife();
+            arrowlife = UI.GetALife();
             
             PickBackground();
             if (selected == true)
@@ -120,9 +121,9 @@ namespace Com.Kawaiisun.SimpleHostile
                     charge.fillAmount = (lanternlife / 50);
                     //Debug.Log(lanternlife / 50 + "lantern");
                     break;
-                //case "B":
-                //    
-                //    break;
+                case "B":
+                    charge.fillAmount = (arrowlife / 15);
+                    break;
                 default:
                     //print("Incorrect weapon");
                     charge.fillAmount = 0;

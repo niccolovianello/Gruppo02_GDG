@@ -17,7 +17,17 @@ namespace Com.Kawaiisun.SimpleHostile
         private BoxCollider bxcol;
         public Vector3 fareshi;
         private AudioManager aud;
-        
+
+        public UIScript UI;
+
+        private void Awake()
+        {
+            UI = GameObject.Find("CanvasUI").GetComponent<UIScript>();
+            if (UI == null)
+                Debug.Log("not found UI from bow (shoot)");
+            //Debug.Log(UI.name);
+        }
+
 
         private void Start()
         {
@@ -50,6 +60,8 @@ namespace Com.Kawaiisun.SimpleHostile
                     bxcol.enabled = false;
                     //rb.isKinematic = false;
                     rb.constraints = RigidbodyConstraints.FreezeAll;
+
+                    UI.UpdateResources("Arrows", -1);
                 }
 
             }

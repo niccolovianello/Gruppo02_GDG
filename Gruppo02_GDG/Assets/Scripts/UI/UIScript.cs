@@ -21,6 +21,7 @@ namespace Com.Kawaiisun.SimpleHostile
         float torchlife;
         float matchlife;
         float lanternlife;
+        float arrowlife;
 
         bool isActive;
         //Text t = child.GetComponent<Text>();
@@ -205,7 +206,10 @@ namespace Com.Kawaiisun.SimpleHostile
             lanternlife = currentLlife;
         }
 
-        // ADD BOW
+        public void SetALife(float currentAlife)
+        {
+            arrowlife = currentAlife;
+        }
 
         public float GetFBattery()
         {
@@ -227,6 +231,9 @@ namespace Com.Kawaiisun.SimpleHostile
             return lanternlife;
         }
 
-        // ADD BOW
+        public float GetALife()
+        {
+            return arrowlife;
+        }
     }
 }

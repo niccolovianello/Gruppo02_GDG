@@ -34,31 +34,74 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             if (obj.getCurrentObj() != null)
             {
-                Light objLight = obj.getCurrentObj().GetComponentInChildren<Light>();
-
-                //pezzo codice flavio
-                if (objLight == null)
-                    return;
-                // fine codice flavio
-
-
-                if (objLight.enabled == true)
+                if (!obj.getCurrentObj().name.StartsWith("Bow"))
                 {
-                    if (plCurrentTime < 30f && plCurrentTime > 0f)
+
+                    Light objLight = obj.getCurrentObj().GetComponentInChildren<Light>();
+
+                    if (objLight.enabled == true)
                     {
-                        plCurrentTime += Time.deltaTime;
+                        if (plCurrentTime < 30f && plCurrentTime > 0f)
+                        {
+                            plCurrentTime += Time.deltaTime;
 
-                        UI.TimerDarkUI(plCurrentTime);
+                            UI.TimerDarkUI(plCurrentTime);
+                        }
                     }
-                }
-                else if(objLight.enabled == false)
-                {
-                    //if(plCurrentTime > 0f)
-                    //{
+                    else if (objLight.enabled == false)
+                    {
+                        //if(plCurrentTime > 0f)
+                        //{
                         plCurrentTime -= Time.deltaTime;
 
                         UI.TimerDarkUI(plCurrentTime);
-                    //}
+                        //}
+                    }
+                }
+                else
+                {
+                    Transform arr = obj.getCurrentObj().transform.Find("ArrowSpawn");
+
+                    Light objLight;
+
+                    if (arr.childCount != 0)
+                    {
+                        objLight = arr.gameObject.GetComponentInChildren<Light>();
+
+                        if (objLight == null)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            if (objLight.enabled == true)
+                            {
+                                if (plCurrentTime < 30f && plCurrentTime > 0f)
+                                {
+                                    plCurrentTime += Time.deltaTime;
+
+                                    UI.TimerDarkUI(plCurrentTime);
+                                }
+                            }
+                            else if (objLight.enabled == false)
+                            {
+                                //if(plCurrentTime > 0f)
+                                //{
+                                plCurrentTime -= Time.deltaTime;
+
+                                UI.TimerDarkUI(plCurrentTime);
+                                //}
+                            }
+                        }
+                    }
+                    else
+                    {
+                        plCurrentTime -= Time.deltaTime;
+
+                        UI.TimerDarkUI(plCurrentTime);
+                    }
+
+                    //return;
                 }
             }
             else
@@ -74,8 +117,6 @@ namespace Com.Kawaiisun.SimpleHostile
                 Die();
 
             }
-
-            Debug.Log(SetFollowed());
 
             if (SetFollowed() && !isplaying)
             {
@@ -111,7 +152,7 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemies");
 
-            Debug.Log(enemies.Length);
+            //Debug.Log(enemies.Length);
 
             foreach(GameObject e in enemies)
             {
