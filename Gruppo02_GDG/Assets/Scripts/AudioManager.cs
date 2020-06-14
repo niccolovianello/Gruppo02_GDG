@@ -5,7 +5,8 @@ using System;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
-    public static AudioManager istance; 
+    public static AudioManager istance;
+    public AudioMixerGroup mixer;
     void Awake()
     {
         //if (istance == null)
@@ -22,7 +23,9 @@ public class AudioManager : MonoBehaviour
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();
+            
             s.source.clip = s.clip;
+            s.source.outputAudioMixerGroup = mixer;
 
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;

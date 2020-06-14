@@ -128,7 +128,7 @@ MonoBehaviour:
   angleAwareness: 0
   AIMoveSpeed: 10
   destPoint: 0
-  monster_Right_Fist: {fileID: 9076528688588544989}
+  monster_Right_Fist: {fileID: 3225894758800360221}
   obj: {fileID: 0}
 --- !u!195 &8902799450535096534
 NavMeshAgent:
@@ -439,9 +439,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1061496540710610803}
+  - component: {fileID: 8665546445527754050}
   m_Layer: 11
   m_Name: DEF-hand.R
-  m_TagString: Untagged
+  m_TagString: MonsterFist
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -461,6 +462,19 @@ Transform:
   m_Father: {fileID: 90151087880919113}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &8665546445527754050
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3225894758800360221}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.004471185
+  m_Center: {x: -0.001265663, y: 0.0027016765, z: 0.00047781118}
 --- !u!1 &3675122376465915873
 GameObject:
   m_ObjectHideFlags: 0

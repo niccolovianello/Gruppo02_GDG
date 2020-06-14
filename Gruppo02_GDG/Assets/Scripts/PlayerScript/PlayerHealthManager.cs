@@ -20,7 +20,7 @@ public class PlayerHealthManager : MonoBehaviour
     {
         audioSource = FindObjectOfType<AudioSource>();
         currentHealth = maxHealth;
-        
+        obj = FindObjectOfType<ObjectsManagement>();
 
     }
 
