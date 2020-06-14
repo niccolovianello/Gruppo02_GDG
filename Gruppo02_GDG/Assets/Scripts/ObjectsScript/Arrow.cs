@@ -86,6 +86,8 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 timer += Time.deltaTime;
 
+                UI.SetALife(0);
+
                 if (timer >= lifeTimer)
                 {
                     Destroy(gameObject);

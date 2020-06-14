@@ -9,6 +9,8 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private bool isPaused;
 
+    public GameObject TutCanvas;
+
     // Update is called once per frame
     void Update()
     {
@@ -40,6 +42,9 @@ public class PauseMenu : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             //AudioListener.pause = true;
+
+            if (TutCanvas.gameObject.activeSelf)
+                TutCanvas.GetComponent<TutorialScript>().SetCanvActive(false);
             return;
         }
         else

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyGeneral : MonoBehaviour
 {
@@ -61,6 +62,9 @@ public class EnemyGeneral : MonoBehaviour
     {
         aud.Play("MonsterDead");
         en.SetDie();
+
+        this.GetComponent<NavMeshAgent>().baseOffset = -1;
+
         Destroy(this.gameObject, 5f);
         Debug.Log("Enemy die");
     }
