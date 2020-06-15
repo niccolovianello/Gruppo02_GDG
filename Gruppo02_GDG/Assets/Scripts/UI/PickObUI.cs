@@ -16,7 +16,8 @@ namespace Com.Kawaiisun.SimpleHostile
 
         public void DotEnlight()
         {
-            dot.color = new Color32(255, 249, 87, 255);
+            dot.color = new Color32(103, 255, 0, 255);
+                //new Color32(255, 249, 87, 255);
         }
 
         public void DotNormal()
