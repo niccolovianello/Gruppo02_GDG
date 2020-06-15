@@ -39,7 +39,8 @@ namespace Com.Kawaiisun.SimpleHostile
             ssr = FindObjectOfType<SupportScriptResources>();
             obj = FindObjectOfType<ObjectsManagement>();
             flashlight = this.GetComponent<Light>();
-            currentBatteryEnergy = 10f;
+            //currentBatteryEnergy = 10f;
+            currentBatteryEnergy = ssr.GetRemainEnergy();
             pl = FindObjectOfType<PlayerCombatScript>();
             startIntensity = flashlight.intensity;
             isOn = true;

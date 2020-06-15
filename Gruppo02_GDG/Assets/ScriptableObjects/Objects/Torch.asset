@@ -20,6 +20,7 @@ MonoBehaviour:
   attackRange: 3
   damage: 40
   attackRate: 0.4
-  isSelected: 1
+  isSelected: 0
   charge: 120
   stringAud: Torch
+  obj: HaveTorch

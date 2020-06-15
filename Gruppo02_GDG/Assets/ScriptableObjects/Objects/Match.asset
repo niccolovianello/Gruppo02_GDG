@@ -22,4 +22,5 @@ MonoBehaviour:
   attackRate: 0
   isSelected: 0
   charge: 15
-  stringAud: dkdf
+  stringAud: match
+  obj: HaveTorch

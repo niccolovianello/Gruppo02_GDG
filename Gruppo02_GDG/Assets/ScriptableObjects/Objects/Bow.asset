@@ -23,3 +23,4 @@ MonoBehaviour:
   isSelected: 1
   charge: 0
   stringAud: Arrow
+  obj: HaveBow

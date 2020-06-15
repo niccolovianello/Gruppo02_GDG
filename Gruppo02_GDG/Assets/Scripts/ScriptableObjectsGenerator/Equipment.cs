@@ -19,6 +19,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public bool isSelected = false;
         public float charge = 0;
         public string stringAud;
+        public string obj;
        
 
     }

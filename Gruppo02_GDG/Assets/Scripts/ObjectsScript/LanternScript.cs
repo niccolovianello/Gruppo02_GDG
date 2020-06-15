@@ -40,7 +40,7 @@ namespace Com.Kawaiisun.SimpleHostile
         private void Start()
         {
             ssr = FindObjectOfType<SupportScriptResources>();
-            currentOilRemainTime = 50f;
+            currentOilRemainTime = ssr.GetRemainOil();
             isOn = false;
             fire.Stop();
             fireLight.enabled = false;
@@ -59,15 +59,20 @@ namespace Com.Kawaiisun.SimpleHostile
 
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    currentOilRemainTime = ssr.GetRemainOil();
+                    
 
                     if (obj.ammo[0] > 0 && currentOilRemainTime > 0)
                     {
-                        isOn = !isOn;
+                        isOn = true;
+                        //currentOilRemainTime = ssr.GetRemainOil();
                         Debug.Log("lanterna accesa");
                     }
                     else
+                    {
                         isOn = false;
+                        
+                    }
+                        
                         
 
                     if (obj.getCurrentObj() == null)
@@ -75,9 +80,9 @@ namespace Com.Kawaiisun.SimpleHostile
 
                     if (isOn)
                     {
-                        
-                        
-                            obj.ammo[0]--;
+
+                        currentOilRemainTime = ssr.GetRemainOil();
+                        obj.ammo[0]--;
                             
 
                             fireLight.enabled = true;
@@ -105,6 +110,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 {
                     if (obj.ammo[0] > 0 && obj.ammo[1] > 0)
                     {
+                        Debug.Log("ricarica olio");
                         currentOilRemainTime = lantern.charge;
                         obj.ammo[0]--;
                         obj.ammo[1]--;
@@ -116,8 +122,9 @@ namespace Com.Kawaiisun.SimpleHostile
 
                 if (isOn)
                 {
-                    
-                   
+
+
+                    Debug.Log("decremento");
                     currentOilRemainTime -= decrementRate * Time.deltaTime;
                     //Debug.Log(Mathf.Round(currentTimeOfTorchLife));
 

@@ -15,6 +15,7 @@ TagManager:
   - PlayerAttackCloseRange
   - Arrow
   - Enemies
+  - Oil
   layers:
   - Default
   - TransparentFX

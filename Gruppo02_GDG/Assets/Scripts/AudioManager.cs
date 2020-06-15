@@ -39,7 +39,7 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
         {
-            Debug.Log("manca clip audio " + s.name);
+            Debug.Log("manca clip audio " + name);
             return;
         }
         s.source.Play();
@@ -50,7 +50,7 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sounds, sound => sound.name == name);
         if (s == null)
         {
-            Debug.Log("manca clip audio " + s.name);
+            Debug.Log("manca clip audio " + name);
             return;
         }
         s.source.Stop();

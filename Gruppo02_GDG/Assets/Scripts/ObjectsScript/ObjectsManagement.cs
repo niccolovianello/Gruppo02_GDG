@@ -89,7 +89,7 @@ namespace Com.Kawaiisun.SimpleHostile
         void MatchLightMethod()
         {
 
-
+            
 
             if (ammo[0] > 0)
             {
@@ -98,6 +98,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
                 JhonnyAnimator.SetBool("HaveLantern", false);
                 JhonnyAnimator.SetBool("HaveFlashlight", false);
+                JhonnyAnimator.SetBool("HaveBow", false);
                 if (currentObject != null)
                 {
                     Debug.Log(pickLoadout[currentIndex].stringAud);
@@ -135,14 +136,13 @@ namespace Com.Kawaiisun.SimpleHostile
         void Equip(int eq_index)
 
         {
-            //if (eq_index == currentIndex)
-            //    return;
-
             if (pickLoadout[eq_index] == null)
             {
                 Debug.Log("There's not any object in the selected slot");
                 return;
             }
+
+
 
             if (pickLoadout[eq_index].prefab == currentObject)
                 return;
@@ -152,7 +152,10 @@ namespace Com.Kawaiisun.SimpleHostile
                 Destroy(currentObject);
                 pickLoadout[currentIndex].isSelected = false;
             }
-
+            JhonnyAnimator.SetBool("HaveTorch", false);
+            JhonnyAnimator.SetBool(pickLoadout[currentIndex].obj, false);
+            JhonnyAnimator.SetBool(pickLoadout[eq_index].obj, true);
+            
 
             GameObject t_newEquipment = Instantiate(pickLoadout[eq_index].prefab, objectParent.position, objectParent.rotation, objectParent) as GameObject;
             
@@ -171,47 +174,6 @@ namespace Com.Kawaiisun.SimpleHostile
 
             UI.ActiveWeapon(currentIndex);
 
-            if (pickLoadout[currentIndex].name == "Torch")
-            {
-                JhonnyAnimator.SetBool("HaveTorch", true);
-                
-            }
-
-            else
-            {
-                JhonnyAnimator.SetBool("HaveTorch", false);
-            }
-            
-            if (pickLoadout[currentIndex].name == "Lantern")
-            {
-                JhonnyAnimator.SetBool("HaveLantern", true);
-
-            }
-
-            else
-            {
-                JhonnyAnimator.SetBool("HaveLantern", false);
-            }
-            if (pickLoadout[currentIndex].name == "FlashLight")
-            {
-                JhonnyAnimator.SetBool("HaveFlashlight", true);
-
-            }
-
-            else
-            {
-                JhonnyAnimator.SetBool("HaveFlashlight", false);
-            }
-            if (pickLoadout[currentIndex].name == "Bow")
-            {
-                JhonnyAnimator.SetBool("HaveBow", true);
-
-            }
-
-            else
-            {
-                JhonnyAnimator.SetBool("HaveBow", false);
-            }
 
 
 
@@ -230,6 +192,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
             foreach (Equipment e in loadout)
             {
+                
                 if (e.name == equipmentPick)
                 {
                     index = indexCounting;
@@ -237,7 +200,23 @@ namespace Com.Kawaiisun.SimpleHostile
                 }
                 else
                     indexCounting++;
+
+
             }
+            //foreach (Equipment e in pickLoadout)
+            //{
+                
+            //    if (e.name == equipmentPick)
+            //    {
+            //        Debug.Log("Hai già quest'oggetto!");
+            //        e.charge = 50;
+            //        return;
+                
+            //    }
+                
+
+            
+            //}
 
             for (int i = 0; i < 3; i++)
             {

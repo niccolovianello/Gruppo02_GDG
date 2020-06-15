@@ -23,3 +23,4 @@ MonoBehaviour:
   isSelected: 1
   charge: 80
   stringAud: Lantern
+  obj: HaveLantern
