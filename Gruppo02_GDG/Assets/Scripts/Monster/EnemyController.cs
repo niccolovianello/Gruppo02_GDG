@@ -107,6 +107,16 @@ namespace Com.Kawaiisun.SimpleHostile
             //// controllo su animator
             //anim = this.GetComponent<Animator>();
             agent.acceleration = 1000f;
+
+            // ++volume audioclip
+            AudioClip inAudioClip = this.GetComponent<AudioSource>().clip;
+            float[] clipSampleData = new float[inAudioClip.samples];
+            inAudioClip.GetData(clipSampleData, 0);
+            for (int s = 0; s < clipSampleData.Length; s++)
+            {
+                clipSampleData[s] = clipSampleData[s] * 1.3f;
+            }
+            inAudioClip.SetData(clipSampleData, 0);
         }
 
         void Update()
@@ -194,7 +204,8 @@ namespace Com.Kawaiisun.SimpleHostile
                     closeattack = true;
                     isAttacking = true;
                     anim.SetTrigger("Attack");
-                    StartCoroutine(ResetBool(3f));
+                    aud.Play("Attack");
+                    StartCoroutine(ResetBool(0.5f));
                 }
             }
             else
