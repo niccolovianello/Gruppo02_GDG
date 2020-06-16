@@ -72,6 +72,8 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 currentTimeOfMatchLife -= decrementRate * Time.deltaTime;
 
+                UI.SetALife(currentTimeOfMatchLife);
+
                 // fadelight
 
                 if (currentTimeOfMatchLife <= 0)
@@ -97,7 +99,7 @@ namespace Com.Kawaiisun.SimpleHostile
                     transform.rotation = Quaternion.LookRotation(arrowBody.velocity);
             }
 
-            UI.SetALife(currentTimeOfMatchLife);
+            //UI.SetALife(currentTimeOfMatchLife);
         }
 
         private void OnCollisionEnter(Collision collision)

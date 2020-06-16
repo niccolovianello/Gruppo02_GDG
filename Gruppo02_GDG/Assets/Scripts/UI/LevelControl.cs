@@ -16,6 +16,8 @@ namespace Com.Kawaiisun.SimpleHostile
         public Image message01;
         public Image level01;
 
+        TutorialScript tutScript;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -56,6 +58,8 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             SceneManager.LoadScene(1);
             unlocked = true;
+
+            tutScript.SetBoolActive(true);
         }
     }
 }

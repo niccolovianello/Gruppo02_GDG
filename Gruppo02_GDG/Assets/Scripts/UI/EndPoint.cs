@@ -20,14 +20,14 @@ namespace Com.Kawaiisun.SimpleHostile
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Y))
-            {
-                EndCanvas.SetActive(true);
+            //if (Input.GetKeyDown(KeyCode.Y))
+            //{
+            //    EndCanvas.SetActive(true);
 
-                Time.timeScale = 0;
-                Cursor.lockState = CursorLockMode.None;
-                Cursor.visible = true;
-            }
+            //    Time.timeScale = 0;
+            //    Cursor.lockState = CursorLockMode.None;
+            //    Cursor.visible = true;
+            //}
         }
 
         private void OnTriggerEnter(Collider other)

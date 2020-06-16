@@ -190,6 +190,31 @@ namespace Com.Kawaiisun.SimpleHostile
                 angleAwareness = 40f;
             }
 
+            if (obj.getCurrentObj() != null)
+            {
+                if (obj.getCurrentObj().name.StartsWith("Lantern"))
+                {
+                    Light objLight = obj.getCurrentObj().GetComponentInChildren<Light>();
+
+                    if (objLight.enabled == true)
+                    {
+                        agent.stoppingDistance = 3f;
+                    }
+                    else if (objLight.enabled == false)
+                    {
+                        agent.stoppingDistance = 0f;
+                    }
+                }
+                else
+                {
+                    agent.stoppingDistance = 0f;
+                }
+            }
+            else
+            {
+                agent.stoppingDistance = 0f;
+            }
+
             if (playerDistance < 2f)
             {
                 ////attackFlag = true;
