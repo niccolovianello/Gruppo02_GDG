@@ -15,17 +15,21 @@ namespace Com.Kawaiisun.SimpleHostile
         private Rigidbody rb;
         private Arrow arr;
         private BoxCollider bxcol;
-        public Vector3 fareshi;
+       
         private AudioManager aud;
+        private bool isAiming;
+        public Equipment selectioBow;
 
         public UIScript UI;
 
         private void Awake()
         {
+            isAiming = false;
             UI = GameObject.Find("CanvasUI").GetComponent<UIScript>();
             if (UI == null)
                 Debug.Log("not found UI from bow (shoot)");
             //Debug.Log(UI.name);
+            isAiming = false;
         }
 
 
@@ -39,22 +43,33 @@ namespace Com.Kawaiisun.SimpleHostile
         void Update()
         {
 
-            if (Input.GetMouseButton(1))
+            if (Input.GetMouseButtonDown(1) && selectioBow.isSelected)
 
+            {
+
+                
+
+                isAiming = !isAiming;
+
+               
+
+            }
+            if(!isAiming)
+                cam.GetComponent<MouseLook>().haveBow = false;
+            if (isAiming)
             {
                 cam.GetComponent<MouseLook>().haveBow = true;
 
                 if (Input.GetMouseButtonDown(0))
                 {
-
-                    go = Instantiate(arrowprefab, arrowSpawn.position,arrowSpawn.rotation, arrowSpawn) as GameObject;
-                    //go.transform.localEulerAngles = fareshi;
+                    Debug.Log("freccia");
+                    go = Instantiate(arrowprefab, arrowSpawn.position, arrowSpawn.rotation, arrowSpawn) as GameObject;
                     go.transform.localRotation = Quaternion.identity;
-                        //Quaternion.Euler(18.086f,191.95f,10.619f);
+                    //Quaternion.Euler(18.086f,191.95f,10.619f);
                     Debug.Log(go.transform.localRotation);
                     arr = go.GetComponent<Arrow>();
                     //go.transform.position = cam.transform.position + new Vector3(0, 0, 0.3f);
-                    
+
                     rb = go.GetComponent<Rigidbody>();
                     bxcol = go.GetComponent<BoxCollider>();
                     bxcol.enabled = false;
@@ -63,32 +78,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
                     UI.UpdateResources("Arrows", -1);
                 }
-
-            }
-            else
-                cam.GetComponent<MouseLook>().haveBow = false;
-            
-
-
-           
-        }
-
-        private void FixedUpdate()
-        {
-            if (Input.GetMouseButton(1))
-
-            {
-                if (Input.GetMouseButtonDown(0))
-                {
-
-                   
-                   
-
-                }
-
                 if (Input.GetMouseButtonUp(0))
-
-
                 {
                     aud.Play("Arrow");
                     arr.isThrown = true;
@@ -101,6 +91,29 @@ namespace Com.Kawaiisun.SimpleHostile
 
 
                 }
+            }
+
+
+
+        }
+
+        private void FixedUpdate()
+        {
+            if (isAiming)
+
+            {
+                if (Input.GetMouseButtonDown(0))
+                {
+
+                   
+                   
+
+                }
+
+               
+
+
+               
             }
         }
 }

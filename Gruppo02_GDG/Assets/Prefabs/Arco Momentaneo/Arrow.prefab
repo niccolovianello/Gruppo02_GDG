@@ -11,13 +11,10 @@ GameObject:
   - component: {fileID: 2628866535264766092}
   - component: {fileID: 6422303013684212410}
   - component: {fileID: 728479209128365635}
-  - component: {fileID: 3135451617602792566}
   - component: {fileID: -1388803360868116029}
-  - component: {fileID: 44452843096968870}
-  - component: {fileID: 6198581050815369450}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,19 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &3135451617602792566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1306261559064443551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d4a1a4ec2e6bd24b9a4cd3c0af5e3eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isThrown: 0
 --- !u!65 &-1388803360868116029
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -107,34 +91,5 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.026036985, y: 0.4110488, z: 0.026036993}
-  m_Center: {x: 0.0000004656613, y: 0.4069298, z: 0.00000035669655}
---- !u!54 &44452843096968870
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1306261559064443551}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &6198581050815369450
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1306261559064443551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d4a1a4ec2e6bd24b9a4cd3c0af5e3eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isThrown: 0
+  m_Size: {x: 0.15663594, y: 0.8959249, z: 0.13651024}
+  m_Center: {x: -0.0037787855, y: 0.3799891, z: -0.006261836}
