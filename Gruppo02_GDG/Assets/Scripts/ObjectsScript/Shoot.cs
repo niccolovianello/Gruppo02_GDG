@@ -64,7 +64,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 {
                     Debug.Log("freccia");
                     go = Instantiate(arrowprefab, arrowSpawn.position, arrowSpawn.rotation, arrowSpawn) as GameObject;
-                    go.transform.localRotation = Quaternion.identity;
+                    go.transform.localRotation = Quaternion.Euler(0, 90, 0);
                     //Quaternion.Euler(18.086f,191.95f,10.619f);
                     Debug.Log(go.transform.localRotation);
                     arr = go.GetComponent<Arrow>();
