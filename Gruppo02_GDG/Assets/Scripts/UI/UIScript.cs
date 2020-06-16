@@ -94,6 +94,14 @@ namespace Com.Kawaiisun.SimpleHostile
                         }
                     }
                 }
+                if (Weapons.Find("Panel/WeaponSlot (" + (newwpos + 1) + ")/WeaponName") != null)
+                {
+                    tutScript.SetWeaponActive(Weapons.Find("Panel/WeaponSlot (" + (newwpos + 1) + ")/WeaponName").GetComponent<Text>().text);
+                }
+                else
+                {
+                    return;
+                }
             }
             else
             {
@@ -111,7 +119,7 @@ namespace Com.Kawaiisun.SimpleHostile
             }
 
             //Debug.Log(Weapons.Find("Panel/WeaponSlot (" + (newwpos + 1) + ")/WeaponName").GetComponent<Text>().text);
-            tutScript.SetWeaponActive(Weapons.Find("Panel/WeaponSlot (" + (newwpos + 1) + ")/WeaponName").GetComponent<Text>().text);
+            //tutScript.SetWeaponActive(Weapons.Find("Panel/WeaponSlot (" + (newwpos + 1) + ")/WeaponName").GetComponent<Text>().text);
         }
 
         public void UpdateResources(string resourcename, int resourcenumber)

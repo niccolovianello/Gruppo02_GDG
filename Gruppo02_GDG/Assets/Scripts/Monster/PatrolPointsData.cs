@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
 
 namespace Com.Kawaiisun.SimpleHostile
 {
