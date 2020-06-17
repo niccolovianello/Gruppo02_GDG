@@ -128,5 +128,6 @@ MonoBehaviour:
     type: 3}
   arrowSpawn: {fileID: 8387350812350827989}
   shootForce: 20
+  bowEq: {fileID: 11400000, guid: bd63e4806d891504fb5f165b382f4203, type: 2}
   selectioBow: {fileID: 11400000, guid: bd63e4806d891504fb5f165b382f4203, type: 2}
   UI: {fileID: 0}

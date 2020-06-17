@@ -57,7 +57,8 @@ namespace Com.Kawaiisun.SimpleHostile
                 {
                     aud.Play("ReloadFlashlight");
                     Debug.Log("Ricarica!");
-                    currentBatteryEnergy = selectionFlashlight.charge;
+                    ssr.SetRemainEnergy(selectionFlashlight.charge);
+                    currentBatteryEnergy = ssr.GetRemainEnergy();
                     obj.ammo[2]--;
 
                     UI.UpdateResources("Battery", -1);

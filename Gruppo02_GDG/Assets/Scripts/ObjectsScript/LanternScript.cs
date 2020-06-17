@@ -59,19 +59,16 @@ namespace Com.Kawaiisun.SimpleHostile
 
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    
 
-                    if (obj.ammo[0] > 0 && currentOilRemainTime > 0)
+
+                    if (obj.ammo[0] >= 0 && currentOilRemainTime >= 0)
                     {
-                        isOn = true;
-                        //currentOilRemainTime = ssr.GetRemainOil();
-                        Debug.Log("lanterna accesa");
+                        isOn = !isOn;
+
                     }
                     else
-                    {
                         isOn = false;
-                        
-                    }
+                   
                         
                         
 
@@ -111,8 +108,8 @@ namespace Com.Kawaiisun.SimpleHostile
                     if (obj.ammo[0] > 0 && obj.ammo[1] > 0)
                     {
                         Debug.Log("ricarica olio");
-                        currentOilRemainTime = lantern.charge;
-                        obj.ammo[0]--;
+                        ssr.SetRemainOil(lantern.charge);
+                        currentOilRemainTime = ssr.GetRemainOil();
                         obj.ammo[1]--;
                         UI.UpdateResources("Oil", -1);
                         UI.UpdateResources("Matches", -1);

@@ -13,6 +13,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public PlayerCombatScript weaponProperties;
         public Animator JhonnyAnimator;
         public AudioManager aud;
+        public MouseLook look;
         public int[] ammo; // 0 fiammiferi 1 olio 2 batterie 3 frecce 5 oggetti curativi
         
 
@@ -30,6 +31,7 @@ namespace Com.Kawaiisun.SimpleHostile
             UI.UpdateResources("Matches", 5);
             weaponProperties.animationObj = JhonnyAnimator;
             //JhonnyAnimator = FindObjectOfType<Animator>();
+            look = FindObjectOfType<MouseLook>();
 
             // JhonnyAnimator.SetBool("HaveTorch", true);
             //JhonnyAnimator.SetBool("HaveTorch", false);
@@ -151,11 +153,16 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 Destroy(currentObject);
                 pickLoadout[currentIndex].isSelected = false;
+                look.haveBow = false;
+                JhonnyAnimator.SetBool("Aim", false);
+                JhonnyAnimator.SetBool("HaveTorch", false);
+                JhonnyAnimator.SetBool(pickLoadout[currentIndex].obj, false);
+
             }
-            JhonnyAnimator.SetBool("HaveTorch", false);
-            JhonnyAnimator.SetBool(pickLoadout[currentIndex].obj, false);
+           
             JhonnyAnimator.SetBool(pickLoadout[eq_index].obj, true);
-            
+
+
 
             GameObject t_newEquipment = Instantiate(pickLoadout[eq_index].prefab, objectParent.position, objectParent.rotation, objectParent) as GameObject;
             

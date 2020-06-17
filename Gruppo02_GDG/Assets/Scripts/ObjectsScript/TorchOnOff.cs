@@ -135,7 +135,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 if (currentTimeOfTorchLife <= 0)
                 {
 
-                    
+
                     int i = obj.getCurrentIndex();
                     obj.pickLoadout[i].isSelected = false;
                     obj.pickLoadout[i] = null;
@@ -144,6 +144,8 @@ namespace Com.Kawaiisun.SimpleHostile
 
                     obj.JhonnyAnimator.SetBool("HaveTorch", false);
                     aud.Stop("Torch");
+                    ssr.SetRemainEnergy(torch.charge);
+                    
                     Destroy(obj.getCurrentObj());
                     
 
