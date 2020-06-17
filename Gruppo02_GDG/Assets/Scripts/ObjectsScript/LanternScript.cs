@@ -17,6 +17,8 @@ namespace Com.Kawaiisun.SimpleHostile
         public float decrementRate = 2f;
         private SupportScriptResources ssr;
 
+        float startIntensity;
+        float[] startFireRate;
 
         private float fireTimeLeftTot;
         private float fireTimeLeft;
@@ -49,6 +51,15 @@ namespace Com.Kawaiisun.SimpleHostile
             firech = fire.gameObject.GetComponentsInChildren<ParticleSystem>();
             fireTimeLeftTot = currentOilRemainTime / 3;
             //15f;
+
+            startIntensity = fireLight.intensity;
+            startFireRate = new float[firech.Length];
+            for (int i = 0; i < firech.Length; i++)
+            {
+                startFireRate[i] = firech[i].emission.rateOverTime.Evaluate(1f);
+                //Debug.Log(startFireRate[i] + "" + firech.Length);
+            }
+
         }
         void Update()
         {
@@ -115,6 +126,15 @@ namespace Com.Kawaiisun.SimpleHostile
                         UI.UpdateResources("Oil", -1);
                         UI.UpdateResources("Matches", -1);
 
+                        // lanternLight
+                        DOTween.Kill(fireLight);
+                        fireLight.intensity = startIntensity;
+                        for (int i = 0; i < firech.Length; i++)
+                        {
+                           var emission = firech[i].emission;
+                           emission.rateOverTime = startFireRate[i];
+                            //Debug.Log("Done");
+                        }
                     } 
                 }
 
@@ -154,6 +174,7 @@ namespace Com.Kawaiisun.SimpleHostile
                     {
                         isOn = false;
                         fireLight.enabled = false;
+                        DOTween.Kill(fireLight);
                         fire.Stop();
 
                     }

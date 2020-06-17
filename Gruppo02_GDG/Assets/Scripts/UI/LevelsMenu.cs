@@ -10,7 +10,7 @@ public class LevelsMenu : MonoBehaviour
     {
         
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        
+        Time.timeScale = 1f;
     }
 
     public void BackToStartBtn()
