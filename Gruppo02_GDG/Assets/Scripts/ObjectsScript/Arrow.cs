@@ -86,6 +86,8 @@ namespace Com.Kawaiisun.SimpleHostile
             }
             if (isThrown)
             {
+                arrowBody.isKinematic = false;
+                arrowBody.useGravity = true;
                 timer += Time.deltaTime;
 
                 UI.SetALife(0);

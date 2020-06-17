@@ -138,7 +138,9 @@ namespace Com.Kawaiisun.SimpleHostile
 
 
                     int i = obj.getCurrentIndex();
+                    //Destroy(obj.pickLoadout[i].prefab);
                     obj.pickLoadout[i].isSelected = false;
+                    
                     obj.pickLoadout[i] = null;
                     UI.ActiveWeapon(4);
                     UI.UpdateWeapons("", i);
@@ -146,8 +148,10 @@ namespace Com.Kawaiisun.SimpleHostile
                     obj.JhonnyAnimator.SetBool("HaveTorch", false);
                     aud.Stop("Torch");
                     ssr.SetRemainLifeTorch(torch.charge);
-                    
-                    Destroy(obj.getCurrentObj());
+
+                   
+                    obj.setCurrentObjNull();
+                   
                     
 
                     

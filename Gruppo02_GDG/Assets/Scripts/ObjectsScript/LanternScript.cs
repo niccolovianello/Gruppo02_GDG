@@ -64,6 +64,7 @@ namespace Com.Kawaiisun.SimpleHostile
                     if (obj.ammo[0] >= 0 && currentOilRemainTime >= 0)
                     {
                         isOn = !isOn;
+                        Debug.Log(isOn);
 
                     }
                     else
@@ -149,14 +150,15 @@ namespace Com.Kawaiisun.SimpleHostile
                     }
 
                     //end fadelight
-                }
-                if (currentOilRemainTime <= 0)
-                {
+                    if (currentOilRemainTime <= 0)
+                    {
+                        isOn = false;
+                        fireLight.enabled = false;
+                        fire.Stop();
 
-                    fireLight.enabled = false;
-                    fire.Stop();
-                  
+                    }
                 }
+                
 
 
             }

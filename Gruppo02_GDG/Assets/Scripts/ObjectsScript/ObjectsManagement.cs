@@ -9,7 +9,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public Equipment[] loadout;
         public Equipment[] pickLoadout;
         public Transform objectParent;
-        private GameObject currentObject;
+        public GameObject currentObject;
         public PlayerCombatScript weaponProperties;
         public Animator JhonnyAnimator;
         public AudioManager aud;
@@ -97,16 +97,19 @@ namespace Com.Kawaiisun.SimpleHostile
             {
 
 
-
+                look.haveBow = false;
+                JhonnyAnimator.SetBool("Aim", false);
                 JhonnyAnimator.SetBool("HaveLantern", false);
                 JhonnyAnimator.SetBool("HaveFlashlight", false);
                 JhonnyAnimator.SetBool("HaveBow", false);
                 if (currentObject != null)
                 {
-                    Debug.Log(pickLoadout[currentIndex].stringAud);
-                    
-                    aud.Stop(pickLoadout[currentIndex].stringAud);
-                    Destroy(currentObject);
+                    if (pickLoadout[currentIndex] != null)
+
+                    {
+                        aud.Stop(pickLoadout[currentIndex].stringAud);
+                        Destroy(currentObject);
+                    }
 
                     if (pickLoadout[currentIndex] != null)
 
@@ -139,16 +142,24 @@ namespace Com.Kawaiisun.SimpleHostile
         void Equip(int eq_index)
 
         {
+            Debug.Log(eq_index);
             if (pickLoadout[eq_index] == null)
             {
                 Debug.Log("There's not any object in the selected slot");
                 return;
             }
 
-
+            if (pickLoadout[currentIndex] == null)
+            {
+                Debug.Log("err1");
+                return;
+            }
 
             if (pickLoadout[eq_index].prefab == currentObject)
+            {
+                Debug.Log("err2");
                 return;
+            } 
 
             if (currentObject != null)
             {
@@ -161,18 +172,18 @@ namespace Com.Kawaiisun.SimpleHostile
 
             }
             else
-            { 
-            
+            {
+                Debug.Log("err3");
             }
            
             JhonnyAnimator.SetBool(pickLoadout[eq_index].obj, true);
 
 
 
-            GameObject t_newEquipment = Instantiate(pickLoadout[eq_index].prefab, objectParent.position, objectParent.rotation, objectParent) as GameObject;
+            currentObject = Instantiate(pickLoadout[eq_index].prefab, objectParent.position, objectParent.rotation, objectParent) as GameObject;
             
-            t_newEquipment.transform.localPosition = pickLoadout[eq_index].eq_position;
-            t_newEquipment.transform.localEulerAngles = pickLoadout[eq_index].eq_rotation;
+            currentObject.transform.localPosition = pickLoadout[eq_index].eq_position;
+            currentObject.transform.localEulerAngles = pickLoadout[eq_index].eq_rotation;
 
             weaponProperties.attackRange = pickLoadout[eq_index].attackRange;
             weaponProperties.attackRate = pickLoadout[eq_index].attackRate;
@@ -180,9 +191,10 @@ namespace Com.Kawaiisun.SimpleHostile
             //weaponProperties.animationObj = pickLoadout[eq_index].animatorObject;
 
 
-            currentObject = t_newEquipment;
+            //currentObject = t_newEquipment;
             currentIndex = eq_index;
             pickLoadout[eq_index].isSelected = true;
+
 
             UI.ActiveWeapon(currentIndex);
 
@@ -267,6 +279,10 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             return currentObject;
         }
-      
+        public void setCurrentObjNull()
+        {
+            currentObject = null;
+        }
+
     }
 }

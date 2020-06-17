@@ -45,9 +45,12 @@ namespace Com.Kawaiisun.SimpleHostile
 
             if (hit.gameObject.tag == "Oil")
             {
+                BoxCollider h = hit.gameObject.GetComponent<BoxCollider>();
+                h.enabled = false;
                 aud.Play("PickResource");
                 obj.ammo[1] = obj.ammo[1] + Oil;
                 hit.collider.enabled = false;
+                Debug.Log(hit.gameObject.name);
                 Destroy(hit.gameObject);
 
                 UI.UpdateResources(hit.gameObject.name, Oil);
