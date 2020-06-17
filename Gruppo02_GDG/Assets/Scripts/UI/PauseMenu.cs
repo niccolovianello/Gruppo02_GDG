@@ -11,7 +11,14 @@ namespace Com.Kawaiisun.SimpleHostile
 
         [SerializeField] private bool isPaused;
 
-        public GameObject TutCanvas;
+        GameObject TutCanvas;
+
+        private void Start()
+        {
+            TutCanvas = GameObject.Find("TutorialCanvas");
+            if (TutCanvas == null)
+                Debug.Log("not found TutCanvas from PauseMenu");
+        }
 
         // Update is called once per frame
         void Update()
@@ -45,8 +52,8 @@ namespace Com.Kawaiisun.SimpleHostile
                 Cursor.visible = true;
                 //AudioListener.pause = true;
 
-                if (TutCanvas.gameObject.activeSelf)
-                    TutCanvas.GetComponent<TutorialScript>().SetCanvActive(false);
+                if (TutCanvas.gameObject.activeSelf && TutCanvas!=null)
+                    TutCanvas.GetComponent<TutorialScript>().SetCanvNotActiveFromPause(false);
                 return;
             }
             else

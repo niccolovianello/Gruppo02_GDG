@@ -107,22 +107,23 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 case "M":
                     charge.fillAmount = (matchlife / 15);
-                    //Debug.Log(matchlife / 15 + "match");
+                    //Debug.Log(matchlife /*/ 15*/ + "match");
                     break;
                 case "T":
                     charge.fillAmount = (torchlife / 50);
-                    //Debug.Log(torchlife / 50 + "torch");
+                    //Debug.Log(torchlife /*/ 60*/ + "torch");
                     break;
                 case "F":
-                    charge.fillAmount = (batterylife / 50);
-                    //Debug.Log(batterylife / 50 + "battery");
+                    charge.fillAmount = (batterylife / 60);
+                    //Debug.Log(batterylife /*/ 60*/ + "battery");
                     break;
                 case "L":
-                    charge.fillAmount = (lanternlife / 50);
-                    //Debug.Log(lanternlife / 50 + "lantern");
+                    charge.fillAmount = (lanternlife / 80);
+                    //Debug.Log(lanternlife /*/ 80*/ + "lantern");
                     break;
                 case "B":
                     charge.fillAmount = (arrowlife / 15);
+                    //Debug.Log(arrowlife /*/ 15*/ + "bow");
                     break;
                 default:
                     //print("Incorrect weapon");

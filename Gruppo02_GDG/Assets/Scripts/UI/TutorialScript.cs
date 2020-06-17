@@ -20,8 +20,6 @@ namespace Com.Kawaiisun.SimpleHostile
         bool isActiveT = true;
         bool isActiveB = true;
 
-        public GameObject pauseMenuUI;
-
         void Awake()
         {
             if (isActive == true)
@@ -53,12 +51,18 @@ namespace Com.Kawaiisun.SimpleHostile
             TutorialPanel.SetActive(act);
             isActive = act;
 
-            if (act == false && !pauseMenuUI.gameObject.activeSelf)
+            if (act == false)
             {
                 Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Locked;
                 Cursor.visible = false;
             }
+        }
+
+        public void SetCanvNotActiveFromPause(bool disable)
+        {
+            TutorialPanel.SetActive(disable);
+            isActive = disable;
         }
 
         public void SetWeaponActive(string str)

@@ -13,7 +13,7 @@ namespace Com.Kawaiisun.SimpleHostile
         bool unlocked;
 
         public Image picture01;
-        public Image message01;
+        public GameObject message01;
         public Image level01;
 
         TutorialScript tutScript;
@@ -31,6 +31,13 @@ namespace Com.Kawaiisun.SimpleHostile
             }
 
             DontDestroyOnLoad(gameObject);
+
+            if (SceneManager.GetActiveScene().buildIndex == 3)
+            {
+                tutScript = GameObject.Find("TutorialCanvas").GetComponent<TutorialScript>();
+                if (tutScript == null)
+                    Debug.Log("not found TutScript from LevelControl");
+            }
         }
 
         // Update is called once per frame
@@ -39,7 +46,8 @@ namespace Com.Kawaiisun.SimpleHostile
             if (SceneManager.GetActiveScene().buildIndex == 1 && picture01 == null)
             {
                 picture01 = GameObject.Find("Canvas/Background/LevelsMenu/FinalPicture/Part01").GetComponent<Image>();
-                message01 = GameObject.Find("Canvas/Background/LevelsMenu/MessagesPanel/Message01").GetComponent<Image>();
+                message01 = GameObject.Find("Canvas/Background/LevelsMenu/MessagesPanel/Message01");
+                    //.GetComponent<Image>();
                 level01 = GameObject.Find("Canvas/Background/LevelsMenu/LevelList/L01").GetComponent<Image>();
             }
             if (picture01 == null && message01 == null && level01 == null)
@@ -48,7 +56,8 @@ namespace Com.Kawaiisun.SimpleHostile
             if (unlocked == true)
             {
                 picture01.color = new Color32(255, 255, 255, 255);
-                message01.enabled = true;
+                message01.SetActive(true);
+                    //.enabled = true;
                 level01.color = new Color32(202, 255, 166, 255);
                 unlocked = false;
             }
@@ -59,7 +68,7 @@ namespace Com.Kawaiisun.SimpleHostile
             SceneManager.LoadScene(1);
             unlocked = true;
 
-            tutScript.SetBoolActive(true);
+            //tutScript.SetBoolActive(true);
         }
     }
 }
