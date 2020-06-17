@@ -149,8 +149,8 @@ namespace Com.Kawaiisun.SimpleHostile
                     aud.Stop("Torch");
                     ssr.SetRemainLifeTorch(torch.charge);
 
-                   
-                    obj.setCurrentObjNull();
+                    //obj.setCurrentObjNull();
+                    Destroy(obj.getCurrentObj());
                    
                     
 

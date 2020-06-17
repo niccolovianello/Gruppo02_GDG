@@ -180,10 +180,10 @@ namespace Com.Kawaiisun.SimpleHostile
 
 
 
-            currentObject = Instantiate(pickLoadout[eq_index].prefab, objectParent.position, objectParent.rotation, objectParent) as GameObject;
-            
-            currentObject.transform.localPosition = pickLoadout[eq_index].eq_position;
-            currentObject.transform.localEulerAngles = pickLoadout[eq_index].eq_rotation;
+            GameObject t_newEquipment = Instantiate(pickLoadout[eq_index].prefab, objectParent.position, objectParent.rotation, objectParent) as GameObject;
+
+            t_newEquipment.transform.localPosition = pickLoadout[eq_index].eq_position;
+            t_newEquipment.transform.localEulerAngles = pickLoadout[eq_index].eq_rotation;
 
             weaponProperties.attackRange = pickLoadout[eq_index].attackRange;
             weaponProperties.attackRate = pickLoadout[eq_index].attackRate;
@@ -191,7 +191,7 @@ namespace Com.Kawaiisun.SimpleHostile
             //weaponProperties.animationObj = pickLoadout[eq_index].animatorObject;
 
 
-            //currentObject = t_newEquipment;
+            currentObject = t_newEquipment;
             currentIndex = eq_index;
             pickLoadout[eq_index].isSelected = true;
 
