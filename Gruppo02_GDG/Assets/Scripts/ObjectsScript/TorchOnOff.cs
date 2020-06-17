@@ -42,8 +42,9 @@ namespace Com.Kawaiisun.SimpleHostile
 
         private void Start()
         {
+            //Debug.Log("StartTorcia");
             ssr = FindObjectOfType<SupportScriptResources>();
-            currentTimeOfTorchLife = torch.charge;
+            currentTimeOfTorchLife = ssr.GetRemainLifeTorch();
             isOn = false;
             fire.Stop();
             fireLight.enabled = false;
@@ -144,7 +145,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
                     obj.JhonnyAnimator.SetBool("HaveTorch", false);
                     aud.Stop("Torch");
-                    ssr.SetRemainEnergy(torch.charge);
+                    ssr.SetRemainLifeTorch(torch.charge);
                     
                     Destroy(obj.getCurrentObj());
                     

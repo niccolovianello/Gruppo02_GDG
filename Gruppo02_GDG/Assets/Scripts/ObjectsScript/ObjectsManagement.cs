@@ -112,7 +112,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
                         pickLoadout[currentIndex].isSelected = false;
                 }
-                GameObject match = Instantiate(loadout[2].prefab, objectParent.position, objectParent.rotation, objectParent) as GameObject;
+                GameObject match = Instantiate(loadout[2].prefab, objectParent.position, objectParent.rotation, objectParent) as     GameObject;
                 JhonnyAnimator.SetBool("HaveTorch", true);
 
                 match.transform.localPosition = loadout[2].eq_position;
@@ -120,6 +120,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 weaponProperties.attackRange = loadout[2].attackRange;
                 weaponProperties.attackRate = loadout[2].attackRate;
                 weaponProperties.attackDamage = loadout[2].damage;
+                
                 //weaponProperties.animationObj = loadout[2].animatorObject;
                 currentObject = match;
 
@@ -158,6 +159,10 @@ namespace Com.Kawaiisun.SimpleHostile
                 JhonnyAnimator.SetBool("HaveTorch", false);
                 JhonnyAnimator.SetBool(pickLoadout[currentIndex].obj, false);
 
+            }
+            else
+            { 
+            
             }
            
             JhonnyAnimator.SetBool(pickLoadout[eq_index].obj, true);
