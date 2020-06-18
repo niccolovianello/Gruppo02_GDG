@@ -28,10 +28,13 @@ namespace Com.Kawaiisun.SimpleHostile
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        aud.Play("ReloadFlashlight");
+                        
                         Debug.Log(hit.collider.gameObject.name);
-                        obj.PickEquipment(hit.collider.gameObject.name);
-                        Destroy(hit.collider.gameObject);
+                        if (obj.PickEquipment(hit.collider.gameObject.name) == true)
+                        {
+                            aud.Play("ReloadFlashlight");
+                            Destroy(hit.collider.gameObject);
+                        } 
                     }
 
                     pickUI.DotEnlight();

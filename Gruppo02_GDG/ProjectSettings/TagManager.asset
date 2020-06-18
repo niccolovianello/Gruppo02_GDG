@@ -9,7 +9,6 @@ TagManager:
   - Battery
   - Matches
   - MonsterFist
-  - HealthObject
   - PatrolPoint
   - Torch
   - PlayerAttackCloseRange
@@ -17,6 +16,7 @@ TagManager:
   - Enemies
   - Oil
   - Arrows
+  - CurativeObject
   layers:
   - Default
   - TransparentFX

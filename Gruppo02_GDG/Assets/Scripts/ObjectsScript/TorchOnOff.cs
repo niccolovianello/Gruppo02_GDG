@@ -18,7 +18,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public float decrementRate = 0.5f;
         private SupportScriptResources ssr;
         private AudioManager aud;
-       
+        public bool newTorch ;
         
 
         private float fireTimeLeftTot;
@@ -30,6 +30,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
         private void Awake()
         {
+            newTorch = true;
             UI = GameObject.Find("CanvasUI").GetComponent<UIScript>();
             if (UI == null)
                 Debug.Log("not found UI from torch");
@@ -56,8 +57,9 @@ namespace Com.Kawaiisun.SimpleHostile
         }
         void Update()
         {
-            if (torch.isSelected == true)
+            if (torch.isSelected == true )
             {
+                
                 
 
                 if (Input.GetKeyDown(KeyCode.Q))
@@ -133,10 +135,12 @@ namespace Com.Kawaiisun.SimpleHostile
 
                     //end fadelight
                 }
-                if (currentTimeOfTorchLife <= 0)
+                if (currentTimeOfTorchLife <= 0 )
                 {
 
-
+                    ssr.SetRemainLifeTorch(torch.charge);
+                    Debug.Log(ssr.GetRemainLifeTorch());
+                    currentTimeOfTorchLife = torch.charge;
                     int i = obj.getCurrentIndex();
                     //Destroy(obj.pickLoadout[i].prefab);
                     obj.pickLoadout[i].isSelected = false;
@@ -147,14 +151,16 @@ namespace Com.Kawaiisun.SimpleHostile
 
                     obj.JhonnyAnimator.SetBool("HaveTorch", false);
                     aud.Stop("Torch");
-                    ssr.SetRemainLifeTorch(torch.charge);
+                    
 
-                    //obj.setCurrentObjNull();
+                    
                     Destroy(obj.getCurrentObj());
-                   
-                    
+                    obj.setCurrentObjNull();
+                    //obj.PickEquipment("noObject");
 
-                    
+
+
+
                 }
 
 

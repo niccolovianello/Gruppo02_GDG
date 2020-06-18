@@ -30,7 +30,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 hit.collider.enabled = false;
                 Destroy(hit.gameObject);
 
-                UI.UpdateResources(hit.gameObject.name, Arrows);
+                UI.UpdateResources(hit.gameObject.tag, Arrows);
             }
             if (hit.gameObject.tag == "Battery")
             {
@@ -40,7 +40,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 hit.collider.enabled = false;
                 Destroy(hit.gameObject);
 
-                UI.UpdateResources(hit.gameObject.name, Batteries);
+                UI.UpdateResources(hit.gameObject.tag, Batteries);
             }
 
             if (hit.gameObject.tag == "Oil")
@@ -53,7 +53,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 Debug.Log(hit.gameObject.name);
                 Destroy(hit.gameObject);
 
-                UI.UpdateResources(hit.gameObject.name, Oil);
+                UI.UpdateResources(hit.gameObject.tag, Oil);
             }
             if (hit.gameObject.tag == "Matches")
             {
@@ -62,16 +62,16 @@ namespace Com.Kawaiisun.SimpleHostile
                 hit.collider.enabled = false;
                 Destroy(hit.gameObject);
 
-                UI.UpdateResources(hit.gameObject.name, Matches);
+                UI.UpdateResources(hit.gameObject.tag, Matches);
             }
-            if (hit.gameObject.tag == "HealthObject")
+            if (hit.gameObject.tag == "CurativeObject")
             {
                 aud.Play("PickResource");
                 obj.ammo[4] = obj.ammo[4] + 1;
                 hit.collider.enabled = false;
                 Destroy(hit.gameObject);
 
-                UI.UpdateResources(hit.gameObject.name, 1);
+                UI.UpdateResources(hit.gameObject.tag, 1);
             }
 
 

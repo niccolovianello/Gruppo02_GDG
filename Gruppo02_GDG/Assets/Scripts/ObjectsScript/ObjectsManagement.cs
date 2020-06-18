@@ -27,7 +27,7 @@ namespace Com.Kawaiisun.SimpleHostile
             pickLoadout = new Equipment[3];
             ammo = new int[5];
             ammo[0] = 5;
-            ammo[1] = 1;
+            
             UI.UpdateResources("Matches", 5);
             weaponProperties.animationObj = JhonnyAnimator;
             //JhonnyAnimator = FindObjectOfType<Animator>();
@@ -151,13 +151,13 @@ namespace Com.Kawaiisun.SimpleHostile
 
             if (pickLoadout[currentIndex] == null)
             {
-                Debug.Log("err1");
-                return;
+               
+                //return;
             }
 
             if (pickLoadout[eq_index].prefab == currentObject)
             {
-                Debug.Log("err2");
+               
                 return;
             } 
 
@@ -165,23 +165,28 @@ namespace Com.Kawaiisun.SimpleHostile
             {
                 Destroy(currentObject);
                 pickLoadout[currentIndex].isSelected = false;
+                loadout[1].isSelected = false;
                 look.haveBow = false;
                 JhonnyAnimator.SetBool("Aim", false);
                 JhonnyAnimator.SetBool("HaveTorch", false);
+                JhonnyAnimator.SetBool("HaveLantern", false);
+                JhonnyAnimator.SetBool("HaveBow", false);
+                JhonnyAnimator.SetBool("HaveFlashlight", false);
                 JhonnyAnimator.SetBool(pickLoadout[currentIndex].obj, false);
 
             }
             else
             {
-                Debug.Log("err3");
+                
             }
            
+            
+
+
+
+             GameObject t_newEquipment = Instantiate(pickLoadout[eq_index].prefab, objectParent.position, objectParent.rotation, objectParent) as GameObject;
+
             JhonnyAnimator.SetBool(pickLoadout[eq_index].obj, true);
-
-
-
-            GameObject t_newEquipment = Instantiate(pickLoadout[eq_index].prefab, objectParent.position, objectParent.rotation, objectParent) as GameObject;
-
             t_newEquipment.transform.localPosition = pickLoadout[eq_index].eq_position;
             t_newEquipment.transform.localEulerAngles = pickLoadout[eq_index].eq_rotation;
 
@@ -205,7 +210,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
       
 
-        public void PickEquipment(string equipmentPick)
+        public bool PickEquipment(string equipmentPick)
         { 
            
             int index=0;
@@ -213,6 +218,7 @@ namespace Com.Kawaiisun.SimpleHostile
             int ind_pick= 3000;
             bool replacement = true;
             bool isPlaced = false;
+
 
             foreach (Equipment e in loadout)
             {
@@ -225,22 +231,26 @@ namespace Com.Kawaiisun.SimpleHostile
                 else
                     indexCounting++;
 
-
+               
             }
-            //foreach (Equipment e in pickLoadout)
-            //{
-                
-            //    if (e.name == equipmentPick)
-            //    {
-            //        Debug.Log("Hai già quest'oggetto!");
-            //        e.charge = 50;
-            //        return;
-                
-            //    }
-                
 
             
-            //}
+                foreach (Equipment e in pickLoadout)
+                {
+                if (e != null)
+                {
+                    if (e.name == equipmentPick)
+                    {
+                        Debug.Log("Hai già quest'oggetto!");
+
+                        return false;
+
+                    }
+                }
+
+                }
+            
+            
 
             for (int i = 0; i < 3; i++)
             {
@@ -267,6 +277,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
             UI.UpdateWeapons(equipmentPick, ind_pick);
             UI.ActiveWeapon(ind_pick);
+            return true;
         }
 
         public int getCurrentIndex()

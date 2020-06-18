@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 536899831}
   m_Layer: 13
   m_Name: CurativeObject
-  m_TagString: HealthObject
+  m_TagString: CurativeObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

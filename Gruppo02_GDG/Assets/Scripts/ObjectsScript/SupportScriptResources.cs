@@ -8,7 +8,7 @@ namespace Com.Kawaiisun.SimpleHostile
     {
         private float remainEnergy = 10;
         private float remainOil = 20;
-        private float remainLifeTorch = 50;
+        public float remainLifeTorch = 50;
         public float maxTorch = 50;
 
         public float GetRemainEnergy()
