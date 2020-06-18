@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: FlashLight
   prefab: {fileID: 934391514694293856, guid: 44b446cc1dc50f2429f35d1cbf4c2737, type: 3}
-  eq_position: {x: -0.0628, y: 0.0896, z: 0.0018}
-  eq_rotation: {x: -6.279, y: -126.343, z: 17.606}
+  eq_position: {x: -0.058, y: 0.1, z: 0.014}
+  eq_rotation: {x: -25.328, y: -125.011, z: -54.849}
   brightness: 10
   attackRange: 15
   damage: 3

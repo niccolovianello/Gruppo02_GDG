@@ -35,6 +35,7 @@ namespace Com.Kawaiisun.SimpleHostile
                             aud.Play("ReloadFlashlight");
                             Destroy(hit.collider.gameObject);
                         } 
+                        
                     }
 
                     pickUI.DotEnlight();
