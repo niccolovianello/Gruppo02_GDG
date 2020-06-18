@@ -34,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     public AudioManager aud;
 
     private float baseFOV;
-    private float sprintFOVModifier = 1.5f;
+    private float sprintFOVModifier = 1.1f;
 
     private Vector3 targetArmBobPosition;
     private Vector3 armParentOrigin;
@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
         if (JhonnyAnimator.GetBool("Aim") == true && JhonnyAnimator.GetBool("HaveBow") == true)
         {
             x = Input.GetAxis("Vertical");
-            z = Input.GetAxis("Horizontal");
+            z = -Input.GetAxis("Horizontal");
 
         }
         else
@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviour
             t_adjustedSpeed *= sprintModifierVelocity;
             JhonnyAnimator.SetFloat("Speed", 15);
             currentStamina -= ratioStaminaDischarge * Time.deltaTime;
-            normalCam.fieldOfView = Mathf.Lerp(normalCam.fieldOfView, baseFOV * sprintModifier, Time.deltaTime * 8f);
+            normalCam.fieldOfView = Mathf.Lerp(normalCam.fieldOfView, baseFOV * sprintFOVModifier, Time.deltaTime * 8f);
             //HeadBob(movementCounter, .15f, 0.075f);
             movementCounter += Time.deltaTime * 7f;
             armParent.localPosition = Vector3.Lerp(armParent.localPosition, targetArmBobPosition, Time.deltaTime * 10f);

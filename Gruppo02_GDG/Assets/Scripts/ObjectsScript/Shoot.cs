@@ -89,7 +89,8 @@ namespace Com.Kawaiisun.SimpleHostile
                     {
                         if(go != null)
                             aud.Play("Arrow");
-                        arr.isThrown = true;
+                        if(arr != null)
+                            arr.isThrown = true;
                         if (bxcol == null)
                             return;
                         bxcol.enabled = true;
