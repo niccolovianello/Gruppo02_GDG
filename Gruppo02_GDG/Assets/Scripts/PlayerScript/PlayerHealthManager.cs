@@ -13,7 +13,7 @@ public class PlayerHealthManager : MonoBehaviour
     private ObjectsManagement obj;
     public AudioClip[] steps;
     private AudioSource audioSource;
-    public int damageMonster = 18;
+    public int damageMonster = 26;
 
     public UIScript UI;
 

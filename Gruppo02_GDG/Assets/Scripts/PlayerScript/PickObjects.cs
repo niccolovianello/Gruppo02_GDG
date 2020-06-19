@@ -8,7 +8,7 @@ namespace Com.Kawaiisun.SimpleHostile
     {
 
         public ObjectsManagement obj;
-
+        private SupportScriptResources ssr;
         public PickObUI pickUI;
         private AudioManager aud;
 
@@ -16,6 +16,7 @@ namespace Com.Kawaiisun.SimpleHostile
         private void Start()
         {
             aud = FindObjectOfType<AudioManager>();
+            ssr = FindObjectOfType<SupportScriptResources>();
         }
         void Update()
         {
@@ -28,14 +29,28 @@ namespace Com.Kawaiisun.SimpleHostile
                 {
                     if (Input.GetKeyDown(KeyCode.E))
                     {
-                        
+
                         Debug.Log(hit.collider.gameObject.name);
+                       
+
                         if (obj.PickEquipment(hit.collider.gameObject.name) == true)
                         {
                             aud.Play("ReloadFlashlight");
                             Destroy(hit.collider.gameObject);
-                        } 
-                        
+                            Debug.Log(hit.collider.gameObject);
+                        }
+                        //if (obj.PickEquipment(hit.collider.gameObject.name) == false)
+                        //{
+                        //    if (hit.collider.gameObject.name == "Torch")
+                        //    {
+                        //        Debug.Log(hit);
+                        //        ssr.SetRemainLifeTorch(50f);
+                        //        aud.Play("ReloadFlashlight");
+                        //        Destroy(hit.collider.gameObject);
+                        //        return;
+
+                        //    }
+                        //}
                     }
 
                     pickUI.DotEnlight();
