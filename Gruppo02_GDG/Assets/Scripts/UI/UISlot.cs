@@ -87,7 +87,7 @@ namespace Com.Kawaiisun.SimpleHostile
         void PickBackground()
         {
             Color32 disabled = new Color32(100, 100, 100, 100);
-            Color32 enabled = new Color32(100, 100, 100, 255);
+            Color32 enabled = UI.SelectedCol();
 
             if (this.GetComponent<Image>().color == enabled)
             {

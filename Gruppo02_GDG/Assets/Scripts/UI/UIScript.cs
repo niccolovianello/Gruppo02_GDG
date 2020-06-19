@@ -256,5 +256,10 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             return arrowlife;
         }
+
+        public Color32 SelectedCol()
+        {
+            return selectedWeapon;
+        }
     }
 }

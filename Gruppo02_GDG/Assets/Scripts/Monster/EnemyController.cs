@@ -48,6 +48,8 @@ namespace Com.Kawaiisun.SimpleHostile
 
         bool dead = false;
 
+        public bool wrongpillar;
+
         //public Transform attackPoint;
         //public float attackRange;
         //public LayerMask playerLayer;
@@ -80,17 +82,21 @@ namespace Com.Kawaiisun.SimpleHostile
         void Start()
         {
             aud = FindObjectOfType<AudioManager>();
-            if (navPoint.Length > 0)
+
+            if (!wrongpillar)
             {
-                navPointPos = new Vector3[navPoint.Length];
-                for (int i = 0; i < navPointPos.Length; i++)
+                if (navPoint.Length > 0)
                 {
-                    navPointPos[i] = navPoint[i].gameObject.GetComponent<PatrolPointsRaycast>().GetPPLocation();
+                    navPointPos = new Vector3[navPoint.Length];
+                    for (int i = 0; i < navPointPos.Length; i++)
+                    {
+                        navPointPos[i] = navPoint[i].gameObject.GetComponent<PatrolPointsRaycast>().GetPPLocation();
+                    }
                 }
-            }
-            else
-            {
-                return;
+                else
+                {
+                    return;
+                }
             }
 
             agent = GetComponent<NavMeshAgent>();
