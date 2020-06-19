@@ -88,7 +88,7 @@ namespace Com.Kawaiisun.SimpleHostile
         }
 
 
-        void MatchLightMethod()
+        public void MatchLightMethod()
         {
 
             
@@ -272,8 +272,8 @@ namespace Com.Kawaiisun.SimpleHostile
             }
 
             //Debug.Log(ind_pick);
-
-            Equip(ind_pick);
+            //if(pickLoadout.le)
+                Equip(ind_pick);
 
             UI.UpdateWeapons(equipmentPick, ind_pick);
             UI.ActiveWeapon(ind_pick);
