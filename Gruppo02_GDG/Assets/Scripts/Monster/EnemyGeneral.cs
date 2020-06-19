@@ -10,7 +10,7 @@ public class EnemyGeneral : MonoBehaviour
     public int currentHealth;
 
     public ParticleSystem flames;
-    public ParticleSystem hurt;
+    //public ParticleSystem hurt;
 
     public PatrolPointsData ppd;
 
@@ -23,7 +23,7 @@ public class EnemyGeneral : MonoBehaviour
     private void Awake()
     {
         aud = FindObjectOfType<AudioManager>();
-        hurt.Stop();
+        //hurt.Stop();
         flames.Stop();
 
         //en = FindObjectOfType<EnemyController>();
@@ -60,6 +60,7 @@ public class EnemyGeneral : MonoBehaviour
 
     void Die()
     {
+        en.Dead();
         aud.Play("MonsterDead");
         en.SetDie();
 
@@ -69,10 +70,10 @@ public class EnemyGeneral : MonoBehaviour
         Debug.Log("Enemy die");
     }
 
-    public void HurtPart()
-    {
-        hurt.Play();
-    }
+    //public void HurtPart()
+    //{
+    //    hurt.Play();
+    //}
 
     public void FlamePart()
     {

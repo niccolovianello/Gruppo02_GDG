@@ -128,7 +128,6 @@ namespace Com.Kawaiisun.SimpleHostile
                 aud.Stop("Chasing");
                 isplaying = false;
             }
-
         }
 
         void Die()

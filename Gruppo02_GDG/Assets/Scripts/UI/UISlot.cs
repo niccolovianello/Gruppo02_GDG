@@ -118,7 +118,7 @@ namespace Com.Kawaiisun.SimpleHostile
                     //Debug.Log(batterylife /*/ 60*/ + "battery");
                     break;
                 case "L":
-                    charge.fillAmount = (lanternlife / 80);
+                    charge.fillAmount = (lanternlife / 110);
                     //Debug.Log(lanternlife /*/ 80*/ + "lantern");
                     break;
                 case "B":

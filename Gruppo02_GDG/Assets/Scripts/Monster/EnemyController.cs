@@ -46,6 +46,8 @@ namespace Com.Kawaiisun.SimpleHostile
         bool seen = false;
         bool isAttacking = false;
 
+        bool dead = false;
+
         //public Transform attackPoint;
         //public float attackRange;
         //public LayerMask playerLayer;
@@ -229,8 +231,7 @@ namespace Com.Kawaiisun.SimpleHostile
                     closeattack = true;
                     isAttacking = true;
                     anim.SetTrigger("Attack");
-                    aud.Play("Attack");
-                    StartCoroutine(ResetBool(0.5f));
+                    StartCoroutine(ResetBool(0.8f));
                 }
             }
             else
@@ -238,71 +239,82 @@ namespace Com.Kawaiisun.SimpleHostile
                 closeattack = false;
             }
 
-            if ((playerDistance < awareAI && angleToPlayer >= -angleAwareness && angleToPlayer <= angleAwareness) || seen == true) //se in cono visivo (120) ed entro distanza
+            // START BOOL DEAD
+            if (!dead)
             {
-                //seenplayer = true;
-                timeleft = timer;
-                LookAtPlayer();
-
-                if (playerDistance > 2f)
+                if ((playerDistance < awareAI && angleToPlayer >= -angleAwareness && angleToPlayer <= angleAwareness) || seen == true) //se in cono visivo (120) ed entro distanza
                 {
-                    //ischasing = true;
-                    if (ischasing == false)
+                    //seenplayer = true;
+                    timeleft = timer;
+                    LookAtPlayer();
+
+                    if (playerDistance > 2f)
                     {
-                        aud.Play("SeenByMonster");
+                        //ischasing = true;
+                        if (ischasing == false)
+                        {
+                            aud.Play("SeenByMonster");
 
-                        ischasing = true;
-                        isfollowing = false;
+                            ischasing = true;
+                            isfollowing = false;
 
-                        seen = false; //added
+                            seen = false; //added
 
-                        StartCoroutine(ExecuteAfterTime(2f));
+                            StartCoroutine(ExecuteAfterTime(2f));
+                        }
+                        else
+                        {
+                            Chase();
+                        }
                     }
-                    else
+                    /*else
+                    { 
+                        MoveToNextPoint();
+                    }*/
+                }
+                else if (ischasing == true) //timer inseguimento se non in cono visivo e in certa distanza
+                {
+                    if (timeleft > 0f)
                     {
+                        timeleft -= Time.deltaTime;
+                        //Debug.Log(Mathf.Round(timeleft));
                         Chase();
                     }
+                    else //quando scade timer
+                    {
+                        ischasing = false;
+                        isfollowing = false;
+                    }
                 }
-                /*else
-                { 
+
+                void LookAtPlayer()
+                {
+                    if (ischasing == false || isfollowing == false) //se non lo sta già inseguendo si ferma a guardare player
+                    {
+                        agent.speed = 0f;
+                    }
+                    Vector3 direction = (player.position - transform.position).normalized;
+                    Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+                    transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+
+                    StartCoroutine(FollowAfterTime(1.5f)); //dopo 2 secondi inizia a seguire player
+                }
+
+                if (!agent.pathPending && agent.remainingDistance < 0.5f && ischasing == false) //patrol
+                {
                     MoveToNextPoint();
-                }*/
-            }
-            else if (ischasing == true) //timer inseguimento se non in cono visivo e in certa distanza
-            {
-                if (timeleft > 0f)
-                {
-                    timeleft -= Time.deltaTime;
-                    //Debug.Log(Mathf.Round(timeleft));
-                    Chase();
-                }
-                else //quando scade timer
-                {
-                    ischasing = false;
-                    isfollowing = false;
+                    //Debug.Log(gameObject.name + "called from if pathpending");
+
+                    //Debug.Log("called " + ischasing);
                 }
             }
-
-            void LookAtPlayer()
+            else
             {
-                if (ischasing == false || isfollowing == false) //se non lo sta già inseguendo si ferma a guardare player
-                {
-                    agent.speed = 0f;
-                }
-                Vector3 direction = (player.position - transform.position).normalized;
-                Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-                transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-
-                StartCoroutine(FollowAfterTime(1.5f)); //dopo 2 secondi inizia a seguire player
+                ischasing = false;
+                isfollowing = false;
+                agent.isStopped = true;
             }
-
-            if (!agent.pathPending && agent.remainingDistance < 0.5f && ischasing == false) //patrol
-            {
-                MoveToNextPoint();
-                //Debug.Log(gameObject.name + "called from if pathpending");
-
-                //Debug.Log("called " + ischasing);
-            }
+            // END BOOL DEAD
 
             if (anim != null)
             {
@@ -445,6 +457,11 @@ namespace Com.Kawaiisun.SimpleHostile
             return ischasing;
         }
 
+        public void Dead()
+        {
+            dead = true;
+        }
+
         public void SetSeen()
         {
             seen = true;
@@ -468,6 +485,11 @@ namespace Com.Kawaiisun.SimpleHostile
             isfollowing = false;
             ischasing = false;
             anim.SetTrigger("Dead");
+        }
+
+        public void PlayAttack()
+        {
+            aud.Play("Attack");
         }
     } 
 }

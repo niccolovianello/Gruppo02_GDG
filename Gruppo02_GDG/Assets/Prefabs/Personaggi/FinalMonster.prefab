@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8902799450535096539}
   - component: {fileID: 8902799450535096533}
   - component: {fileID: 8902799450535096534}
-  - component: {fileID: 3443651852618178364}
+  - component: {fileID: 3592913899445913674}
   m_Layer: 11
   m_Name: FinalMonster
   m_TagString: Enemies
@@ -87,9 +87,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 2.2
+  m_Height: 3.2
   m_Direction: 1
-  m_Center: {x: 0, y: 1.1, z: 0.2}
+  m_Center: {x: 0, y: 1.45, z: 0.2}
 --- !u!114 &8902799450535096539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,7 +105,6 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   flames: {fileID: 8902799450143600396}
-  hurt: {fileID: 8902799449630024155}
   ppd: {fileID: 0}
   en: {fileID: 0}
   plife: {fileID: 0}
@@ -129,7 +128,7 @@ MonoBehaviour:
   anim: {fileID: 5799985276840609602}
   awareAI: 14
   angleAwareness: 0
-  AIMoveSpeed: 10
+  AIMoveSpeed: 5
   destPoint: 0
   monster_Right_Fist: {fileID: 3225894758800360221}
   obj: {fileID: 0}
@@ -155,14 +154,14 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!82 &3443651852618178364
+--- !u!82 &3592913899445913674
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 625144895695673387}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 56432cd23261fac4da783db33459e745,
     type: 2}
@@ -176,8 +175,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.4694996
-  MaxDistance: 4.2500095
+  MinDistance: 1
+  MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -15614,7 +15613,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8902799449630024153
 Transform:
   m_ObjectHideFlags: 0
