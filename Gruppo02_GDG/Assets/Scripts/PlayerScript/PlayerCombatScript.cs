@@ -52,12 +52,14 @@ namespace Com.Kawaiisun.SimpleHostile
                     animationObj.SetTrigger("TorchAttack");
 
             }
-            else if (attackRange == 15)
+            if (attackRange == 15)
             {
                 RaycastHit hit;
+                
                 if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, attackRange))
                 {
-                    
+                    Debug.Log(hit.collider.name);
+
                     if (hit.collider.GetComponent<EnemyGeneral>() && isOn == true )
                     {
 

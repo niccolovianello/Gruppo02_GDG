@@ -19,6 +19,7 @@ namespace Com.Kawaiisun.SimpleHostile
         private AudioManager aud;
         public float currentTimeOfMatchLife;
         public float decrementRate = 0.5f;
+        private PlayerMovement movePlayer;
 
         private float fireTimeLeftTot;
         private float fireTimeLeft;
@@ -37,6 +38,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
         private void Start()
         {
+            movePlayer = FindObjectOfType<PlayerMovement>();
             decrementRate = match.rateDecrement;
             aud = FindObjectOfType<AudioManager>();
             currentTimeOfMatchLife = match.charge;
@@ -104,6 +106,16 @@ namespace Com.Kawaiisun.SimpleHostile
                     }
                     fireTimeLeft -= decrementRate * Time.deltaTime;
                 }
+                if (movePlayer.isSprinting == true)
+                {
+                    UI.ActiveWeapon(4);
+                    UI.UpdateResources("Matches", -1);
+
+                    Destroy(obj.getCurrentObj());
+                    JhonnyAnimator.SetBool("HaveTorch", false);
+                    Debug.Log(JhonnyAnimator.GetBool("HaveTorch"));
+                }
+
 
                 //end fadelight
             }

@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 12f;
     public float gravity = -19.62f;
     public float jumpHeight = 3f;
-    private bool isSprinting;
+    public bool isSprinting;
     public float sprintModifier;
     public float sprintModifierVelocity = 2;
     public float maxStamina = 100;
@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
         bool sprint = Input.GetKey(KeyCode.LeftShift);
         
-        bool isSprinting = sprint && z>0 && isGrounded;
+        isSprinting = sprint && z>0 && isGrounded;
 
         
         float t_adjustedSpeed = speed;

@@ -44,6 +44,7 @@ namespace Com.Kawaiisun.SimpleHostile
             pl = FindObjectOfType<PlayerCombatScript>();
             startIntensity = flashlight.intensity;
             isOn = true;
+            pl.isOn = true;
             dischargeBatteryVelocity = selectionFlashlight.rateDecrement;
         }
         void Update()
