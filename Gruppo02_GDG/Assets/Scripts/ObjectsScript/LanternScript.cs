@@ -41,6 +41,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
         private void Start()
         {
+            decrementRate = lantern.rateDecrement;
             ssr = FindObjectOfType<SupportScriptResources>();
             currentOilRemainTime = ssr.GetRemainOil();
             isOn = false;

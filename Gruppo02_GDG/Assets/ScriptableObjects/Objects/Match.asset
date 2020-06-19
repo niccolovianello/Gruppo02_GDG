@@ -24,3 +24,4 @@ MonoBehaviour:
   charge: 15
   stringAud: match
   obj: HaveTorch
+  rateDecrement: 1

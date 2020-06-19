@@ -13,6 +13,7 @@ public class PlayerHealthManager : MonoBehaviour
     private ObjectsManagement obj;
     public AudioClip[] steps;
     private AudioSource audioSource;
+    public int damageMonster = 18;
 
     public UIScript UI;
 
@@ -51,7 +52,7 @@ public class PlayerHealthManager : MonoBehaviour
         currentHealth -= damage;
         Debug.Log("il nemico ti ha colpito");
 
-        UI.HurtUI(30);
+        UI.HurtUI(damageMonster);
 
         if (currentHealth <= 0)
         {
@@ -66,7 +67,7 @@ public class PlayerHealthManager : MonoBehaviour
     {
         if (other.gameObject.tag == "MonsterFist")
         {
-            TakeDamage(10);
+            TakeDamage(damageMonster);
             Debug.Log("hit player");
         }
     }

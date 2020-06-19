@@ -24,3 +24,4 @@ MonoBehaviour:
   charge: 0
   stringAud: Arrow
   obj: HaveBow
+  rateDecrement: 1

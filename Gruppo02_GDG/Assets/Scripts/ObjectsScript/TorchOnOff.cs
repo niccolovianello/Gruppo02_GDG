@@ -53,6 +53,7 @@ namespace Com.Kawaiisun.SimpleHostile
             aud = FindObjectOfType<AudioManager>();
             firech = fire.gameObject.GetComponentsInChildren<ParticleSystem>();
             fireTimeLeftTot = currentTimeOfTorchLife / 3;
+            decrementRate = torch.rateDecrement;
                 //15f;
         }
         void Update()

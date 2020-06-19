@@ -88,9 +88,9 @@ public class EnemyGeneral : MonoBehaviour
     {
         if (other.gameObject.tag == "PlayerAttackCloseRange")
         {
-            TakeDamage(40);
+            TakeDamage(18);
             Debug.Log("hit enemy");
-            HurtPart();
+            FlamePart();
         }
 
         if (other.gameObject.tag == "Arrow")

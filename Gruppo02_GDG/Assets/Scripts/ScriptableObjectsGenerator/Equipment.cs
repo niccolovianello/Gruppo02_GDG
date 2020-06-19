@@ -20,6 +20,7 @@ namespace Com.Kawaiisun.SimpleHostile
         public float charge = 0;
         public string stringAud;
         public string obj;
+        public float rateDecrement;
        
 
     }

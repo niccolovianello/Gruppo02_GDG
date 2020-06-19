@@ -124,6 +124,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 weaponProperties.attackRate = loadout[2].attackRate;
                 weaponProperties.attackDamage = loadout[2].damage;
                 
+                
                 //weaponProperties.animationObj = loadout[2].animatorObject;
                 currentObject = match;
 

@@ -37,6 +37,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
         private void Start()
         {
+            decrementRate = match.rateDecrement;
             aud = FindObjectOfType<AudioManager>();
             currentTimeOfMatchLife = match.charge;
             isOn = false;
