@@ -27,6 +27,8 @@ namespace Com.Kawaiisun.SimpleHostile
         bool isActive;
 
         TutorialScript tutScript;
+
+        Color32 selectedWeapon = new Color32(150,180,180,255);
         //Text t = child.GetComponent<Text>();
 
         // Start is called before the first frame update
@@ -75,11 +77,11 @@ namespace Com.Kawaiisun.SimpleHostile
                     {
                         if (newwpos == -1)
                         {
-                            Matches.color = new Color32(100, 100, 100, 255);
+                            Matches.color = selectedWeapon;
                         }
                         else
                         {
-                            Weapons.Find("Panel/WeaponSlot (" + (newwpos + 1) + ")").GetComponent<Image>().color = new Color32(100, 100, 100, 255);
+                            Weapons.Find("Panel/WeaponSlot (" + (newwpos + 1) + ")").GetComponent<Image>().color = selectedWeapon;
                         }
                     }
                     else
