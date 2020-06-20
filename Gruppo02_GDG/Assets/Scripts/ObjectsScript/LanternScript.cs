@@ -189,7 +189,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 ssr.SetRemainOil(currentOilRemainTime);
 
             }
-
+            ssr.SetRemainOil(currentOilRemainTime);
             UI.SetLLife(currentOilRemainTime);
         }
     }

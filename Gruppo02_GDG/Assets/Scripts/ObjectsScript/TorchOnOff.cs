@@ -43,6 +43,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
         private void Start()
         {
+            newTorch = false;
             //Debug.Log("StartTorcia");
             ssr = FindObjectOfType<SupportScriptResources>();
             currentTimeOfTorchLife = ssr.GetRemainLifeTorch();
@@ -60,6 +61,11 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             if (torch.isSelected == true )
             {
+                if (newTorch == true)
+                {
+                    currentTimeOfTorchLife = ssr.GetRemainLifeTorch();
+                    newTorch = false;
+                } 
                 
                 
 
@@ -163,7 +169,7 @@ namespace Com.Kawaiisun.SimpleHostile
 
 
                 }
-
+                ssr.SetRemainLifeTorch(currentTimeOfTorchLife);
 
             }
             if(torch.isSelected == false)

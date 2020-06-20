@@ -14,6 +14,8 @@ namespace Com.Kawaiisun.SimpleHostile
         public Animator JhonnyAnimator;
         public AudioManager aud;
         public MouseLook look;
+        private SupportScriptResources ssr;
+        private TorchOnOff torch;
         public int[] ammo; // 0 fiammiferi 1 olio 2 batterie 3 frecce 5 oggetti curativi
         
 
@@ -23,6 +25,8 @@ namespace Com.Kawaiisun.SimpleHostile
         
         private void Start()
         {
+            
+            ssr = FindObjectOfType<SupportScriptResources>();
             aud = FindObjectOfType<AudioManager>();
             pickLoadout = new Equipment[3];
             ammo = new int[5];
@@ -243,6 +247,13 @@ namespace Com.Kawaiisun.SimpleHostile
                     if (e.name == equipmentPick)
                     {
                         Debug.Log("Hai già quest'oggetto!");
+                        if (e.name == "Torch")
+                        {
+                            ssr.SetRemainLifeTorch(50f);
+                            torch = FindObjectOfType<TorchOnOff>();
+                            torch.newTorch = true;
+                            return true;
+                        } 
 
                         return false;
 

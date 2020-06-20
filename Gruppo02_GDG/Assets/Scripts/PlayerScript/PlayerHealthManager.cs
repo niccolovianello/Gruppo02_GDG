@@ -13,12 +13,14 @@ public class PlayerHealthManager : MonoBehaviour
     private ObjectsManagement obj;
     public AudioClip[] steps;
     private AudioSource audioSource;
+    private AudioManager aud;
     public int damageMonster = 26;
 
     public UIScript UI;
 
     void Start()
     {
+        aud = FindObjectOfType<AudioManager>();
         audioSource = FindObjectOfType<AudioSource>();
         currentHealth = maxHealth;
         obj = FindObjectOfType<ObjectsManagement>();
@@ -30,6 +32,7 @@ public class PlayerHealthManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.C))
             if (obj.ammo[4] > 0)
             {
+                aud.Play("Cure");
                 currentHealth = maxHealth;
                 obj.ammo[4]--;
                 UI.HurtUI(0);

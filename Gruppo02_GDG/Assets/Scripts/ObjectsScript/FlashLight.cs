@@ -126,7 +126,7 @@ namespace Com.Kawaiisun.SimpleHostile
             }
 
             UI.SetFBattery(currentBatteryEnergy);
-           
+            ssr.SetRemainEnergy(currentBatteryEnergy);
         }
     }
 }
