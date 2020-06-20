@@ -9554,9 +9554,9 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 0.34926313, b: 0, a: 1}
+  m_Color: {r: 0.7924528, g: 0.5009919, b: 0.21306513, a: 1}
   m_Intensity: 3
-  m_Range: 15
+  m_Range: 12
   m_SpotAngle: 100
   m_InnerSpotAngle: 1
   m_CookieSize: 10
@@ -23966,6 +23966,7 @@ MonoBehaviour:
   torch: {fileID: 11400000, guid: b2fad2e46c393eb48a9a95e67d0ff235, type: 2}
   currentTimeOfTorchLife: 0
   decrementRate: 1
+  newTorch: 0
   UI: {fileID: 0}
 --- !u!65 &8820471089806097370
 BoxCollider:
