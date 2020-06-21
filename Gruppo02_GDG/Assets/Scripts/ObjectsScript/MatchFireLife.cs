@@ -114,6 +114,7 @@ namespace Com.Kawaiisun.SimpleHostile
                     Destroy(obj.getCurrentObj());
                     JhonnyAnimator.SetBool("HaveTorch", false);
                     Debug.Log(JhonnyAnimator.GetBool("HaveTorch"));
+                    obj.MatchLightMethod();
                 }
 
 
