@@ -152,11 +152,14 @@ namespace Com.Kawaiisun.SimpleHostile
             if (open)
             {
                 MapPanel.DOScale(5, 0.5f);
+                StartCoroutine(StopTimeAfter(0.5f));
                 return;
             }
             else
             {
-                MapPanel.DOScale(1, 0.5f);
+                Time.timeScale = 1f;
+                StartCoroutine(CloseMapAfter(0.1f));
+                //MapPanel.DOScale(1, 0.5f);
                 return;
             }
         }
@@ -205,6 +208,20 @@ namespace Com.Kawaiisun.SimpleHostile
             yield return new WaitForSeconds(time);
 
             t.color = new Color32(0, 0, 0, 0);
+        }
+
+        IEnumerator StopTimeAfter(float time)
+        {
+            yield return new WaitForSeconds(time);
+
+            Time.timeScale = 0f;
+        }
+
+        IEnumerator CloseMapAfter(float time)
+        {
+            yield return new WaitForSeconds(time);
+
+            MapPanel.DOScale(1, 0.5f);
         }
 
         public void SetFBattery(float currentbattery)

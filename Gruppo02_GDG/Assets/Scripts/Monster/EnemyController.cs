@@ -481,7 +481,13 @@ namespace Com.Kawaiisun.SimpleHostile
 
         public void SetHurt()
         {
-            anim.SetTrigger("Hurt");
+            if (obj.getCurrentObj() != null)
+            {
+                if (!obj.getCurrentObj().name.StartsWith("Flash"))
+                {
+                    anim.SetTrigger("Hurt");
+                }
+            }
         }
 
         public void SetDie()

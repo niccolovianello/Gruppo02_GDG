@@ -69,35 +69,43 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             if (str.StartsWith("F") && isActiveF == true)
             {
-                //Time.timeScale = 0f;
+                Time.timeScale = 0f;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 TutorialPanelF.SetActive(true);
-                TutorialPanelF.transform.Find("FillImage").GetComponent<Image>().DOFillAmount(0,4);
+                //TutorialPanelF.transform.Find("FillImage").GetComponent<Image>().DOFillAmount(0,4);
                 isActiveF = false;
-                StartCoroutine(DeactivateAfter(TutorialPanelF, 4f));
+                //StartCoroutine(DeactivateAfter(TutorialPanelF, 4f));
             }
             else if (str.StartsWith("T") && isActiveT == true)
             {
-                //Time.timeScale = 0f;
+                Time.timeScale = 0f;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 TutorialPanelT.SetActive(true);
-                TutorialPanelT.transform.Find("FillImage").GetComponent<Image>().DOFillAmount(0, 4);
+                //TutorialPanelT.transform.Find("FillImage").GetComponent<Image>().DOFillAmount(0, 4);
                 isActiveT = false;
-                StartCoroutine(DeactivateAfter(TutorialPanelT, 4f));
+                //StartCoroutine(DeactivateAfter(TutorialPanelT, 4f));
             }
             else if (str.StartsWith("L") && isActiveL == true)
             {
-                //Time.timeScale = 0f;
+                Time.timeScale = 0f;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 TutorialPanelL.SetActive(true);
-                TutorialPanelL.transform.Find("FillImage").GetComponent<Image>().DOFillAmount(0, 4);
+                //TutorialPanelL.transform.Find("FillImage").GetComponent<Image>().DOFillAmount(0, 4);
                 isActiveL = false;
-                StartCoroutine(DeactivateAfter(TutorialPanelL, 4f));
+                //StartCoroutine(DeactivateAfter(TutorialPanelL, 4f));
             }
             else if (str.StartsWith("B") && isActiveB == true)
             {
-                //Time.timeScale = 0f;
+                Time.timeScale = 0f;
+                Cursor.lockState = CursorLockMode.None;
+                Cursor.visible = true;
                 TutorialPanelB.SetActive(true);
-                TutorialPanelB.transform.Find("FillImage").GetComponent<Image>().DOFillAmount(0, 4);
+                //TutorialPanelB.transform.Find("FillImage").GetComponent<Image>().DOFillAmount(0, 4);
                 isActiveB = false;
-                StartCoroutine(DeactivateAfter(TutorialPanelB, 4f));
+                //StartCoroutine(DeactivateAfter(TutorialPanelB, 4f));
             }
         }
 
@@ -110,12 +118,20 @@ namespace Com.Kawaiisun.SimpleHostile
             Cursor.visible = true;
         }
 
-        IEnumerator DeactivateAfter(GameObject namepanel, float time)
-        {
-            yield return new WaitForSeconds(time);
+        //IEnumerator DeactivateAfter(GameObject namepanel, float time)
+        //{
+        //    yield return new WaitForSeconds(time);
 
-            namepanel.SetActive(false);
-            //Time.timeScale = 1;
+        //    namepanel.SetActive(false);
+        //    //Time.timeScale = 1;
+        //}
+
+        public void DeactivatePanel(GameObject panel)
+        {
+            panel.SetActive(false);
+            Time.timeScale = 1f;
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
 
         public void SetBoolActive(bool active)
