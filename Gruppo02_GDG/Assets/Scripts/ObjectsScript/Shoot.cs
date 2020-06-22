@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Animations;
 
 namespace Com.Kawaiisun.SimpleHostile
 {
@@ -16,10 +17,11 @@ namespace Com.Kawaiisun.SimpleHostile
         private Arrow arr;
         private BoxCollider bxcol;
         public Equipment bowEq;
-       
+        private PositionConstraint posCostraint;
         private AudioManager aud;
         private bool isAiming;
         public Equipment selectioBow;
+        private ConstraintSource cosSource;
 
         public UIScript UI;
 
@@ -39,6 +41,7 @@ namespace Com.Kawaiisun.SimpleHostile
             obj = FindObjectOfType<ObjectsManagement>();
             cam = FindObjectOfType<Camera>();
             aud = FindObjectOfType<AudioManager>();
+
         }
 
         void Update()
@@ -67,19 +70,25 @@ namespace Com.Kawaiisun.SimpleHostile
                         if (obj.ammo[3] > 0)
                         {
                             Debug.Log("freccia");
-                            go = Instantiate(arrowprefab, arrowSpawn.position, arrowSpawn.rotation, arrowSpawn) as GameObject;
+                            go = Instantiate(arrowprefab) as GameObject;
+                            //go.transform.parent = arrowSpawn.transform;
                             go.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                            go.transform.localPosition = Vector3.zero;
+                            Debug.Log(go.transform.localPosition);
+                           
                             //Quaternion.Euler(18.086f,191.95f,10.619f);
                             Debug.Log(go.transform.localRotation);
                             arr = go.GetComponent<Arrow>();
                             //go.transform.position = cam.transform.position + new Vector3(0, 0, 0.3f);
-
+                            posCostraint = go.GetComponent<PositionConstraint>();
                             rb = go.GetComponent<Rigidbody>();
                             bxcol = go.GetComponent<BoxCollider>();
                             bxcol.enabled = false;
                             //rb.isKinematic = false;
-                            rb.constraints = RigidbodyConstraints.FreezeAll;
-
+                            //rb.constraints = RigidbodyConstraints.FreezeAll;
+                            cosSource.sourceTransform = arrowSpawn.transform;
+                            cosSource.weight = 1;
+                            posCostraint.AddSource(cosSource);
                             UI.UpdateResources("Arrows", -1);
                         }
                         
@@ -94,6 +103,7 @@ namespace Com.Kawaiisun.SimpleHostile
                         if (bxcol == null)
                             return;
                         bxcol.enabled = true;
+                        go.transform.parent = null;
                         rb.constraints = RigidbodyConstraints.None;
                         rb.velocity = cam.transform.forward * shootForce;
                         obj.ammo[3]--;

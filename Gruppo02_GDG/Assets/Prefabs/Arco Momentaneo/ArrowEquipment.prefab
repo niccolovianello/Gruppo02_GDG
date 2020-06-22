@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 728479209128365635}
   - component: {fileID: 6271276511653291215}
   - component: {fileID: 464891060645862214}
-  - component: {fileID: 8178073528705634736}
+  - component: {fileID: 8621482971762378984}
+  - component: {fileID: 2123394770181875922}
   m_Layer: 0
   m_Name: ArrowEquipment
   m_TagString: Arrow
@@ -29,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6491632047354646181}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 34.777046, y: -1.6013947, z: -31.792}
-  m_LocalScale: {x: 150, y: 75, z: 150}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 3, y: 1.5, z: 3}
   m_Children:
   - {fileID: 3271995804013229797}
   m_Father: {fileID: 0}
@@ -116,7 +117,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.026036989, y: 0.026036989, z: 0.22413826}
   m_Center: {x: -0.00000014901161, y: -0.00000020302832, z: 0.061656}
---- !u!54 &8178073528705634736
+--- !u!54 &8621482971762378984
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -132,6 +133,23 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1818360608 &2123394770181875922
+PositionConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6491632047354646181}
+  m_Enabled: 1
+  m_Weight: 1
+  m_TranslationAtRest: {x: 0, y: 0, z: 0}
+  m_TranslationOffset: {x: 0, y: 0, z: 0}
+  m_AffectTranslationX: 1
+  m_AffectTranslationY: 1
+  m_AffectTranslationZ: 1
+  m_IsContraintActive: 0
+  m_IsLocked: 0
+  m_Sources: []
 --- !u!1001 &7849248867743520351
 PrefabInstance:
   m_ObjectHideFlags: 0
