@@ -50,6 +50,8 @@ namespace Com.Kawaiisun.SimpleHostile
 
         public bool wrongpillar;
 
+        float remainingDist;
+
         //public Transform attackPoint;
         //public float attackRange;
         //public LayerMask playerLayer;
@@ -138,6 +140,18 @@ namespace Com.Kawaiisun.SimpleHostile
             if (anim != null)
                 UpdateAnimations();
 
+            remainingDist = agent.remainingDistance;
+
+            //Debug.Log(gameObject.name + "c" + agent.remainingDistance + "" + remainingDist);
+
+            if (!agent.pathPending && /*agent.remainingDistance*/ remainingDist < 0.5f && ischasing == false) //patrol
+            {
+                MoveToNextPoint();
+                //Debug.Log(gameObject.name + "called from if pathpending");
+
+                //Debug.Log("called " + ischasing);
+            }
+
             //if (attackFlag == false)
             //{
             //    if(currentCoroutine != null)
@@ -167,29 +181,22 @@ namespace Com.Kawaiisun.SimpleHostile
                     Transform arr = obj.getCurrentObj().transform.Find("ArrowSpawn");
                     Light objLight;
 
-                    if (arr.childCount != 0)
-                    {
-                        objLight = arr.gameObject.GetComponentInChildren<Light>();
+                    objLight = arr.gameObject.GetComponentInChildren<Light>();
 
-                        if (objLight == null)
-                        {
-                            return;
-                        }
-                        else
-                        {
-                            if (objLight.enabled == true)
-                            {
-                                angleAwareness = 60f;
-                            }
-                            else if (objLight.enabled == false)
-                            {
-                                angleAwareness = 40f;
-                            }
-                        }
+                    if (objLight == null)
+                    {
+                        angleAwareness = 40f;
                     }
                     else
                     {
-                        angleAwareness = 40f;
+                        if (objLight.enabled == true)
+                        {
+                            angleAwareness = 60f;
+                        }
+                        else if (objLight.enabled == false)
+                        {
+                            angleAwareness = 40f;
+                        }
                     }
                 }
             }
@@ -304,14 +311,6 @@ namespace Com.Kawaiisun.SimpleHostile
                     transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
 
                     StartCoroutine(FollowAfterTime(1.5f)); //dopo 2 secondi inizia a seguire player
-                }
-
-                if (!agent.pathPending && agent.remainingDistance < 0.5f && ischasing == false) //patrol
-                {
-                    MoveToNextPoint();
-                    //Debug.Log(gameObject.name + "called from if pathpending");
-
-                    //Debug.Log("called " + ischasing);
                 }
             }
             else
