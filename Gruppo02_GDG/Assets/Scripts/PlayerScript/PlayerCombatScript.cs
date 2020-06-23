@@ -33,9 +33,10 @@ namespace Com.Kawaiisun.SimpleHostile
 
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                Debug.Log("attack");
                 if (Time.time >= nextAttackTime)
                 {
-                    //Debug.Log(attackRate);
+                    
                     Attack();
                     nextAttackTime = Time.time + 1 / attackRate;
                 }
@@ -48,7 +49,7 @@ namespace Com.Kawaiisun.SimpleHostile
         {
             if (attackRange == 3)
             {
-                
+                Debug.Log("attacco torcia");
                     animationObj.SetTrigger("TorchAttack");
 
             }

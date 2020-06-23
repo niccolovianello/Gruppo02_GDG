@@ -19,7 +19,7 @@ MonoBehaviour:
   brightness: 0
   attackRange: 0
   damage: 0
-  attackRate: 0
+  attackRate: 1
   isSelected: 0
   charge: 110
   stringAud: Lantern
