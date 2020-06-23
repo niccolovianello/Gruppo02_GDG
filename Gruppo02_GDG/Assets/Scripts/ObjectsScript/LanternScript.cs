@@ -73,7 +73,7 @@ namespace Com.Kawaiisun.SimpleHostile
                 {
 
 
-                    if (obj.ammo[0] >= 0 && currentOilRemainTime >= 0)
+                    if (obj.ammo[0] > 0 && currentOilRemainTime >= 0)
                     {
                         isOn = !isOn;
                         Debug.Log(isOn);

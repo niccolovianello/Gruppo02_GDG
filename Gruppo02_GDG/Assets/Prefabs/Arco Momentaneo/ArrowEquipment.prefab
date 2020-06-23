@@ -101,7 +101,6 @@ MonoBehaviour:
   fireLight: {fileID: 5251108475553708772}
   currentTimeOfMatchLife: 0
   decrementRate: 1
-  maxTimeLife: 15
   isThrown: 0
   UI: {fileID: 0}
 --- !u!65 &464891060645862214
@@ -112,11 +111,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6491632047354646181}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.026036989, y: 0.026036989, z: 0.22413826}
-  m_Center: {x: -0.00000014901161, y: -0.00000020302832, z: 0.061656}
+  m_Size: {x: 0.026036989, y: 0.026036989, z: 0.4959718}
+  m_Center: {x: -0.00000014901161, y: -0.00000020364921, z: 0.14626077}
 --- !u!54 &8621482971762378984
 Rigidbody:
   m_ObjectHideFlags: 0
