@@ -97,8 +97,7 @@ public class EnemyGeneral : MonoBehaviour
         if (other.gameObject.tag == "Arrow")
         {
             Arrow a = other.gameObject.GetComponent<Arrow>();
-            if(a.isOn == true)
-                Die();
+            Die();
         }
     }
 }

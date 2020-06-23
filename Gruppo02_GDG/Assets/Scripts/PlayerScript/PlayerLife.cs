@@ -58,51 +58,51 @@ namespace Com.Kawaiisun.SimpleHostile
                         //}
                     }
                 }
-                else
-                {
-                    Transform arr = obj.getCurrentObj().transform.Find("ArrowSpawn");
+                //else
+                //{
+                //    Transform arr = obj.getCurrentObj().transform.Find("ArrowSpawn");
 
-                    Light objLight;
+                //    Light objLight;
 
-                    if (arr.childCount != 0)
-                    {
-                        objLight = arr.gameObject.GetComponentInChildren<Light>();
+                //    if (arr.childCount != 0)
+                //    {
+                //        objLight = arr.gameObject.GetComponentInChildren<Light>();
 
-                        if (objLight == null)
-                        {
-                            return;
-                        }
-                        else
-                        {
-                            if (objLight.enabled == true)
-                            {
-                                if (plCurrentTime < 30f && plCurrentTime > 0f)
-                                {
-                                    plCurrentTime += Time.deltaTime;
+                //        if (objLight == null)
+                //        {
+                //            return;
+                //        }
+                //        else
+                //        {
+                //            if (objLight.enabled == true)
+                //            {
+                //                if (plCurrentTime < 30f && plCurrentTime > 0f)
+                //                {
+                //                    plCurrentTime += Time.deltaTime;
 
-                                    UI.TimerDarkUI(plCurrentTime);
-                                }
-                            }
-                            else if (objLight.enabled == false)
-                            {
-                                //if(plCurrentTime > 0f)
-                                //{
-                                plCurrentTime -= Time.deltaTime;
+                //                    UI.TimerDarkUI(plCurrentTime);
+                //                }
+                //            }
+                //            else if (objLight.enabled == false)
+                //            {
+                //                //if(plCurrentTime > 0f)
+                //                //{
+                //                plCurrentTime -= Time.deltaTime;
 
-                                UI.TimerDarkUI(plCurrentTime);
-                                //}
-                            }
-                        }
-                    }
-                    else
-                    {
-                        plCurrentTime -= Time.deltaTime;
+                //                UI.TimerDarkUI(plCurrentTime);
+                //                //}
+                //            }
+                //        }
+                //    }
+                //    else
+                //    {
+                //        plCurrentTime -= Time.deltaTime;
 
-                        UI.TimerDarkUI(plCurrentTime);
-                    }
+                //        UI.TimerDarkUI(plCurrentTime);
+                //    }
 
-                    //return;
-                }
+                //    //return;
+                //}
             }
             else
             {

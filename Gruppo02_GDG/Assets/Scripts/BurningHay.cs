@@ -29,13 +29,15 @@ namespace Com.Kawaiisun.SimpleHostile
                         fire.Play();
                         aud.Play("Paglia");
                     }
-                    else if (child.gameObject.GetComponent<Arrow>().isOn == true)
-                    {
-                        StartCoroutine(Burn(timeBurning));
-                        fire.Play();
-                        aud.Play("Paglia");
-                    }
+                    
                 }
+            }
+
+            if (other.gameObject.GetComponent<Arrow>())
+            {
+                StartCoroutine(Burn(timeBurning));
+                fire.Play();
+                aud.Play("Paglia");
             }
         }
 

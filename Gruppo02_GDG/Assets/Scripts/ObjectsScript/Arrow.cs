@@ -11,9 +11,9 @@ namespace Com.Kawaiisun.SimpleHostile
         private ParticleSystem[] firech;
         public Light fireLight;
         public float currentTimeOfMatchLife;
-        public float decrementRate = 1f;
-        public float maxTimeLife = 15f;
-        private ObjectsManagement obj;
+        public float decrementRate = 1f;      
+       
+       
 
         Rigidbody arrowBody;
         private float lifeTimer = 2f;
@@ -35,59 +35,25 @@ namespace Com.Kawaiisun.SimpleHostile
         void Start()
         {
             aud = FindObjectOfType<AudioManager>();
-            obj= FindObjectOfType<ObjectsManagement>();
-            currentTimeOfMatchLife = maxTimeLife;
+            //obj= FindObjectOfType<ObjectsManagement>();
+            //currentTimeOfMatchLife = maxTimeLife;
             isOn = false;
-            fire.Stop();
-            fireLight.enabled = false;
+           
             arrowBody = GetComponent<Rigidbody>();
             transform.rotation = Quaternion.LookRotation(arrowBody.velocity);
+            
+
         }
 
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Q))
-            {
-                if (obj.ammo[0] > 0)
-                {
-                    aud.Play("Match");
-                    obj.ammo[0]--;
-                    Debug.Log(obj.ammo[0]);
-                    isOn = !isOn;
-                    if (isOn)
-                    {
-                        fireLight.enabled = true;
-                        fire.Play();
-                    }
-
-                    UI.UpdateResources("Matches", -1);
-                }
-                else
-                    isOn = false;
-
-
-            }
-            if (isOn)
-            {
-                currentTimeOfMatchLife -= decrementRate * Time.deltaTime;
-
-                UI.SetALife(currentTimeOfMatchLife);
-
-                // fadelight
-
-                if (currentTimeOfMatchLife <= 0)
-                {
-
-                    Destroy(this.gameObject);
-                }
-
-                //end fadelight
-            }
+            
+          
             if (isThrown)
             {
-                arrowBody.isKinematic = false;
-                arrowBody.useGravity = true;
+                //arrowBody.isKinematic = false;
+                //arrowBody.useGravity = true;
                 timer += Time.deltaTime;
 
                 UI.SetALife(0);

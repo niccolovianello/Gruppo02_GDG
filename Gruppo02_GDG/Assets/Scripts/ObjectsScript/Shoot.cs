@@ -21,7 +21,14 @@ namespace Com.Kawaiisun.SimpleHostile
         private AudioManager aud;
         private bool isAiming;
         public Equipment selectioBow;
-        private ConstraintSource cosSource;
+        public GameObject arrowFake;
+        public bool arrowFakeOn;
+        public Light fireLight;
+        public ParticleSystem fire;
+        public float currentTimeOfMatchLife;
+        public float decrementRate = 1f;
+        public float maxTimeLife = 15f;
+        //private ConstraintSource cosSource;
 
         public UIScript UI;
 
@@ -41,6 +48,10 @@ namespace Com.Kawaiisun.SimpleHostile
             obj = FindObjectOfType<ObjectsManagement>();
             cam = FindObjectOfType<Camera>();
             aud = FindObjectOfType<AudioManager>();
+            arrowFake.SetActive(false);
+            arrowFakeOn = false;
+            currentTimeOfMatchLife = maxTimeLife;
+            
 
         }
 
@@ -65,53 +76,106 @@ namespace Com.Kawaiisun.SimpleHostile
                 {
                     cam.GetComponent<MouseLook>().haveBow = true;
 
-                    if (Input.GetMouseButtonDown(0))
+                    if (Input.GetKeyDown(KeyCode.Mouse0))
                     {
-                        if (obj.ammo[3] > 0)
+                        if (obj.ammo[3] > 0 && obj.ammo[0] > 0)
                         {
                             Debug.Log("freccia");
-                            go = Instantiate(arrowprefab) as GameObject;
+
+                            arrowFake.SetActive(true);
+                            //if (arrowFakeOn == false)
+                            //{
+                            //    fireLight.enabled = false;
+                            //    fire.Stop();
+                            //}
+
+                            //if (Input.GetKeyDown(KeyCode.Q))
+                            //{
+                            //    Debug.Log("premi q");
+
+                                    //Debug.Log("freccia accesa");
+                                    arrowFakeOn = true;
+                                    aud.Play("Match");
+                                    obj.ammo[0]--;
+                                    fireLight.enabled = true;
+                                    fire.Play();
+                                    UI.UpdateResources("Matches", -1);
+                              
+                                
+                            }
                             //go.transform.parent = arrowSpawn.transform;
-                            go.transform.localRotation = Quaternion.Euler(0, 0, 0);
-                            go.transform.localPosition = Vector3.zero;
-                            Debug.Log(go.transform.localPosition);
+                            //go.transform.localRotation = Quaternion.Euler(0, 0, 0);
+                            //go.transform.localPosition = Vector3.zero;
+                            
                            
                             //Quaternion.Euler(18.086f,191.95f,10.619f);
-                            Debug.Log(go.transform.localRotation);
-                            arr = go.GetComponent<Arrow>();
+                            
+                            
                             //go.transform.position = cam.transform.position + new Vector3(0, 0, 0.3f);
-                            posCostraint = go.GetComponent<PositionConstraint>();
-                            rb = go.GetComponent<Rigidbody>();
-                            bxcol = go.GetComponent<BoxCollider>();
-                            bxcol.enabled = false;
+                            //posCostraint = go.GetComponent<PositionConstraint>();
+                            
+                            
                             //rb.isKinematic = false;
                             //rb.constraints = RigidbodyConstraints.FreezeAll;
-                            cosSource.sourceTransform = arrowSpawn.transform;
-                            cosSource.weight = 1;
-                            posCostraint.AddSource(cosSource);
-                            UI.UpdateResources("Arrows", -1);
+                            //cosSource.sourceTransform = arrowSpawn.transform;
+                            //cosSource.weight = 1;
+                            //posCostraint.AddSource(cosSource);
+                            
                         }
-                        
+                        if (arrowFakeOn == true)
+                        {
+                            currentTimeOfMatchLife -= decrementRate * Time.deltaTime;
+
+                            UI.SetALife(currentTimeOfMatchLife);
+
+                            // fadelight
+
+                            if (currentTimeOfMatchLife <= 0)
+                            {
+                                fireLight.enabled = false;
+                                fire.Stop();
+                                arrowFake.SetActive(false);
+                                obj.ammo[3]--;
+                            UI.UpdateResources("Arrows", -1);
+                            currentTimeOfMatchLife = maxTimeLife;
+                            }
+
+                            //end fadelight
+                        }
+
 
                     }
                     if (Input.GetMouseButtonUp(0))
                     {
-                        if(go != null)
-                            aud.Play("Arrow");
-                        if(arr != null)
-                            arr.isThrown = true;
-                        if (bxcol == null)
-                            return;
-                        bxcol.enabled = true;
-                        go.transform.parent = null;
-                        rb.constraints = RigidbodyConstraints.None;
-                        rb.velocity = cam.transform.forward * shootForce;
-                        obj.ammo[3]--;
+                        if (arrowFake.activeSelf == true)
+                        {
+                            arrowFake.SetActive(false);
+
+                            go = Instantiate(arrowprefab,arrowSpawn.position,Quaternion.identity) as GameObject;
+                            rb = go.GetComponent<Rigidbody>();
+                            bxcol = go.GetComponent<BoxCollider>();
+                            arr = go.GetComponent<Arrow>();
+                            if (go != null)
+                                aud.Play("Arrow");
+                            if (arr != null)
+                                arr.isThrown = true;
+                            if (bxcol == null)
+                                return;
+
+                            bxcol.enabled = true;
+                            
+                            rb.constraints = RigidbodyConstraints.None;
+                            rb.useGravity = true;
+                            rb.isKinematic = false;
+                            rb.velocity = cam.transform.forward * shootForce;
+                            obj.ammo[3]--;
+                            UI.UpdateResources("Arrows", -1);
+                        }
 
 
                     }
 
-                }
+                
 
 
 
